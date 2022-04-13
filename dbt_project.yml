@@ -1,0 +1,23 @@
+
+config-version: 2
+
+name: 'ethereum_source'
+version: '0.1.0'
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
+models:
+  ethereum_source:
+    +materialized: view
+    +schema: stg_ethereum
+
+vars:
+  ethereum_source:
+    transactions: "{{ source('ethereum', 'transactions') }}"
+    token_transfers: "{{ source('ethereum', 'token_transfers') }}"    
+    tokens: "{{ source('ethereum', 'tokens') }}"
+    contracts: "{{ source('ethereum', 'contracts') }}"
+    blocks: "{{ source('ethereum', 'blocks') }}"
+    logs: "{{ source('ethereum', 'logs') }}"
+    traces: "{{ source('ethereum', 'tokens') }}"
+    receipts: "{{ source('ethereum', 'receipts') }}"
+
