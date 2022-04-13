@@ -1,3 +1,5 @@
+{{ config(enabled=var('using_traces', True)) }}
+
 with base as (
   select * 
   from {{ var('traces') }}

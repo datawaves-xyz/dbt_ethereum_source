@@ -1,3 +1,5 @@
+{{ config(enabled=var('using_receipts', True)) }}
+
 with base as (
   select * 
   from {{ var('receipts') }}
