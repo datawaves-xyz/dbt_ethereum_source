@@ -7,8 +7,12 @@ require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 models:
   ethereum_source:
-    +materialized: view
-    +schema: stg_ethereum
+    stg:
+      +materialized: view
+      +schema: stg_ethereum
+    opensea:
+      +schema: opensea_test
+      +pre_hook: "create database if not exists opensea_test;"
 
 vars:
   ethereum_source:
@@ -18,7 +22,7 @@ vars:
     contracts: "{{ source('ethereum', 'contracts') }}"
     blocks: "{{ source('ethereum', 'blocks') }}"
     logs: "{{ source('ethereum', 'logs') }}"
-    traces: "{{ source('ethereum', 'tokens') }}"
+    traces: "{{ source('ethereum', 'traces') }}"
     receipts: "{{ source('ethereum', 'receipts') }}"
 
     #Variables to enable or disable models if you do not have the respective table.

@@ -28,14 +28,3 @@ vars:
   ethereum_schema: your_schema_name
   ethereum_database: your_database_name
 ```
-
-## Codegen
-
-```
-$ pip install blockchain-dbt
-$ bdbt ethereum_codegen \
-  -w /Users/songv/Code/jike/web3/dbt_ethereum_source/models \
-  -rw s3a://ifcrypto/dist/java \
-  -p /Users/songv/Code/jike/web3/dbt_ethereum_source/opensea \
-  -d spark
-```
