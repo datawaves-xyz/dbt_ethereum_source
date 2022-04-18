@@ -10,9 +10,6 @@ models:
     stg:
       +materialized: view
       +schema: stg_ethereum
-    opensea:
-      +schema: opensea_test
-      +pre_hook: "create database if not exists opensea_test;"
 
 vars:
   ethereum_source:
