@@ -7,4 +7,4 @@ ethereum_source:
       schema: "{{ env_var('SPARK_DATABASE', 'not-set') }}"
       host: "{{ env_var('SPARK_HOST', 'not-set') }}"
       port: "{{ env_var('SPARK_PORT', '-1') | as_number }}"
-      threads: 4
+      threads: 16
