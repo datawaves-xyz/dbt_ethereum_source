@@ -1,16 +1,26 @@
 config-version: 2
-
-name: "ethereum_source"
-profile: "ethereum_source"
-version: "0.1.0"
-require-dbt-version: [">=1.0.0", "<2.0.0"]
-
+name: ethereum_source
+profile: ethereum_source
+version: 0.1.0
+require-dbt-version:
+  - ">=1.0.0"
+  - <2.0.0
 models:
   ethereum_source:
     stg:
       +materialized: view
       +schema: stg_ethereum
-
+      +tags:
+        - chain_ethereum
+        - level_standardize
+        - proj_global
+    codegen:
+      opensea:
+        +schema: opensea
+        +tags:
+          - chain_ethereum
+          - level_parse
+          - proj_opensea
 vars:
   ethereum_source:
     transactions: "{{ source('ethereum', 'transactions') }}"
@@ -21,8 +31,6 @@ vars:
     logs: "{{ source('ethereum', 'logs') }}"
     traces: "{{ source('ethereum', 'traces') }}"
     receipts: "{{ source('ethereum', 'receipts') }}"
-
-    #Variables to enable or disable models if you do not have the respective table.
     using_traces: true
     using_logs: true
     using_token_transfers: true
