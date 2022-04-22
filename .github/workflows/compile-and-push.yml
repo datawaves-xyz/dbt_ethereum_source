@@ -6,7 +6,7 @@ on:
       - "compile-*"
       - "main"
 
-env: 
+env:
   SPARK_DATABASE: ${{ secrets.DBT_SPARK_DATABASE }}
   SPARK_HOST: ${{ secrets.DBT_SPARK_HOST }}
   SPARK_PORT: ${{ secrets.DBT_SPARK_PORT }}
@@ -14,20 +14,22 @@ env:
 jobs:
   compile-n-push-to-s3:
     runs-on: ubuntu-latest
-      - uses: actions/checkout@v2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: install-deps
         uses: mwhitaker/dbt-action@master
-        with: 
+        with:
           dbt_command: "dbt deps --profiles-dir ."
-        
+
       - name: compile-dbt
         uses: mwhitaker/dbt-action@master
         with:
           dbt_command: "dbt compile --profiles-dir ."
 
       - name: Upload manifest to s3
-        uses: zdurham/s3-upload-github-action@master  
+        uses: zdurham/s3-upload-github-action@master
         env:
           FILE: ./target/manifest.json
           AWS_REGION: ${{ secrets.AWS_REGION }}
