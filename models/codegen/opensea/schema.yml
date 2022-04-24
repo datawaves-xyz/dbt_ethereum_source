@@ -1,6 +1,6 @@
 version: 2
 models:
-  - name: WyvernExchangeV1_evt_OrderApprovedPartOne
+  - name: opensea_WyvernExchangeV1_evt_OrderApprovedPartOne
     columns:
       - name: hash
       - name: exchange
@@ -21,7 +21,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_evt_OrderApprovedPartTwo
+  - name: opensea_WyvernExchangeV1_evt_OrderApprovedPartTwo
     columns:
       - name: hash
       - name: howToCall
@@ -42,7 +42,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_evt_OrderCancelled
+  - name: opensea_WyvernExchangeV1_evt_OrderCancelled
     columns:
       - name: hash
       - name: evt_block_number
@@ -51,7 +51,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_evt_OrdersMatched
+  - name: opensea_WyvernExchangeV1_evt_OrdersMatched
     columns:
       - name: buyHash
       - name: sellHash
@@ -65,7 +65,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_evt_OwnershipRenounced
+  - name: opensea_WyvernExchangeV1_evt_OwnershipRenounced
     columns:
       - name: previousOwner
       - name: evt_block_number
@@ -74,7 +74,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_evt_OwnershipTransferred
+  - name: opensea_WyvernExchangeV1_evt_OwnershipTransferred
     columns:
       - name: previousOwner
       - name: newOwner
@@ -84,7 +84,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_name
+  - name: opensea_WyvernExchangeV1_call_name
     columns:
       - name: output_0
       - name: call_success
@@ -94,7 +94,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_tokenTransferProxy
+  - name: opensea_WyvernExchangeV1_call_tokenTransferProxy
     columns:
       - name: output_0
       - name: call_success
@@ -104,7 +104,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_staticCall
+  - name: opensea_WyvernExchangeV1_call_staticCall
     columns:
       - name: target
       - name: calldata
@@ -117,7 +117,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_changeMinimumMakerProtocolFee
+  - name: opensea_WyvernExchangeV1_call_changeMinimumMakerProtocolFee
     columns:
       - name: newMinimumMakerProtocolFee
       - name: call_success
@@ -127,7 +127,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_changeMinimumTakerProtocolFee
+  - name: opensea_WyvernExchangeV1_call_changeMinimumTakerProtocolFee
     columns:
       - name: newMinimumTakerProtocolFee
       - name: call_success
@@ -137,7 +137,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_guardedArrayReplace
+  - name: opensea_WyvernExchangeV1_call_guardedArrayReplace
     columns:
       - name: array
       - name: desired
@@ -150,7 +150,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_minimumTakerProtocolFee
+  - name: opensea_WyvernExchangeV1_call_minimumTakerProtocolFee
     columns:
       - name: output_0
       - name: call_success
@@ -160,7 +160,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_codename
+  - name: opensea_WyvernExchangeV1_call_codename
     columns:
       - name: output_0
       - name: call_success
@@ -170,7 +170,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_testCopyAddress
+  - name: opensea_WyvernExchangeV1_call_testCopyAddress
     columns:
       - name: addr
       - name: output_0
@@ -181,7 +181,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_testCopy
+  - name: opensea_WyvernExchangeV1_call_testCopy
     columns:
       - name: arrToCopy
       - name: output_0
@@ -192,7 +192,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_calculateCurrentPrice_
+  - name: opensea_WyvernExchangeV1_call_calculateCurrentPrice_
     columns:
       - name: addrs
       - name: uints
@@ -211,7 +211,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_changeProtocolFeeRecipient
+  - name: opensea_WyvernExchangeV1_call_changeProtocolFeeRecipient
     columns:
       - name: newProtocolFeeRecipient
       - name: call_success
@@ -221,7 +221,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_version
+  - name: opensea_WyvernExchangeV1_call_version
     columns:
       - name: output_0
       - name: call_success
@@ -231,7 +231,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_orderCalldataCanMatch
+  - name: opensea_WyvernExchangeV1_call_orderCalldataCanMatch
     columns:
       - name: buyCalldata
       - name: buyReplacementPattern
@@ -245,7 +245,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_validateOrder_
+  - name: opensea_WyvernExchangeV1_call_validateOrder_
     columns:
       - name: addrs
       - name: uints
@@ -267,7 +267,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_calculateFinalPrice
+  - name: opensea_WyvernExchangeV1_call_calculateFinalPrice
     columns:
       - name: side
       - name: saleKind
@@ -283,7 +283,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_protocolFeeRecipient
+  - name: opensea_WyvernExchangeV1_call_protocolFeeRecipient
     columns:
       - name: output_0
       - name: call_success
@@ -293,7 +293,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_renounceOwnership
+  - name: opensea_WyvernExchangeV1_call_renounceOwnership
     columns:
       - name: call_success
       - name: call_block_number
@@ -302,7 +302,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_hashOrder_
+  - name: opensea_WyvernExchangeV1_call_hashOrder_
     columns:
       - name: addrs
       - name: uints
@@ -321,7 +321,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_ordersCanMatch_
+  - name: opensea_WyvernExchangeV1_call_ordersCanMatch_
     columns:
       - name: addrs
       - name: uints
@@ -340,7 +340,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_approveOrder_
+  - name: opensea_WyvernExchangeV1_call_approveOrder_
     columns:
       - name: addrs
       - name: uints
@@ -359,7 +359,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_registry
+  - name: opensea_WyvernExchangeV1_call_registry
     columns:
       - name: output_0
       - name: call_success
@@ -369,7 +369,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_minimumMakerProtocolFee
+  - name: opensea_WyvernExchangeV1_call_minimumMakerProtocolFee
     columns:
       - name: output_0
       - name: call_success
@@ -379,7 +379,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_hashToSign_
+  - name: opensea_WyvernExchangeV1_call_hashToSign_
     columns:
       - name: addrs
       - name: uints
@@ -398,7 +398,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_cancelledOrFinalized
+  - name: opensea_WyvernExchangeV1_call_cancelledOrFinalized
     columns:
       - name: _0
       - name: output_0
@@ -409,7 +409,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_owner
+  - name: opensea_WyvernExchangeV1_call_owner
     columns:
       - name: output_0
       - name: call_success
@@ -419,7 +419,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_exchangeToken
+  - name: opensea_WyvernExchangeV1_call_exchangeToken
     columns:
       - name: output_0
       - name: call_success
@@ -429,7 +429,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_cancelOrder_
+  - name: opensea_WyvernExchangeV1_call_cancelOrder_
     columns:
       - name: addrs
       - name: uints
@@ -450,7 +450,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_atomicMatch_
+  - name: opensea_WyvernExchangeV1_call_atomicMatch_
     columns:
       - name: addrs
       - name: uints
@@ -470,7 +470,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_validateOrderParameters_
+  - name: opensea_WyvernExchangeV1_call_validateOrderParameters_
     columns:
       - name: addrs
       - name: uints
@@ -489,7 +489,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_INVERSE_BASIS_POINT
+  - name: opensea_WyvernExchangeV1_call_INVERSE_BASIS_POINT
     columns:
       - name: output_0
       - name: call_success
@@ -499,7 +499,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_calculateMatchPrice_
+  - name: opensea_WyvernExchangeV1_call_calculateMatchPrice_
     columns:
       - name: addrs
       - name: uints
@@ -518,7 +518,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_approvedOrders
+  - name: opensea_WyvernExchangeV1_call_approvedOrders
     columns:
       - name: _0
       - name: output_0
@@ -529,7 +529,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV1_call_transferOwnership
+  - name: opensea_WyvernExchangeV1_call_transferOwnership
     columns:
       - name: newOwner
       - name: call_success
@@ -539,7 +539,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_OrderApprovedPartOne
+  - name: opensea_WyvernExchangeV2_evt_OrderApprovedPartOne
     columns:
       - name: hash
       - name: exchange
@@ -560,7 +560,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_OrderApprovedPartTwo
+  - name: opensea_WyvernExchangeV2_evt_OrderApprovedPartTwo
     columns:
       - name: hash
       - name: howToCall
@@ -581,7 +581,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_OrderCancelled
+  - name: opensea_WyvernExchangeV2_evt_OrderCancelled
     columns:
       - name: hash
       - name: evt_block_number
@@ -590,7 +590,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_OrdersMatched
+  - name: opensea_WyvernExchangeV2_evt_OrdersMatched
     columns:
       - name: buyHash
       - name: sellHash
@@ -604,7 +604,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_NonceIncremented
+  - name: opensea_WyvernExchangeV2_evt_NonceIncremented
     columns:
       - name: maker
       - name: newNonce
@@ -614,7 +614,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_OwnershipRenounced
+  - name: opensea_WyvernExchangeV2_evt_OwnershipRenounced
     columns:
       - name: previousOwner
       - name: evt_block_number
@@ -623,7 +623,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_evt_OwnershipTransferred
+  - name: opensea_WyvernExchangeV2_evt_OwnershipTransferred
     columns:
       - name: previousOwner
       - name: newOwner
@@ -633,7 +633,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_name
+  - name: opensea_WyvernExchangeV2_call_name
     columns:
       - name: output_0
       - name: call_success
@@ -643,7 +643,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_tokenTransferProxy
+  - name: opensea_WyvernExchangeV2_call_tokenTransferProxy
     columns:
       - name: output_0
       - name: call_success
@@ -653,7 +653,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_staticCall
+  - name: opensea_WyvernExchangeV2_call_staticCall
     columns:
       - name: target
       - name: calldata
@@ -666,7 +666,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_changeMinimumMakerProtocolFee
+  - name: opensea_WyvernExchangeV2_call_changeMinimumMakerProtocolFee
     columns:
       - name: newMinimumMakerProtocolFee
       - name: call_success
@@ -676,7 +676,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_changeMinimumTakerProtocolFee
+  - name: opensea_WyvernExchangeV2_call_changeMinimumTakerProtocolFee
     columns:
       - name: newMinimumTakerProtocolFee
       - name: call_success
@@ -686,7 +686,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_guardedArrayReplace
+  - name: opensea_WyvernExchangeV2_call_guardedArrayReplace
     columns:
       - name: array
       - name: desired
@@ -699,7 +699,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_minimumTakerProtocolFee
+  - name: opensea_WyvernExchangeV2_call_minimumTakerProtocolFee
     columns:
       - name: output_0
       - name: call_success
@@ -709,7 +709,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_codename
+  - name: opensea_WyvernExchangeV2_call_codename
     columns:
       - name: output_0
       - name: call_success
@@ -719,7 +719,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_DOMAIN_SEPARATOR
+  - name: opensea_WyvernExchangeV2_call_DOMAIN_SEPARATOR
     columns:
       - name: output_0
       - name: call_success
@@ -729,7 +729,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_calculateCurrentPrice_
+  - name: opensea_WyvernExchangeV2_call_calculateCurrentPrice_
     columns:
       - name: addrs
       - name: uints
@@ -748,7 +748,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_changeProtocolFeeRecipient
+  - name: opensea_WyvernExchangeV2_call_changeProtocolFeeRecipient
     columns:
       - name: newProtocolFeeRecipient
       - name: call_success
@@ -758,7 +758,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_version
+  - name: opensea_WyvernExchangeV2_call_version
     columns:
       - name: output_0
       - name: call_success
@@ -768,7 +768,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_orderCalldataCanMatch
+  - name: opensea_WyvernExchangeV2_call_orderCalldataCanMatch
     columns:
       - name: buyCalldata
       - name: buyReplacementPattern
@@ -782,7 +782,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_validateOrder_
+  - name: opensea_WyvernExchangeV2_call_validateOrder_
     columns:
       - name: addrs
       - name: uints
@@ -804,7 +804,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_incrementNonce
+  - name: opensea_WyvernExchangeV2_call_incrementNonce
     columns:
       - name: call_success
       - name: call_block_number
@@ -813,7 +813,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_calculateFinalPrice
+  - name: opensea_WyvernExchangeV2_call_calculateFinalPrice
     columns:
       - name: side
       - name: saleKind
@@ -829,7 +829,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_protocolFeeRecipient
+  - name: opensea_WyvernExchangeV2_call_protocolFeeRecipient
     columns:
       - name: output_0
       - name: call_success
@@ -839,7 +839,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_renounceOwnership
+  - name: opensea_WyvernExchangeV2_call_renounceOwnership
     columns:
       - name: call_success
       - name: call_block_number
@@ -848,7 +848,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_hashOrder_
+  - name: opensea_WyvernExchangeV2_call_hashOrder_
     columns:
       - name: addrs
       - name: uints
@@ -867,7 +867,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_ordersCanMatch_
+  - name: opensea_WyvernExchangeV2_call_ordersCanMatch_
     columns:
       - name: addrs
       - name: uints
@@ -886,7 +886,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_approveOrder_
+  - name: opensea_WyvernExchangeV2_call_approveOrder_
     columns:
       - name: addrs
       - name: uints
@@ -905,7 +905,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_registry
+  - name: opensea_WyvernExchangeV2_call_registry
     columns:
       - name: output_0
       - name: call_success
@@ -915,7 +915,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_minimumMakerProtocolFee
+  - name: opensea_WyvernExchangeV2_call_minimumMakerProtocolFee
     columns:
       - name: output_0
       - name: call_success
@@ -925,7 +925,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_hashToSign_
+  - name: opensea_WyvernExchangeV2_call_hashToSign_
     columns:
       - name: addrs
       - name: uints
@@ -944,7 +944,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_nonces
+  - name: opensea_WyvernExchangeV2_call_nonces
     columns:
       - name: _0
       - name: output_0
@@ -955,7 +955,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_cancelledOrFinalized
+  - name: opensea_WyvernExchangeV2_call_cancelledOrFinalized
     columns:
       - name: _0
       - name: output_0
@@ -966,7 +966,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_owner
+  - name: opensea_WyvernExchangeV2_call_owner
     columns:
       - name: output_0
       - name: call_success
@@ -976,7 +976,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_exchangeToken
+  - name: opensea_WyvernExchangeV2_call_exchangeToken
     columns:
       - name: output_0
       - name: call_success
@@ -986,7 +986,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_cancelOrder_
+  - name: opensea_WyvernExchangeV2_call_cancelOrder_
     columns:
       - name: addrs
       - name: uints
@@ -1007,7 +1007,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_atomicMatch_
+  - name: opensea_WyvernExchangeV2_call_atomicMatch_
     columns:
       - name: addrs
       - name: uints
@@ -1027,7 +1027,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_validateOrderParameters_
+  - name: opensea_WyvernExchangeV2_call_validateOrderParameters_
     columns:
       - name: addrs
       - name: uints
@@ -1046,7 +1046,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_INVERSE_BASIS_POINT
+  - name: opensea_WyvernExchangeV2_call_INVERSE_BASIS_POINT
     columns:
       - name: output_0
       - name: call_success
@@ -1056,7 +1056,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_calculateMatchPrice_
+  - name: opensea_WyvernExchangeV2_call_calculateMatchPrice_
     columns:
       - name: addrs
       - name: uints
@@ -1075,7 +1075,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_approvedOrders
+  - name: opensea_WyvernExchangeV2_call_approvedOrders
     columns:
       - name: hash
       - name: output_approved
@@ -1086,7 +1086,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_transferOwnership
+  - name: opensea_WyvernExchangeV2_call_transferOwnership
     columns:
       - name: newOwner
       - name: call_success
@@ -1096,7 +1096,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: WyvernExchangeV2_call_cancelOrderWithNonce_
+  - name: opensea_WyvernExchangeV2_call_cancelOrderWithNonce_
     columns:
       - name: addrs
       - name: uints
@@ -1118,7 +1118,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_AuthorisationChanged
+  - name: opensea_OpenSeaENSResolver_evt_AuthorisationChanged
     columns:
       - name: node
       - name: owner
@@ -1130,7 +1130,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_TextChanged
+  - name: opensea_OpenSeaENSResolver_evt_TextChanged
     columns:
       - name: node
       - name: indexedKey
@@ -1141,7 +1141,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_PubkeyChanged
+  - name: opensea_OpenSeaENSResolver_evt_PubkeyChanged
     columns:
       - name: node
       - name: x
@@ -1152,7 +1152,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_NameChanged
+  - name: opensea_OpenSeaENSResolver_evt_NameChanged
     columns:
       - name: node
       - name: name
@@ -1162,7 +1162,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_InterfaceChanged
+  - name: opensea_OpenSeaENSResolver_evt_InterfaceChanged
     columns:
       - name: node
       - name: interfaceID
@@ -1173,7 +1173,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_ContenthashChanged
+  - name: opensea_OpenSeaENSResolver_evt_ContenthashChanged
     columns:
       - name: node
       - name: hash
@@ -1183,7 +1183,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_AddrChanged
+  - name: opensea_OpenSeaENSResolver_evt_AddrChanged
     columns:
       - name: node
       - name: a
@@ -1193,7 +1193,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_ABIChanged
+  - name: opensea_OpenSeaENSResolver_evt_ABIChanged
     columns:
       - name: node
       - name: contentType
@@ -1203,7 +1203,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_evt_OwnershipTransferred
+  - name: opensea_OpenSeaENSResolver_evt_OwnershipTransferred
     columns:
       - name: previousOwner
       - name: newOwner
@@ -1213,7 +1213,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_supportsInterface
+  - name: opensea_OpenSeaENSResolver_call_supportsInterface
     columns:
       - name: interfaceID
       - name: output_0
@@ -1224,7 +1224,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setText
+  - name: opensea_OpenSeaENSResolver_call_setText
     columns:
       - name: node
       - name: key
@@ -1236,7 +1236,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_interfaceImplementer
+  - name: opensea_OpenSeaENSResolver_call_interfaceImplementer
     columns:
       - name: node
       - name: interfaceID
@@ -1248,7 +1248,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_ABI
+  - name: opensea_OpenSeaENSResolver_call_ABI
     columns:
       - name: node
       - name: contentTypes
@@ -1261,7 +1261,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setPubkey
+  - name: opensea_OpenSeaENSResolver_call_setPubkey
     columns:
       - name: node
       - name: x
@@ -1273,7 +1273,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setContenthash
+  - name: opensea_OpenSeaENSResolver_call_setContenthash
     columns:
       - name: node
       - name: hash
@@ -1284,7 +1284,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_addr
+  - name: opensea_OpenSeaENSResolver_call_addr
     columns:
       - name: node
       - name: output_0
@@ -1295,7 +1295,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setAuthorisation
+  - name: opensea_OpenSeaENSResolver_call_setAuthorisation
     columns:
       - name: node
       - name: target
@@ -1307,7 +1307,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_openSeaVersion
+  - name: opensea_OpenSeaENSResolver_call_openSeaVersion
     columns:
       - name: output_0
       - name: call_success
@@ -1317,7 +1317,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setBaseURI
+  - name: opensea_OpenSeaENSResolver_call_setBaseURI
     columns:
       - name: uri
       - name: call_success
@@ -1327,7 +1327,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_text
+  - name: opensea_OpenSeaENSResolver_call_text
     columns:
       - name: node
       - name: key
@@ -1339,7 +1339,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setABI
+  - name: opensea_OpenSeaENSResolver_call_setABI
     columns:
       - name: node
       - name: contentType
@@ -1351,7 +1351,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_name
+  - name: opensea_OpenSeaENSResolver_call_name
     columns:
       - name: node
       - name: output_0
@@ -1362,7 +1362,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_baseURI
+  - name: opensea_OpenSeaENSResolver_call_baseURI
     columns:
       - name: output_0
       - name: call_success
@@ -1372,7 +1372,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_renounceOwnership
+  - name: opensea_OpenSeaENSResolver_call_renounceOwnership
     columns:
       - name: call_success
       - name: call_block_number
@@ -1381,7 +1381,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setName
+  - name: opensea_OpenSeaENSResolver_call_setName
     columns:
       - name: node
       - name: name
@@ -1392,7 +1392,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_owner
+  - name: opensea_OpenSeaENSResolver_call_owner
     columns:
       - name: output_0
       - name: call_success
@@ -1402,7 +1402,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_isOwner
+  - name: opensea_OpenSeaENSResolver_call_isOwner
     columns:
       - name: output_0
       - name: call_success
@@ -1412,7 +1412,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_contenthash
+  - name: opensea_OpenSeaENSResolver_call_contenthash
     columns:
       - name: node
       - name: output_0
@@ -1423,7 +1423,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_pubkey
+  - name: opensea_OpenSeaENSResolver_call_pubkey
     columns:
       - name: node
       - name: output_x
@@ -1435,7 +1435,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_getTokenId
+  - name: opensea_OpenSeaENSResolver_call_getTokenId
     columns:
       - name: node
       - name: output_0
@@ -1446,7 +1446,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setAddr
+  - name: opensea_OpenSeaENSResolver_call_setAddr
     columns:
       - name: node
       - name: addr
@@ -1457,7 +1457,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_setInterface
+  - name: opensea_OpenSeaENSResolver_call_setInterface
     columns:
       - name: node
       - name: interfaceID
@@ -1469,7 +1469,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_transferOwnership
+  - name: opensea_OpenSeaENSResolver_call_transferOwnership
     columns:
       - name: newOwner
       - name: call_success
@@ -1479,7 +1479,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_authorisations
+  - name: opensea_OpenSeaENSResolver_call_authorisations
     columns:
       - name: _0
       - name: _1
@@ -1492,7 +1492,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: OpenSeaENSResolver_call_addTokenId
+  - name: opensea_OpenSeaENSResolver_call_addTokenId
     columns:
       - name: tokenId
       - name: call_success
