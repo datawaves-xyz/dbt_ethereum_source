@@ -1,11 +1,14 @@
 with base as (
   select * 
-  from {{ var('contracts') }}
+  from {{ var('tokens') }}
 ),
 
 final as (
-    select *
-    from base
+    tokens.address as contract_address,
+    tokens.symbol,
+    tokens.name,
+    cast(tokens.decimals as {{ dbt_utils.type_int() }}) as decimals,
+    cast(tokens.total_supply as {{ dbt_utils.type_int() }}) as total_supply
 )
 
 select * 
