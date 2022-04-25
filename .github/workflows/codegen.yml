@@ -1,0 +1,49 @@
+name: Generate dbt code
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "contracts/**"
+
+jobs:
+  codegen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+
+      - name: Set up python env
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - run: pip install --no-cache-dir --upgrade blockchain-dbt
+
+      - run: bdbt ethereum
+
+      - name: Upload jar to s3
+        uses: zdurham/s3-upload-github-action@master
+        env:
+          FILE: blockchain-dbt-udf.jar
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          S3_KEY: ${{ secrets.S3_JAR_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Commit files
+        run: |
+          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --local user.name "${{ secrets.GIT_USER }}"
+          git commit -m "Codegen" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.API_TOKEN_GITHUB }}
+          branch: main
