@@ -24,7 +24,7 @@ jobs:
 
       - run: pip install --no-cache-dir --upgrade blockchain-dbt
 
-      - run: bdbt ethereum
+      - run: bdbt ethereum_codegen
 
       - name: Run read-yaml action
         id: yaml-data
