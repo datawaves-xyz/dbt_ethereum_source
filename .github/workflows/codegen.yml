@@ -21,8 +21,9 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.9"
+          cache: "pip"
 
-      - run: pip install --no-cache-dir --upgrade blockchain-dbt
+      - run: pip install --upgrade blockchain-dbt eth-hash[pycryptodome]
 
       - run: bdbt ethereum_codegen
 
