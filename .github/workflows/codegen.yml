@@ -38,8 +38,8 @@ jobs:
         env:
           FILE: blockchain-dbt-udf-${{ steps.yaml-data.outputs.data }}.jar
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          S3_BUCKET: ${{ secrets.S3_BUCKET }}
-          S3_KEY: ${{ secrets.S3_JAR_KEY }}
+          S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          S3_KEY: ${{ secrets.AWS_S3_FOLDER }}blockchain-dbt-udf-${{ steps.yaml-data.outputs.data }}.jar
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
