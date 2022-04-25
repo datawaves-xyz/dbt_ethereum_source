@@ -5,7 +5,7 @@
         partition_by=['dt'],
         file_format='parquet',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev2_upgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_Upgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf.jar";'
+            'sql': 'create or replace function rariable_exchangev2_upgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_Upgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }
     )
 }}

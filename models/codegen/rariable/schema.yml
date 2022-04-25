@@ -142,85 +142,6 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: rariable_ExchangeV2_evt_AdminChanged
-    columns:
-      - name: previousAdmin
-      - name: newAdmin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_evt_BeaconUpgraded
-    columns:
-      - name: beacon
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_evt_Upgraded
-    columns:
-      - name: implementation
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_call_admin
-    columns:
-      - name: output_admin_
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_call_changeAdmin
-    columns:
-      - name: newAdmin
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_call_implementation
-    columns:
-      - name: output_implementation_
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_call_upgradeTo
-    columns:
-      - name: newImplementation
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV2_call_upgradeToAndCall
-    columns:
-      - name: newImplementation
-      - name: data
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
   - name: rariable_ExchangeV1_evt_Buy
     columns:
       - name: sellToken
@@ -433,6 +354,85 @@ models:
   - name: rariable_ExchangeV1_call_transferProxyForDeprecated
     columns:
       - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_evt_AdminChanged
+    columns:
+      - name: previousAdmin
+      - name: newAdmin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_evt_BeaconUpgraded
+    columns:
+      - name: beacon
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_evt_Upgraded
+    columns:
+      - name: implementation
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_call_admin
+    columns:
+      - name: output_admin_
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_call_changeAdmin
+    columns:
+      - name: newAdmin
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_call_implementation
+    columns:
+      - name: output_implementation_
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_call_upgradeTo
+    columns:
+      - name: newImplementation
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV2_call_upgradeToAndCall
+    columns:
+      - name: newImplementation
+      - name: data
       - name: call_success
       - name: call_block_number
       - name: call_block_time

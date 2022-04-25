@@ -5,7 +5,7 @@
         partition_by=['dt'],
         file_format='parquet',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_updateprotocolfeerecipient_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_updateProtocolFeeRecipient_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_updateprotocolfeerecipient_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_updateProtocolFeeRecipient_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }
     )
 }}

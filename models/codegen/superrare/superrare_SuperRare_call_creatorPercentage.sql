@@ -5,7 +5,7 @@
         partition_by=['dt'],
         file_format='parquet',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_creatorpercentage_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_creatorPercentage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf.jar";'
+            'sql': 'create or replace function superrare_superrare_creatorpercentage_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_creatorPercentage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }
     )
 }}
