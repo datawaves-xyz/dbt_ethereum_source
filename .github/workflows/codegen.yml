@@ -26,10 +26,17 @@ jobs:
 
       - run: bdbt ethereum
 
+      - name: Run read-yaml action
+        id: yaml-data
+        uses: KJ002/read-yaml@main
+        with:
+          file: "./dbt_project.yml"
+          key-path: '["version"]'
+
       - name: Upload jar to s3
         uses: zdurham/s3-upload-github-action@master
         env:
-          FILE: blockchain-dbt-udf.jar
+          FILE: blockchain-dbt-udf-${{ steps.yaml-data.outputs.data }}.jar
           AWS_REGION: ${{ secrets.AWS_REGION }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           S3_KEY: ${{ secrets.S3_JAR_KEY }}
