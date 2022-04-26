@@ -1,22 +1,18 @@
 version: 2
 sources:
   - name: ethereum
-    # database: "{{var ('ethereum_database', target.database)}}"
     schema: "{{var ('ethereum_schema', 'ethereum')}}"
-
     tables:
       - name: transactions
-
       - name: blocks
-
       - name: logs
-
       - name: traces
-
       - name: token_transfers
-
       - name: contracts
-
       - name: tokens
-
       - name: receipts
+    freshness:
+      error_after:
+        count: 24
+        period: hour
+    loaded_at_field: dt
