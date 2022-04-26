@@ -1,3 +1,13 @@
+{{
+    config(
+        materialized='incremental',
+        incremental_strategy='insert_overwrite',
+        partition_by=['dt'],
+        file_format='parquet',
+        alias='busdswap_call_kill_me'
+    )
+}}
+
 select /* REPARTITION(dt) */
     status==1 as call_success,
     block_number as call_block_number,

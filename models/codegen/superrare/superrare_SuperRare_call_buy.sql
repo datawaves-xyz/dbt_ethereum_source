@@ -4,6 +4,7 @@
         incremental_strategy='insert_overwrite',
         partition_by=['dt'],
         file_format='parquet',
+        alias='superrare_call_buy',
         pre_hook={
             'sql': 'create or replace function superrare_superrare_buy_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_buy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }

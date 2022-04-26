@@ -1,3 +1,13 @@
+{{
+    config(
+        materialized='incremental',
+        incremental_strategy='insert_overwrite',
+        partition_by=['dt'],
+        file_format='parquet',
+        alias='husdswap_call_stop_ramp_a'
+    )
+}}
+
 select /* REPARTITION(dt) */
     status==1 as call_success,
     block_number as call_block_number,

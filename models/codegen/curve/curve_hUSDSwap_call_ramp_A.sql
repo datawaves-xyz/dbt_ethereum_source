@@ -4,6 +4,7 @@
         incremental_strategy='insert_overwrite',
         partition_by=['dt'],
         file_format='parquet',
+        alias='husdswap_call_ramp_a',
         pre_hook={
             'sql': 'create or replace function curve_husdswap_ramp_a_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_ramp_A_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }

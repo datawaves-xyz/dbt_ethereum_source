@@ -4,6 +4,7 @@
         incremental_strategy='insert_overwrite',
         partition_by=['dt'],
         file_format='parquet',
+        alias='gusdswap_evt_commitnewfee',
         pre_hook={
             'sql': 'create or replace function curve_gusdswap_commitnewfee_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_CommitNewFee_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }

@@ -4,6 +4,7 @@
         incremental_strategy='insert_overwrite',
         partition_by=['dt'],
         file_format='parquet',
+        alias='busdswap_call_fee',
         pre_hook={
             'sql': 'create or replace function curve_busdswap_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }

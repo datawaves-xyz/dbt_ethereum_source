@@ -4,6 +4,7 @@
         incremental_strategy='insert_overwrite',
         partition_by=['dt'],
         file_format='parquet',
+        alias='yearngovernance_call_lastupdatetime',
         pre_hook={
             'sql': 'create or replace function yearn_yearngovernance_lastupdatetime_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_lastUpdateTime_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
         }
