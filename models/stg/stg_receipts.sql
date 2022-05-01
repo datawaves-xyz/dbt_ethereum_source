@@ -6,7 +6,7 @@
 
 with base as (
   select * 
-  from ethereum.receipts
+  from {{ var('receipts') }}
 ),
 
 final as (

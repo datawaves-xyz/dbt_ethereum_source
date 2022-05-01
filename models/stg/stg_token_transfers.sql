@@ -6,7 +6,7 @@
 
 with base as (
   select * 
-  from ethereum.token_transfers
+  from {{ var('token_transfers') }}
 ),
 
 final as (
