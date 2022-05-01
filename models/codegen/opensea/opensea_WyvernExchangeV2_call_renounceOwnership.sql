@@ -1,11 +1,3 @@
-{{
-    config(
-        materialized='table',
-        file_format='parquet',
-        alias='wyvernexchangev2_call_renounceownership'
-    )
-}}
-
 select /* REPARTITION(dt) */
     status==1 as call_success,
     block_number as call_block_number,

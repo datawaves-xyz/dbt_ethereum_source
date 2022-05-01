@@ -1,11 +1,3 @@
-{{
-    config(
-        materialized='table',
-        file_format='parquet',
-        alias='yearngovernance_call_exit'
-    )
-}}
-
 select /* REPARTITION(dt) */
     status==1 as call_success,
     block_number as call_block_number,

@@ -1,10 +1,11 @@
 {{
     config(
-        materialized='table',
+        materialized='incremental',
+        incremental_strategy='insert_overwrite',
+        partition_by=['dt'],
         file_format='parquet',
-        alias='wyvernexchangev1_call_staticcall',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_staticcall_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_staticCall_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_staticcall_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_staticCall_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }
     )
 }}

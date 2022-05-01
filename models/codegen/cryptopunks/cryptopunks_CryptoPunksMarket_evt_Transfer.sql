@@ -1,10 +1,11 @@
 {{
     config(
-        materialized='table',
+        materialized='incremental',
+        incremental_strategy='insert_overwrite',
+        partition_by=['dt'],
         file_format='parquet',
-        alias='cryptopunksmarket_evt_transfer',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.0.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }
     )
 }}

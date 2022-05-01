@@ -1,5 +1,224 @@
 version: 2
 models:
+  - name: rariable_ExchangeV1_evt_Buy
+    columns:
+      - name: sellToken
+      - name: sellTokenId
+      - name: sellValue
+      - name: owner
+      - name: buyToken
+      - name: buyTokenId
+      - name: buyValue
+      - name: buyer
+      - name: amount
+      - name: salt
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_evt_Cancel
+    columns:
+      - name: sellToken
+      - name: sellTokenId
+      - name: owner
+      - name: buyToken
+      - name: buyTokenId
+      - name: salt
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_evt_OwnershipTransferred
+    columns:
+      - name: previousOwner
+      - name: newOwner
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_beneficiary
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_buyerFeeSigner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_cancel
+    columns:
+      - name: key
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_erc20TransferProxy
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_exchange
+    columns:
+      - name: order
+      - name: sig
+      - name: buyerFee
+      - name: buyerFeeSig
+      - name: amount
+      - name: buyer
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_isOwner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_ordersHolder
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_prepareBuyerFeeMessage
+    columns:
+      - name: order
+      - name: fee
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_prepareMessage
+    columns:
+      - name: order
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_renounceOwnership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_setBeneficiary
+    columns:
+      - name: newBeneficiary
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_setBuyerFeeSigner
+    columns:
+      - name: newBuyerFeeSigner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_state
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_transferOwnership
+    columns:
+      - name: newOwner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_transferProxy
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: rariable_ExchangeV1_call_transferProxyForDeprecated
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
   - name: rariable_ExchangeStateV1_evt_OperatorAdded
     columns:
       - name: account
@@ -214,225 +433,6 @@ models:
     columns:
       - name: newImplementation
       - name: data
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_evt_Buy
-    columns:
-      - name: sellToken
-      - name: sellTokenId
-      - name: sellValue
-      - name: owner
-      - name: buyToken
-      - name: buyTokenId
-      - name: buyValue
-      - name: buyer
-      - name: amount
-      - name: salt
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_evt_Cancel
-    columns:
-      - name: sellToken
-      - name: sellTokenId
-      - name: owner
-      - name: buyToken
-      - name: buyTokenId
-      - name: salt
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_evt_OwnershipTransferred
-    columns:
-      - name: previousOwner
-      - name: newOwner
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_beneficiary
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_buyerFeeSigner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_cancel
-    columns:
-      - name: key
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_erc20TransferProxy
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_exchange
-    columns:
-      - name: order
-      - name: sig
-      - name: buyerFee
-      - name: buyerFeeSig
-      - name: amount
-      - name: buyer
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_isOwner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_ordersHolder
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_prepareBuyerFeeMessage
-    columns:
-      - name: order
-      - name: fee
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_prepareMessage
-    columns:
-      - name: order
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_renounceOwnership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_setBeneficiary
-    columns:
-      - name: newBeneficiary
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_setBuyerFeeSigner
-    columns:
-      - name: newBuyerFeeSigner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_state
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_transferOwnership
-    columns:
-      - name: newOwner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_transferProxy
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: rariable_ExchangeV1_call_transferProxyForDeprecated
-    columns:
-      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
