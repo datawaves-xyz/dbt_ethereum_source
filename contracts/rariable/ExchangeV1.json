@@ -788,5 +788,6 @@
     }
   ],
   "address": "0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06",
-  "name": "ExchangeV1"
+  "name": "ExchangeV1",
+  "materialize": "table"
 }

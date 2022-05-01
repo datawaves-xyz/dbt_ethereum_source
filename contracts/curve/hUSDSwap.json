@@ -535,5 +535,6 @@
     }
   ],
   "address": "0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604",
-  "name": "hUSDSwap"
+  "name": "hUSDSwap",
+  "materialize": "table"
 }

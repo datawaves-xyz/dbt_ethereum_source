@@ -146,5 +146,6 @@
     }
   ],
   "address": "0x9757F2d2b135150BBeb65308D4a91804107cd8D6",
-  "name": "ExchangeV2"
+  "name": "ExchangeV2",
+  "materialize": "table"
 }

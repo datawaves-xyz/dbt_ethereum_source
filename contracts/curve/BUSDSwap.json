@@ -459,5 +459,6 @@
     }
   ],
   "address": "0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27",
-  "name": "BUSDSwap"
+  "name": "BUSDSwap",
+  "materialize": "table"
 }

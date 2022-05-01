@@ -607,5 +607,6 @@
     }
   ],
   "address": "0x3A22dF48d84957F907e67F4313E3D43179040d6E",
-  "name": "YearnGovernance"
+  "name": "YearnGovernance",
+  "materialize": "table"
 }

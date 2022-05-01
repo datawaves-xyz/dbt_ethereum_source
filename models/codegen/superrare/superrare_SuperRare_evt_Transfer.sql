@@ -1,8 +1,6 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
         alias='superrare_evt_transfer',
         pre_hook={

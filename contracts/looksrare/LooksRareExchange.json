@@ -980,5 +980,6 @@
     }
   ],
   "address": "0x59728544B08AB483533076417FbBB2fD0B17CE3a",
-  "name": "LooksRareExchange"
+  "name": "LooksRareExchange",
+  "materialize": "table"
 }

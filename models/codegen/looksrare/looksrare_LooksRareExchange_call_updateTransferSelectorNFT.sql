@@ -1,8 +1,6 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
         alias='looksrareexchange_call_updatetransferselectornft',
         pre_hook={

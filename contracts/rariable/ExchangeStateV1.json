@@ -403,5 +403,6 @@
     }
   ],
   "address": "0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8",
-  "name": "ExchangeStateV1"
+  "name": "ExchangeStateV1",
+  "materialize": "table"
 }

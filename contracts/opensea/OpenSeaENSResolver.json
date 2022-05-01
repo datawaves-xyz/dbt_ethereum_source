@@ -376,5 +376,6 @@
     }
   ],
   "name": "OpenSeaENSResolver",
-  "address": "0x9c4e9cce4780062942a7fe34fa2fa7316c872956"
+  "address": "0x9c4e9cce4780062942a7fe34fa2fa7316c872956",
+  "materialize": "table"
 }

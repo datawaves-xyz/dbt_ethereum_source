@@ -684,5 +684,6 @@
     }
   ],
   "address": "0x41A322b28D0fF354040e2CbC676F0320d8c8850d",
-  "name": "SuperRare"
+  "name": "SuperRare",
+  "materialize": "table"
 }
