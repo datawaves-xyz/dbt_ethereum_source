@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='yearngovernance_call_feespaidin',
         pre_hook={
             'sql': 'create or replace function yearn_yearngovernance_feespaidin_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_feesPaidIn_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

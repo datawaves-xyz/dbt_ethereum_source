@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='exchangev2_call_upgradetoandcall',
         pre_hook={
             'sql': 'create or replace function rariable_exchangev2_upgradetoandcall_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_upgradeToAndCall_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

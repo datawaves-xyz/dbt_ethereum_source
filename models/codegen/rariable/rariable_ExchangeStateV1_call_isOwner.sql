@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='exchangestatev1_call_isowner',
         pre_hook={
             'sql': 'create or replace function rariable_exchangestatev1_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

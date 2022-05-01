@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='openseaensresolver_call_setbaseuri',
         pre_hook={
             'sql': 'create or replace function opensea_openseaensresolver_setbaseuri_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_setBaseURI_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

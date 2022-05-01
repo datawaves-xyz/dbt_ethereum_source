@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='looksrareexchange_call_royaltyfeemanager',
         pre_hook={
             'sql': 'create or replace function looksrare_looksrareexchange_royaltyfeemanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_royaltyFeeManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

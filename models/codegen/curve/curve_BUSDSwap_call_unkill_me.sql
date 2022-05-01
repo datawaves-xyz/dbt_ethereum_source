@@ -1,3 +1,11 @@
+{{
+    config(
+        materialized='table',
+        file_format='parquet',
+        alias='busdswap_call_unkill_me'
+    )
+}}
+
 select /* REPARTITION(dt) */
     status==1 as call_success,
     block_number as call_block_number,

@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='husdswap_evt_newfee',
         pre_hook={
             'sql': 'create or replace function curve_husdswap_newfee_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_NewFee_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

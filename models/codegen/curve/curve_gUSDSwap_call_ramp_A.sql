@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='gusdswap_call_ramp_a',
         pre_hook={
             'sql': 'create or replace function curve_gusdswap_ramp_a_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_ramp_A_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='exchangestatev1_evt_operatoradded',
         pre_hook={
             'sql': 'create or replace function rariable_exchangestatev1_operatoradded_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OperatorAdded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }

@@ -1,9 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite',
-        partition_by=['dt'],
+        materialized='table',
         file_format='parquet',
+        alias='exchangev1_call_setbeneficiary',
         pre_hook={
             'sql': 'create or replace function rariable_exchangev1_setbeneficiary_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_setBeneficiary_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
         }
