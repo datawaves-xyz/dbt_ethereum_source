@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_ordercancelled',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_ordercancelled_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrderCancelled_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_ordercancelled_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrderCancelled_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         opensea_wyvernexchangev2_ordercancelled_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "hash", "type": "bytes32"}], "name": "OrderCancelled", "type": "event"}', 'OrderCancelled') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
     and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
     and selector = "0x5152abf959f6564662358c2e52b702259b78bac5ee7842a0f01937e670efcc7d"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

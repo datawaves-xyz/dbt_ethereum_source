@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_get_dx',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_get_dx_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_get_dx_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function curve_busdswap_get_dx_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_get_dx_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         curve_busdswap_get_dx_calldecodeudf(unhex_input, unhex_output, '{"name": "get_dx", "outputs": [{"type": "uint256", "name": "out"}], "inputs": [{"type": "int128", "name": "i"}, {"type": "int128", "name": "j"}, {"type": "uint256", "name": "dy"}], "constant": true, "payable": false, "type": "function", "gas": 3454232}', 'get_dx') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27")
     and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10
     and selector = "0x30783637"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

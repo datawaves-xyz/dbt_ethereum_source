@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_call_addoperator',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_addoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_addOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_addoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_addOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         rariable_exchangestatev1_addoperator_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "address", "name": "account", "type": "address"}], "name": "addOperator", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'addOperator') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8")
     and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10
     and selector = "0x30783938"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

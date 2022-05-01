@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_evt_assign',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_assign_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_Assign_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_assign_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_Assign_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         cryptopunks_cryptopunksmarket_assign_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "to", "type": "address"}, {"indexed": false, "name": "punkIndex", "type": "uint256"}], "name": "Assign", "type": "event"}', 'Assign') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB")
     and address_hash = abs(hash(lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"))) % 10
     and selector = "0x8a0e37b73a0d9c82e205d4d1a3ff3d0b57ce5f4d7bccf6bac03336dc101cb7ba"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

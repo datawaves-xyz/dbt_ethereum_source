@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_evt_textchanged',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_textchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_TextChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_textchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_TextChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         opensea_openseaensresolver_textchanged_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "node", "type": "bytes32"}, {"indexed": false, "name": "indexedKey", "type": "string"}, {"indexed": false, "name": "key", "type": "string"}], "name": "TextChanged", "type": "event"}', 'TextChanged') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956")
     and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10
     and selector = "0xd8c9334b1a9c2f9da342a0a2b32629c1a229b6445dad78947f674b44444a7550"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

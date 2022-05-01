@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_evt_newprotocolfeerecipient',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_newprotocolfeerecipient_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_NewProtocolFeeRecipient_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_newprotocolfeerecipient_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_NewProtocolFeeRecipient_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         looksrare_looksrareexchange_newprotocolfeerecipient_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "protocolFeeRecipient", "type": "address"}], "name": "NewProtocolFeeRecipient", "type": "event"}', 'NewProtocolFeeRecipient') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
     and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
     and selector = "0x8cffb07faa2874440346743bdc0a86b06c3335cc47dc49b327d10e77b73ceb10"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

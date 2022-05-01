@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_proposals',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_proposals_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_proposals_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_proposals_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_proposals_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         yearn_yearngovernance_proposals_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "name": "proposals", "outputs": [{"internalType": "uint256", "name": "id", "type": "uint256"}, {"internalType": "address", "name": "proposer", "type": "address"}, {"internalType": "uint256", "name": "totalForVotes", "type": "uint256"}, {"internalType": "uint256", "name": "totalAgainstVotes", "type": "uint256"}, {"internalType": "uint256", "name": "start", "type": "uint256"}, {"internalType": "uint256", "name": "end", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}', 'proposals') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
     and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
     and selector = "0x30783031"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

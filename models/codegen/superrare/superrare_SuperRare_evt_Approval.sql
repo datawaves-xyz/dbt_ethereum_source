@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_approval',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_approval_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Approval_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function superrare_superrare_approval_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Approval_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         superrare_superrare_approval_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "_owner", "type": "address"}, {"indexed": true, "name": "_approved", "type": "address"}, {"indexed": false, "name": "_tokenId", "type": "uint256"}], "name": "Approval", "type": "event"}', 'Approval') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d")
     and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10
     and selector = "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

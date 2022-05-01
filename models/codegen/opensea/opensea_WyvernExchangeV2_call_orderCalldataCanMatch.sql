@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_ordercalldatacanmatch',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_ordercalldatacanmatch_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_orderCalldataCanMatch_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_ordercalldatacanmatch_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_orderCalldataCanMatch_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         opensea_wyvernexchangev2_ordercalldatacanmatch_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "buyCalldata", "type": "bytes"}, {"name": "buyReplacementPattern", "type": "bytes"}, {"name": "sellCalldata", "type": "bytes"}, {"name": "sellReplacementPattern", "type": "bytes"}], "name": "orderCalldataCanMatch", "outputs": [{"name": "", "type": "bool"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'orderCalldataCanMatch') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
     and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
     and selector = "0x30783536"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_evt_newtransferselectornft',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_newtransferselectornft_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_NewTransferSelectorNFT_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_newtransferselectornft_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_NewTransferSelectorNFT_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         looksrare_looksrareexchange_newtransferselectornft_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "transferSelectorNFT", "type": "address"}], "name": "NewTransferSelectorNFT", "type": "event"}', 'NewTransferSelectorNFT') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
     and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
     and selector = "0x205d78ab41afe80bd6b6aaa5d7599d5300ff8690da3ab1302c1b552f7baf7d8c"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

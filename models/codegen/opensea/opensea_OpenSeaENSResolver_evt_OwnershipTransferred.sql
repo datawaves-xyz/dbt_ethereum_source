@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_evt_ownershiptransferred',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         opensea_openseaensresolver_ownershiptransferred_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "previousOwner", "type": "address"}, {"indexed": true, "name": "newOwner", "type": "address"}], "name": "OwnershipTransferred", "type": "event"}', 'OwnershipTransferred') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956")
     and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10
     and selector = "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

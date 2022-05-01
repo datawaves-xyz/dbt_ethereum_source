@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='market_call_upgradetoandcall',
         pre_hook={
-            'sql': 'create or replace function foundation_market_upgradetoandcall_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_upgradeToAndCall_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function foundation_market_upgradetoandcall_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_upgradeToAndCall_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         foundation_market_upgradetoandcall_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "newImplementation", "type": "address"}, {"internalType": "bytes", "name": "data", "type": "bytes"}], "name": "upgradeToAndCall", "outputs": [], "stateMutability": "payable", "type": "function"}', 'upgradeToAndCall') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f")
     and address_hash = abs(hash(lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f"))) % 10
     and selector = "0x30783466"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

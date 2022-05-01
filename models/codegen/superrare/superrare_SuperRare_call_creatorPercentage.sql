@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_creatorpercentage',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_creatorpercentage_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_creatorPercentage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function superrare_superrare_creatorpercentage_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_creatorPercentage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         superrare_superrare_creatorpercentage_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "creatorPercentage", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}', 'creatorPercentage') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d")
     and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10
     and selector = "0x30786630"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_isowner',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         yearn_yearngovernance_isowner_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "isOwner", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "payable": false, "stateMutability": "view", "type": "function"}', 'isOwner') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
     and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
     and selector = "0x30783866"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

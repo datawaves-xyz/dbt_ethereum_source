@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_userminordernonce',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_userminordernonce_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_userMinOrderNonce_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_userminordernonce_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_userMinOrderNonce_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         looksrare_looksrareexchange_userminordernonce_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "", "type": "address"}], "name": "userMinOrderNonce", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"}', 'userMinOrderNonce') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
     and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
     and selector = "0x30783432"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

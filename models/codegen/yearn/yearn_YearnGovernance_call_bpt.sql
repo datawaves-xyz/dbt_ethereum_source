@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_bpt',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_bpt_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_bpt_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_bpt_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_bpt_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         yearn_yearngovernance_bpt_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "bpt", "outputs": [{"internalType": "contract IERC20", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"}', 'bpt') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
     and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
     and selector = "0x30783534"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

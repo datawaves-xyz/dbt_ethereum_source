@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_commit_transfer_ownership',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function curve_busdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         curve_busdswap_commit_transfer_ownership_calldecodeudf(unhex_input, unhex_output, '{"name": "commit_transfer_ownership", "outputs": [], "inputs": [{"type": "address", "name": "_owner"}], "constant": false, "payable": false, "type": "function", "gas": 74482}', 'commit_transfer_ownership') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27")
     and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10
     and selector = "0x30783662"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

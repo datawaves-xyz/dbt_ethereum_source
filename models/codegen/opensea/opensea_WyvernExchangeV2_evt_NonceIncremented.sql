@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_nonceincremented',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_nonceincremented_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_NonceIncremented_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_nonceincremented_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_NonceIncremented_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         opensea_wyvernexchangev2_nonceincremented_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "maker", "type": "address"}, {"indexed": false, "name": "newNonce", "type": "uint256"}], "name": "NonceIncremented", "type": "event"}', 'NonceIncremented') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
     and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
     and selector = "0xa82a649bbd060c9099cd7b7326e2b0dc9e9af0836480e0f849dc9eaa79710b3b"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

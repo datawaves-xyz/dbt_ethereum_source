@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_isuserordernonceexecutedorcancelled',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_isuserordernonceexecutedorcancelled_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_isUserOrderNonceExecutedOrCancelled_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_isuserordernonceexecutedorcancelled_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_isUserOrderNonceExecutedOrCancelled_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         looksrare_looksrareexchange_isuserordernonceexecutedorcancelled_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "user", "type": "address"}, {"internalType": "uint256", "name": "orderNonce", "type": "uint256"}], "name": "isUserOrderNonceExecutedOrCancelled", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "stateMutability": "view", "type": "function"}', 'isUserOrderNonceExecutedOrCancelled') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
     and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
     and selector = "0x30783331"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

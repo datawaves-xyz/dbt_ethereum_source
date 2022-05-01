@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_exchange_underlying',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_exchange_underlying_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_exchange_underlying_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function curve_dusdswap_exchange_underlying_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_exchange_underlying_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         curve_dusdswap_exchange_underlying_calldecodeudf(unhex_input, unhex_output, '{"name": "exchange_underlying", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "int128", "name": "i"}, {"type": "int128", "name": "j"}, {"type": "uint256", "name": "dx"}, {"type": "uint256", "name": "min_dy"}], "stateMutability": "nonpayable", "type": "function", "gas": 2631854}', 'exchange_underlying') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c")
     and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10
     and selector = "0x30786136"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

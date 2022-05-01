@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_call_punksremainingtoassign',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_punksremainingtoassign_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_punksRemainingToAssign_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_punksremainingtoassign_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_punksRemainingToAssign_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -19,7 +19,7 @@ with base as (
         to_address as contract_address,
         dt,
         cryptopunks_cryptopunksmarket_punksremainingtoassign_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "punksRemainingToAssign", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "type": "function"}', 'punksRemainingToAssign') as data
-    from {{ ref('stg_ethereum__traces') }}
+    from {{ ref('stg_traces') }}
     where to_address = lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB")
     and address_hash = abs(hash(lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"))) % 10
     and selector = "0x30786330"
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final

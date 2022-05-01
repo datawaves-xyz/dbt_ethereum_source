@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_evt_withdrawn',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_withdrawn_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_Withdrawn_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.1.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_withdrawn_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_Withdrawn_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         address as contract_address,
         dt,
         yearn_yearngovernance_withdrawn_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "user", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "Withdrawn", "type": "event"}', 'Withdrawn') as data
-    from {{ ref('stg_ethereum__logs') }}
+    from {{ ref('stg_logs') }}
     where address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
     and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
     and selector = "0x7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d5"
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(dt) */ *
+select /* REPARTITION(1) */ *
 from final
