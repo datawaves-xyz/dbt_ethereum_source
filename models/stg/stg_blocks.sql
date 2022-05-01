@@ -1,8 +1,12 @@
-{{ config(enabled=var('using_receipts', True)) }}
+{{
+    config(
+        alias='blocks'
+    )
+}}
 
 with base as (
   select * 
-  from {{ var('receipts') }}
+  from {{ var('blocks') }}
 ),
 
 final as (

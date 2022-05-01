@@ -1,6 +1,12 @@
+{{
+    config(
+        alias='token_transfers'
+    )
+}}
+
 with base as (
   select * 
-  from {{ var('contracts') }}
+  from ethereum.token_transfers
 ),
 
 final as (

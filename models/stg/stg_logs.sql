@@ -1,6 +1,12 @@
+{{
+    config(
+        alias='logs'
+    )
+}}
+
 with base as (
   select * 
-  from {{ var('transactions') }}
+  from ethereum.logs
 ),
 
 final as (

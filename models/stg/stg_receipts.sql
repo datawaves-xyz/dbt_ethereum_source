@@ -1,8 +1,12 @@
-{{ config(enabled=var('using_token_transfers', True)) }}
+{{
+    config(
+        alias='receipts'
+    )
+}}
 
 with base as (
   select * 
-  from {{ var('token_transfers') }}
+  from ethereum.receipts
 ),
 
 final as (

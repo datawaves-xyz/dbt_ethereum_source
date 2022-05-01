@@ -1,8 +1,12 @@
-{{ config(enabled=var('using_logs', True)) }}
+{{
+    config(
+        alias='traces'
+    )
+}}
 
 with base as (
   select * 
-  from {{ var('logs') }}
+  from ethereum.traces
 ),
 
 final as (

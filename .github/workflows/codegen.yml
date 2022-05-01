@@ -2,10 +2,8 @@ name: Generate dbt code
 
 on:
   push:
-    branches:
-      - "main"
-    paths:
-      - "contracts/**"
+    tags:
+      - "v*"
 
 jobs:
   codegen:

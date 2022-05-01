@@ -1,6 +1,12 @@
+{{
+    config(
+        alias='contracts'
+    )
+}}
+
 with base as (
   select * 
-  from {{ var('blocks') }}
+  from {{ var('contracts') }}
 ),
 
 final as (

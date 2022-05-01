@@ -1,8 +1,12 @@
-{{ config(enabled=var('using_traces', True)) }}
+{{
+    config(
+        alias='transactions'
+    )
+}}
 
 with base as (
   select * 
-  from {{ var('traces') }}
+  from ethereum.transactions
 ),
 
 final as (

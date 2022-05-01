@@ -1,6 +1,12 @@
+{{
+    config(
+        alias='tokens'
+    )
+}}
+
 with base as (
   select * 
-  from {{ var('tokens') }}
+  from ethereum.tokens
 ),
 
 final as (
