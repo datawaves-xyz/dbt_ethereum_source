@@ -52,11 +52,3 @@ sources:
         loaded_at_field: to_timestamp(dt)
 
       - name: tokens
-
-      - name: receipts
-        freshness:
-          error_after:
-            count: 48
-            period: hour
-          filter: dt >= date_sub(`current_date`(), 3)
-        loaded_at_field: to_timestamp(dt)
