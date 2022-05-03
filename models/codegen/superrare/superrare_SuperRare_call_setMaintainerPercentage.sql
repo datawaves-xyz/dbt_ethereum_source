@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_setmaintainerpercentage',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_setmaintainerpercentage_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_setMaintainerPercentage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
+            'sql': 'create or replace function superrare_superrare_setmaintainerpercentage_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_setMaintainerPercentage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
         }
     )
 }}

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='market_evt_upgraded',
         pre_hook={
-            'sql': 'create or replace function foundation_market_upgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Foundation_market_Upgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
+            'sql': 'create or replace function foundation_market_upgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Foundation_market_Upgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
         }
     )
 }}

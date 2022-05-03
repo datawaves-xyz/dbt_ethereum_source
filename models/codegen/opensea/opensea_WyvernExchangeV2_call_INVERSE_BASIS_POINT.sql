@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_inverse_basis_point',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_inverse_basis_point_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_INVERSE_BASIS_POINT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_inverse_basis_point_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_INVERSE_BASIS_POINT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
         }
     )
 }}

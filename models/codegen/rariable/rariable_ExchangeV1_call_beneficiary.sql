@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_beneficiary',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_beneficiary_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_beneficiary_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
+            'sql': 'create or replace function rariable_exchangev1_beneficiary_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_beneficiary_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
         }
     )
 }}
