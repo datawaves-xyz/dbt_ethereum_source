@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_evt_staked',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_staked_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_Staked_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_staked_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_Staked_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
         }
     )
 }}
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(1) */ *
+select /*+ REPARTITION(1) */ *
 from final

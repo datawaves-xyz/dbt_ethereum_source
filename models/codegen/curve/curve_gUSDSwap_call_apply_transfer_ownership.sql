@@ -6,7 +6,7 @@
     )
 }}
 
-select /* REPARTITION(1) */
+select /*+ REPARTITION(1) */
     status==1 as call_success,
     block_number as call_block_number,
     block_timestamp as call_block_time,

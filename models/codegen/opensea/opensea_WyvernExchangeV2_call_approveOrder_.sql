@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_approveorder_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_approveorder__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_approveOrder__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_approveorder__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_approveOrder__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
         }
     )
 }}
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(1) */ *
+select /*+ REPARTITION(1) */ *
 from final

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev2_call_upgradeto',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev2_upgradeto_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_upgradeTo_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
+            'sql': 'create or replace function rariable_exchangev2_upgradeto_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_upgradeTo_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
         }
     )
 }}
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(1) */ *
+select /*+ REPARTITION(1) */ *
 from final

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_call_pendingwithdrawals',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_pendingwithdrawals_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_pendingWithdrawals_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_pendingwithdrawals_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_pendingWithdrawals_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
         }
     )
 }}
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(1) */ *
+select /*+ REPARTITION(1) */ *
 from final

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_base_cache_updated',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_base_cache_updated_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_base_cache_updated_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
+            'sql': 'create or replace function curve_husdswap_base_cache_updated_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_base_cache_updated_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.4.jar";'
         }
     )
 }}
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /* REPARTITION(1) */ *
+select /*+ REPARTITION(1) */ *
 from final
