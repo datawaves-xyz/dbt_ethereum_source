@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_get_dx',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_get_dx_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_get_dx_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function curve_busdswap_get_dx_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_get_dx_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27")
     and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10
-    and selector = "0x30783637"
-    and selector_hash = abs(hash("0x30783637")) % 10
+    and selector = "0x67df02ca"
+    and selector_hash = abs(hash("0x67df02ca")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

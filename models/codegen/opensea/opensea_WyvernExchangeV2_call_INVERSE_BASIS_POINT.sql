@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_inverse_basis_point',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_inverse_basis_point_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_INVERSE_BASIS_POINT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_inverse_basis_point_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_INVERSE_BASIS_POINT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
     and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
-    and selector = "0x30786361"
-    and selector_hash = abs(hash("0x30786361")) % 10
+    and selector = "0xcae6047f"
+    and selector_hash = abs(hash("0xcae6047f")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

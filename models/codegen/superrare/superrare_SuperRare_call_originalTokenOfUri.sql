@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_originaltokenofuri',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_originaltokenofuri_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_originalTokenOfUri_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function superrare_superrare_originaltokenofuri_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_originalTokenOfUri_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d")
     and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10
-    and selector = "0x30783635"
-    and selector_hash = abs(hash("0x30783635")) % 10
+    and selector = "0x653436fd"
+    and selector_hash = abs(hash("0x653436fd")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

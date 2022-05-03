@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_admin_actions_deadline',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_admin_actions_deadline_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_admin_actions_deadline_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function curve_dusdswap_admin_actions_deadline_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_admin_actions_deadline_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c")
     and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10
-    and selector = "0x30783430"
-    and selector_hash = abs(hash("0x30783430")) % 10
+    and selector = "0x405e28f8"
+    and selector_hash = abs(hash("0x405e28f8")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

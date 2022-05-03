@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_atomicmatch_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_atomicmatch__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_atomicMatch__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_atomicmatch__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_atomicMatch__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
     and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
-    and selector = "0x30786162"
-    and selector_hash = abs(hash("0x30786162")) % 10
+    and selector = "0xab834bab"
+    and selector_hash = abs(hash("0xab834bab")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

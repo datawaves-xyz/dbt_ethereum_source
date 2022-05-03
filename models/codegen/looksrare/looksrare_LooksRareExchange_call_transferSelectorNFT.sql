@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_transferselectornft',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_transferselectornft_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferSelectorNFT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_transferselectornft_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferSelectorNFT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
     and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
-    and selector = "0x30783565"
-    and selector_hash = abs(hash("0x30783565")) % 10
+    and selector = "0x5e14f68e"
+    and selector_hash = abs(hash("0x5e14f68e")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

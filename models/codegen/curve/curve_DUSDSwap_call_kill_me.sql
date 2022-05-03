@@ -17,8 +17,8 @@ select /* REPARTITION(1) */
 from {{ ref('stg_traces') }}
 where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c")
 and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10
-and selector = "0x30786533363938383533"
-and selector_hash = abs(hash("0x30786533363938383533")) % 10
+and selector = "0xe3698853"
+and selector_hash = abs(hash("0xe3698853")) % 10
 
 {% if is_incremental() %}
   and dt = '{{ var("dt") }}'

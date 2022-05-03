@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_base_virtual_price',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_base_virtual_price_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_base_virtual_price_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function curve_dusdswap_base_virtual_price_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_base_virtual_price_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c")
     and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10
-    and selector = "0x30783935"
-    and selector_hash = abs(hash("0x30783935")) % 10
+    and selector = "0x95ccc02f"
+    and selector_hash = abs(hash("0x95ccc02f")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

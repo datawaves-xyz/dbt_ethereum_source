@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_transferproxyfordeprecated',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_transferproxyfordeprecated_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_transferProxyForDeprecated_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function rariable_exchangev1_transferproxyfordeprecated_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_transferProxyForDeprecated_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06")
     and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10
-    and selector = "0x30783032"
-    and selector_hash = abs(hash("0x30783032")) % 10
+    and selector = "0x02329e10"
+    and selector_hash = abs(hash("0x02329e10")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

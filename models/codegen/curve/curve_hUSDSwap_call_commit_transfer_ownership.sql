@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_commit_transfer_ownership',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function curve_husdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604")
     and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10
-    and selector = "0x30783662"
-    and selector_hash = abs(hash("0x30783662")) % 10
+    and selector = "0x6b441a40"
+    and selector_hash = abs(hash("0x6b441a40")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

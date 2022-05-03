@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_call_addoperator',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_addoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_addOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_addoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_addOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8")
     and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10
-    and selector = "0x30783938"
-    and selector_hash = abs(hash("0x30783938")) % 10
+    and selector = "0x9870d7fe"
+    and selector_hash = abs(hash("0x9870d7fe")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

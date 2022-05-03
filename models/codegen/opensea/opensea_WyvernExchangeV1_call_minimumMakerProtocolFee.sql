@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_minimummakerprotocolfee',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_minimummakerprotocolfee_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_minimumMakerProtocolFee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_minimummakerprotocolfee_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_minimumMakerProtocolFee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b")
     and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10
-    and selector = "0x30783763"
-    and selector_hash = abs(hash("0x30783763")) % 10
+    and selector = "0x7ccefc52"
+    and selector_hash = abs(hash("0x7ccefc52")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

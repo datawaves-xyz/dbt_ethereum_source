@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_ownershiptransferred',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}

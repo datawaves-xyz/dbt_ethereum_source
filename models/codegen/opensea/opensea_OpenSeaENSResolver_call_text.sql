@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_call_text',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_text_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_text_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_text_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_text_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956")
     and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10
-    and selector = "0x30783539"
-    and selector_hash = abs(hash("0x30783539")) % 10
+    and selector = "0x59d1d43c"
+    and selector_hash = abs(hash("0x59d1d43c")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

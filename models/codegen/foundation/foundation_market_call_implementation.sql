@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='market_call_implementation',
         pre_hook={
-            'sql': 'create or replace function foundation_market_implementation_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_implementation_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function foundation_market_implementation_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_implementation_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f")
     and address_hash = abs(hash(lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f"))) % 10
-    and selector = "0x30783563"
-    and selector_hash = abs(hash("0x30783563")) % 10
+    and selector = "0x5c60da1b"
+    and selector_hash = abs(hash("0x5c60da1b")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

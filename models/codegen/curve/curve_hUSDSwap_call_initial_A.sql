@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_initial_a',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_initial_a_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_initial_A_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function curve_husdswap_initial_a_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_initial_A_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604")
     and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10
-    and selector = "0x30783534"
-    and selector_hash = abs(hash("0x30783534")) % 10
+    and selector = "0x5409491a"
+    and selector_hash = abs(hash("0x5409491a")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

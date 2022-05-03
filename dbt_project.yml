@@ -3,78 +3,78 @@ name: ethereum_source
 profile: ethereum_source
 version: 0.1.3
 require-dbt-version:
-  - ">=1.0.0"
+  - '>=1.0.0'
   - <2.0.0
 models:
-  ethereum_source:
-    stg:
-      +materialized: view
-      +schema: stg
-      +tags:
-        - chain_ethereum
-        - level_standardize
-        - proj_global
-    codegen:
-      looksrare:
-        +schema: looksrare
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_looksrare
-      yearn:
-        +schema: yearn
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_yearn
-      superrare:
-        +schema: superrare
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_superrare
-      opensea:
-        +schema: opensea
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_opensea
-      curve:
-        +schema: curve
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_curve
-      foundation:
-        +schema: foundation
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_foundation
-      rariable:
-        +schema: rariable
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_rariable
-      cryptopunks:
-        +schema: cryptopunks
-        +tags:
-          - chain_ethereum
-          - level_parse
-          - proj_cryptopunks
+    ethereum_source:
+        stg:
+            +materialized: view
+            +schema: stg
+            +tags:
+              - chain_ethereum
+              - level_standardize
+              - proj_global
+        codegen:
+            looksrare:
+                +schema: looksrare
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_looksrare
+            yearn:
+                +schema: yearn
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_yearn
+            superrare:
+                +schema: superrare
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_superrare
+            opensea:
+                +schema: opensea
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_opensea
+            curve:
+                +schema: curve
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_curve
+            foundation:
+                +schema: foundation
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_foundation
+            rariable:
+                +schema: rariable
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_rariable
+            cryptopunks:
+                +schema: cryptopunks
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_cryptopunks
 vars:
-  ethereum_source:
-    transactions: "{{ source('ethereum', 'transactions') }}"
-    token_transfers: "{{ source('ethereum', 'token_transfers') }}"
-    tokens: "{{ source('ethereum', 'tokens') }}"
-    contracts: "{{ source('ethereum', 'contracts') }}"
-    blocks: "{{ source('ethereum', 'blocks') }}"
-    logs: "{{ source('ethereum', 'logs') }}"
-    traces: "{{ source('ethereum', 'traces') }}"
-    receipts: "{{ source('ethereum', 'receipts') }}"
-    using_traces: true
-    using_logs: true
-    using_token_transfers: true
-    using_receipts: false
-    dt: not-set
+    ethereum_source:
+        transactions: "{{ source('ethereum', 'transactions') }}"
+        token_transfers: "{{ source('ethereum', 'token_transfers') }}"
+        tokens: "{{ source('ethereum', 'tokens') }}"
+        contracts: "{{ source('ethereum', 'contracts') }}"
+        blocks: "{{ source('ethereum', 'blocks') }}"
+        logs: "{{ source('ethereum', 'logs') }}"
+        traces: "{{ source('ethereum', 'traces') }}"
+        receipts: "{{ source('ethereum', 'receipts') }}"
+        using_traces: true
+        using_logs: true
+        using_token_transfers: true
+        using_receipts: false
+        dt: not-set

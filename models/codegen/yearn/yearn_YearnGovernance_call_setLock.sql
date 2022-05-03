@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_setlock',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_setlock_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_setLock_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.2.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_setlock_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_setLock_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.3.jar";'
         }
     )
 }}
@@ -22,8 +22,8 @@ with base as (
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
     and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
-    and selector = "0x30786433"
-    and selector_hash = abs(hash("0x30786433")) % 10
+    and selector = "0xd3e15747"
+    and selector_hash = abs(hash("0xd3e15747")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'
