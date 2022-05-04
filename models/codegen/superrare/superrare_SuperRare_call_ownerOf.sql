@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_ownerof',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_ownerof_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_ownerOf_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
+            'sql': 'create or replace function superrare_superrare_ownerof_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_ownerOf_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
         }
     )
 }}
@@ -44,5 +44,5 @@ final as (
     from base
 )
 
-select /*+ REPARTITION(1) */ *
+select /*+ REPARTITION(50) */ *
 from final

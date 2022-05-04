@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_evt_ownershiptransferred',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
+            'sql': 'create or replace function rariable_exchangev1_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
         }
     )
 }}
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /*+ REPARTITION(1) */ *
+select /*+ REPARTITION(50) */ *
 from final

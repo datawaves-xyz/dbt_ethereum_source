@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_evt_pubkeychanged',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_pubkeychanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_PubkeyChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.5.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_pubkeychanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_PubkeyChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
         }
     )
 }}
@@ -41,5 +41,5 @@ final as (
     from base
 )
 
-select /*+ REPARTITION(1) */ *
+select /*+ REPARTITION(50) */ *
 from final
