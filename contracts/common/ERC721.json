@@ -52,5 +52,5 @@
     }
   ],
   "name": "ERC721",
-  "materialize": "table"
+  "materialize": "increment"
 }
