@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_cancelorderwithnonce_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_cancelorderwithnonce__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_cancelOrderWithNonce__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_cancelorderwithnonce__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_cancelOrderWithNonce__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         opensea_wyvernexchangev2_cancelorderwithnonce__calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "addrs", "type": "address[7]"}, {"name": "uints", "type": "uint256[9]"}, {"name": "feeMethod", "type": "uint8"}, {"name": "side", "type": "uint8"}, {"name": "saleKind", "type": "uint8"}, {"name": "howToCall", "type": "uint8"}, {"name": "calldata", "type": "bytes"}, {"name": "replacementPattern", "type": "bytes"}, {"name": "staticExtradata", "type": "bytes"}, {"name": "v", "type": "uint8"}, {"name": "r", "type": "bytes32"}, {"name": "s", "type": "bytes32"}, {"name": "nonce", "type": "uint256"}], "name": "cancelOrderWithNonce_", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'cancelOrderWithNonce_') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
-    and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
-    and selector = "0xf63e8379"
-    and selector_hash = abs(hash("0xf63e8379")) % 10
+    where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5") and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10 and selector = "0xf63e8379" and selector_hash = abs(hash("0xf63e8379")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

@@ -15,10 +15,7 @@ select /*+ REPARTITION(50) */
     to_address as contract_address,
     dt
 from {{ ref('stg_traces') }}
-where to_address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567")
-and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10
-and selector = "0x3046f972"
-and selector_hash = abs(hash("0x3046f972")) % 10
+where to_address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567") and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10 and selector = "0x3046f972" and selector_hash = abs(hash("0x3046f972")) % 10
 
 {% if is_incremental() %}
   and dt = '{{ var("dt") }}'

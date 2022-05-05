@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_bid',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_bid_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Bid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function superrare_superrare_bid_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Bid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         superrare_superrare_bid_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "_bidder", "type": "address"}, {"indexed": true, "name": "_amount", "type": "uint256"}, {"indexed": true, "name": "_tokenId", "type": "uint256"}], "name": "Bid", "type": "event"}', 'Bid') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d")
-    and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10
-    and selector = "0x19421268847f42dd61705778018ddfc43bcdce8517e7a630acb12f122c709481"
-    and selector_hash = abs(hash("0x19421268847f42dd61705778018ddfc43bcdce8517e7a630acb12f122c709481")) % 10
+    where address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d") and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10 and selector = "0x19421268847f42dd61705778018ddfc43bcdce8517e7a630acb12f122c709481" and selector_hash = abs(hash("0x19421268847f42dd61705778018ddfc43bcdce8517e7a630acb12f122c709481")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

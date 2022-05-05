@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_add_liquidity',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_add_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_add_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_dusdswap_add_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_add_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_dusdswap_add_liquidity_calldecodeudf(unhex_input, unhex_output, '{"name": "add_liquidity", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "uint256[2]", "name": "amounts"}, {"type": "uint256", "name": "min_mint_amount"}], "stateMutability": "nonpayable", "type": "function", "gas": 6136485}', 'add_liquidity') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c")
-    and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10
-    and selector = "0x0b4c7e4d"
-    and selector_hash = abs(hash("0x0b4c7e4d")) % 10
+    where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c") and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10 and selector = "0x0b4c7e4d" and selector_hash = abs(hash("0x0b4c7e4d")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

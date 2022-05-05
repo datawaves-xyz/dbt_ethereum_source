@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_evt_authorisationchanged',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_authorisationchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_AuthorisationChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_authorisationchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_AuthorisationChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         opensea_openseaensresolver_authorisationchanged_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "node", "type": "bytes32"}, {"indexed": true, "name": "owner", "type": "address"}, {"indexed": true, "name": "target", "type": "address"}, {"indexed": false, "name": "isAuthorised", "type": "bool"}], "name": "AuthorisationChanged", "type": "event"}', 'AuthorisationChanged') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956")
-    and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10
-    and selector = "0xe1c5610a6e0cbe10764ecd182adcef1ec338dc4e199c99c32ce98f38e12791df"
-    and selector_hash = abs(hash("0xe1c5610a6e0cbe10764ecd182adcef1ec338dc4e199c99c32ce98f38e12791df")) % 10
+    where address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956") and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10 and selector = "0xe1c5610a6e0cbe10764ecd182adcef1ec338dc4e199c99c32ce98f38e12791df" and selector_hash = abs(hash("0xe1c5610a6e0cbe10764ecd182adcef1ec338dc4e199c99c32ce98f38e12791df")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

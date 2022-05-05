@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_erc20transferproxy',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_erc20transferproxy_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_erc20TransferProxy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function rariable_exchangev1_erc20transferproxy_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_erc20TransferProxy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         rariable_exchangev1_erc20transferproxy_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "erc20TransferProxy", "outputs": [{"internalType": "contract ERC20TransferProxy", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"}', 'erc20TransferProxy') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06")
-    and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10
-    and selector = "0xfee03e9e"
-    and selector_hash = abs(hash("0xfee03e9e")) % 10
+    where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06") and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10 and selector = "0xfee03e9e" and selector_hash = abs(hash("0xfee03e9e")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_hashorder_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_hashorder__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_hashOrder__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_hashorder__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_hashOrder__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         opensea_wyvernexchangev2_hashorder__calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "addrs", "type": "address[7]"}, {"name": "uints", "type": "uint256[9]"}, {"name": "feeMethod", "type": "uint8"}, {"name": "side", "type": "uint8"}, {"name": "saleKind", "type": "uint8"}, {"name": "howToCall", "type": "uint8"}, {"name": "calldata", "type": "bytes"}, {"name": "replacementPattern", "type": "bytes"}, {"name": "staticExtradata", "type": "bytes"}], "name": "hashOrder_", "outputs": [{"name": "", "type": "bytes32"}], "payable": false, "stateMutability": "view", "type": "function"}', 'hashOrder_') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
-    and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
-    and selector = "0x71d02b38"
-    and selector_hash = abs(hash("0x71d02b38")) % 10
+    where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5") and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10 and selector = "0x71d02b38" and selector_hash = abs(hash("0x71d02b38")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

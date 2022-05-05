@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_evt_commitnewfee',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_commitnewfee_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_CommitNewFee_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_sethswap_commitnewfee_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_CommitNewFee_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         curve_sethswap_commitnewfee_eventdecodeudf(unhex_data, topics_arr, '{"name": "CommitNewFee", "inputs": [{"type": "uint256", "name": "deadline", "indexed": true}, {"type": "uint256", "name": "fee", "indexed": false}, {"type": "uint256", "name": "admin_fee", "indexed": false}], "anonymous": false, "type": "event"}', 'CommitNewFee') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567")
-    and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10
-    and selector = "0x351fc5da2fbf480f2225debf3664a4bc90fa9923743aad58b4603f648e931fe0"
-    and selector_hash = abs(hash("0x351fc5da2fbf480f2225debf3664a4bc90fa9923743aad58b4603f648e931fe0")) % 10
+    where address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567") and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10 and selector = "0x351fc5da2fbf480f2225debf3664a4bc90fa9923743aad58b4603f648e931fe0" and selector_hash = abs(hash("0x351fc5da2fbf480f2225debf3664a4bc90fa9923743aad58b4603f648e931fe0")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

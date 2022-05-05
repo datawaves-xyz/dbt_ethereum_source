@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_call_transferpunk',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_transferpunk_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_transferPunk_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_transferpunk_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_transferPunk_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         cryptopunks_cryptopunksmarket_transferpunk_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "to", "type": "address"}, {"name": "punkIndex", "type": "uint256"}], "name": "transferPunk", "outputs": [], "payable": false, "type": "function"}', 'transferPunk') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB")
-    and address_hash = abs(hash(lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"))) % 10
-    and selector = "0x8b72a2ec"
-    and selector_hash = abs(hash("0x8b72a2ec")) % 10
+    where to_address = lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB") and address_hash = abs(hash(lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"))) % 10 and selector = "0x8b72a2ec" and selector_hash = abs(hash("0x8b72a2ec")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_evt_newroyaltyfeemanager',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_newroyaltyfeemanager_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_NewRoyaltyFeeManager_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_newroyaltyfeemanager_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_NewRoyaltyFeeManager_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         looksrare_looksrareexchange_newroyaltyfeemanager_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "royaltyFeeManager", "type": "address"}], "name": "NewRoyaltyFeeManager", "type": "event"}', 'NewRoyaltyFeeManager') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
-    and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
-    and selector = "0x80e3874461ebbd918ac3e81da0a92e5e51387d70f337237c9123e48d20e5a508"
-    and selector_hash = abs(hash("0x80e3874461ebbd918ac3e81da0a92e5e51387d70f337237c9123e48d20e5a508")) % 10
+    where address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0x80e3874461ebbd918ac3e81da0a92e5e51387d70f337237c9123e48d20e5a508" and selector_hash = abs(hash("0x80e3874461ebbd918ac3e81da0a92e5e51387d70f337237c9123e48d20e5a508")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

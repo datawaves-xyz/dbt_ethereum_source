@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_remove_liquidity_imbalance',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_remove_liquidity_imbalance_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_remove_liquidity_imbalance_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_busdswap_remove_liquidity_imbalance_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_remove_liquidity_imbalance_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_busdswap_remove_liquidity_imbalance_calldecodeudf(unhex_input, unhex_output, '{"name": "remove_liquidity_imbalance", "outputs": [], "inputs": [{"type": "uint256[4]", "name": "amounts"}, {"type": "uint256", "name": "max_burn_amount"}], "constant": false, "payable": false, "type": "function", "gas": 9326310}', 'remove_liquidity_imbalance') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27")
-    and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10
-    and selector = "0x18a7bd76"
-    and selector_hash = abs(hash("0x18a7bd76")) % 10
+    where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27") and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10 and selector = "0x18a7bd76" and selector_hash = abs(hash("0x18a7bd76")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_evt_rewardadded',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_rewardadded_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_RewardAdded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_rewardadded_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_RewardAdded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         yearn_yearngovernance_rewardadded_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": false, "internalType": "uint256", "name": "reward", "type": "uint256"}], "name": "RewardAdded", "type": "event"}', 'RewardAdded') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
-    and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
-    and selector = "0xde88a922e0d3b88b24e9623efeb464919c6bf9f66857a65e2bfcf2ce87a9433d"
-    and selector_hash = abs(hash("0xde88a922e0d3b88b24e9623efeb464919c6bf9f66857a65e2bfcf2ce87a9433d")) % 10
+    where address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E") and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10 and selector = "0xde88a922e0d3b88b24e9623efeb464919c6bf9f66857a65e2bfcf2ce87a9433d" and selector_hash = abs(hash("0xde88a922e0d3b88b24e9623efeb464919c6bf9f66857a65e2bfcf2ce87a9433d")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

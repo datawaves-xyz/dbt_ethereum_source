@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_salepriceset',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_salepriceset_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_SalePriceSet_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function superrare_superrare_salepriceset_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_SalePriceSet_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         superrare_superrare_salepriceset_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "_tokenId", "type": "uint256"}, {"indexed": true, "name": "_price", "type": "uint256"}], "name": "SalePriceSet", "type": "event"}', 'SalePriceSet') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d")
-    and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10
-    and selector = "0xe23ea816dce6d7f5c0b85cbd597e7c3b97b2453791152c0b94e5e5c5f314d2f0"
-    and selector_hash = abs(hash("0xe23ea816dce6d7f5c0b85cbd597e7c3b97b2453791152c0b94e5e5c5f314d2f0")) % 10
+    where address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d") and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10 and selector = "0xe23ea816dce6d7f5c0b85cbd597e7c3b97b2453791152c0b94e5e5c5f314d2f0" and selector_hash = abs(hash("0xe23ea816dce6d7f5c0b85cbd597e7c3b97b2453791152c0b94e5e5c5f314d2f0")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

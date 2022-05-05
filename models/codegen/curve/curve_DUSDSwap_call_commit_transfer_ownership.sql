@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_commit_transfer_ownership',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_dusdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_dusdswap_commit_transfer_ownership_calldecodeudf(unhex_input, unhex_output, '{"name": "commit_transfer_ownership", "outputs": [], "inputs": [{"type": "address", "name": "_owner"}], "stateMutability": "nonpayable", "type": "function", "gas": 74663}', 'commit_transfer_ownership') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c")
-    and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10
-    and selector = "0x6b441a40"
-    and selector_hash = abs(hash("0x6b441a40")) % 10
+    where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c") and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10 and selector = "0x6b441a40" and selector_hash = abs(hash("0x6b441a40")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

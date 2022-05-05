@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_evt_punkbidentered',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_punkbidentered_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_PunkBidEntered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_punkbidentered_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_PunkBidEntered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         cryptopunks_cryptopunksmarket_punkbidentered_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "punkIndex", "type": "uint256"}, {"indexed": false, "name": "value", "type": "uint256"}, {"indexed": true, "name": "fromAddress", "type": "address"}], "name": "PunkBidEntered", "type": "event"}', 'PunkBidEntered') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB")
-    and address_hash = abs(hash(lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"))) % 10
-    and selector = "0x5b859394fabae0c1ba88baffe67e751ab5248d2e879028b8c8d6897b0519f56a"
-    and selector_hash = abs(hash("0x5b859394fabae0c1ba88baffe67e751ab5248d2e879028b8c8d6897b0519f56a")) % 10
+    where address = lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB") and address_hash = abs(hash(lower("0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"))) % 10 and selector = "0x5b859394fabae0c1ba88baffe67e751ab5248d2e879028b8c8d6897b0519f56a" and selector_hash = abs(hash("0x5b859394fabae0c1ba88baffe67e751ab5248d2e879028b8c8d6897b0519f56a")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_call_get_dy',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_get_dy_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_get_dy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_linkusdswap_get_dy_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_get_dy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_linkusdswap_get_dy_calldecodeudf(unhex_input, unhex_output, '{"name": "get_dy", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "int128", "name": "i"}, {"type": "int128", "name": "j"}, {"type": "uint256", "name": "dx"}], "stateMutability": "view", "type": "function", "gas": 2390368}', 'get_dy') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171")
-    and address_hash = abs(hash(lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171"))) % 10
-    and selector = "0x5e0d443f"
-    and selector_hash = abs(hash("0x5e0d443f")) % 10
+    where to_address = lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171") and address_hash = abs(hash(lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171"))) % 10 and selector = "0x5e0d443f" and selector_hash = abs(hash("0x5e0d443f")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

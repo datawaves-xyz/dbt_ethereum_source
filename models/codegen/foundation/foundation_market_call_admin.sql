@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='market_call_admin',
         pre_hook={
-            'sql': 'create or replace function foundation_market_admin_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_admin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function foundation_market_admin_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_admin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         foundation_market_admin_calldecodeudf(unhex_input, unhex_output, '{"inputs": [], "name": "admin", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "stateMutability": "nonpayable", "type": "function"}', 'admin') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f")
-    and address_hash = abs(hash(lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f"))) % 10
-    and selector = "0xf851a440"
-    and selector_hash = abs(hash("0xf851a440")) % 10
+    where to_address = lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f") and address_hash = abs(hash(lower("0xcDA72070E455bb31C7690a170224Ce43623d0B6f"))) % 10 and selector = "0xf851a440" and selector_hash = abs(hash("0xf851a440")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

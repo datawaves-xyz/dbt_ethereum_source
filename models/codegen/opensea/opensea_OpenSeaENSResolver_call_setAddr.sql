@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_call_setaddr',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_setaddr_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_setAddr_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_setaddr_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_setAddr_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         opensea_openseaensresolver_setaddr_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "node", "type": "bytes32"}, {"name": "addr", "type": "address"}], "name": "setAddr", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'setAddr') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956")
-    and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10
-    and selector = "0xd5fa2b00"
-    and selector_hash = abs(hash("0xd5fa2b00")) % 10
+    where to_address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956") and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10 and selector = "0xd5fa2b00" and selector_hash = abs(hash("0xd5fa2b00")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

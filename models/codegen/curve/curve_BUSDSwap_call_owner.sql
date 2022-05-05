@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_owner',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_owner_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_busdswap_owner_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_busdswap_owner_calldecodeudf(unhex_input, unhex_output, '{"name": "owner", "outputs": [{"type": "address", "name": "out"}], "inputs": [], "constant": true, "payable": false, "type": "function", "gas": 2141}', 'owner') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27")
-    and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10
-    and selector = "0x8da5cb5b"
-    and selector_hash = abs(hash("0x8da5cb5b")) % 10
+    where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27") and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10 and selector = "0x8da5cb5b" and selector_hash = abs(hash("0x8da5cb5b")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

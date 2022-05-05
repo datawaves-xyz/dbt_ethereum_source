@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_future_owner',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_future_owner_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_future_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_husdswap_future_owner_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_future_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_husdswap_future_owner_calldecodeudf(unhex_input, unhex_output, '{"name": "future_owner", "outputs": [{"type": "address", "name": ""}], "inputs": [], "stateMutability": "view", "type": "function", "gas": 2651}', 'future_owner') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604")
-    and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10
-    and selector = "0x1ec0cdc1"
-    and selector_hash = abs(hash("0x1ec0cdc1")) % 10
+    where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604") and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10 and selector = "0x1ec0cdc1" and selector_hash = abs(hash("0x1ec0cdc1")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

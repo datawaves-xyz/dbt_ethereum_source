@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_cancelmultiplemakerorders',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_cancelmultiplemakerorders_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_cancelMultipleMakerOrders_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_cancelmultiplemakerorders_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_cancelMultipleMakerOrders_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         looksrare_looksrareexchange_cancelmultiplemakerorders_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "uint256[]", "name": "orderNonces", "type": "uint256[]"}], "name": "cancelMultipleMakerOrders", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'cancelMultipleMakerOrders') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
-    and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
-    and selector = "0x9e53a69a"
-    and selector_hash = abs(hash("0x9e53a69a")) % 10
+    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0x9e53a69a" and selector_hash = abs(hash("0x9e53a69a")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

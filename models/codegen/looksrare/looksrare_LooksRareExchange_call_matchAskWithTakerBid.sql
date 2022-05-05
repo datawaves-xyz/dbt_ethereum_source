@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_matchaskwithtakerbid',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_matchaskwithtakerbid_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_matchAskWithTakerBid_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_matchaskwithtakerbid_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_matchAskWithTakerBid_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         looksrare_looksrareexchange_matchaskwithtakerbid_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"components": [{"internalType": "bool", "name": "isOrderAsk", "type": "bool"}, {"internalType": "address", "name": "taker", "type": "address"}, {"internalType": "uint256", "name": "price", "type": "uint256"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "uint256", "name": "minPercentageToAsk", "type": "uint256"}, {"internalType": "bytes", "name": "params", "type": "bytes"}], "internalType": "struct OrderTypes.TakerOrder", "name": "takerBid", "type": "tuple"}, {"components": [{"internalType": "bool", "name": "isOrderAsk", "type": "bool"}, {"internalType": "address", "name": "signer", "type": "address"}, {"internalType": "address", "name": "collection", "type": "address"}, {"internalType": "uint256", "name": "price", "type": "uint256"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}, {"internalType": "address", "name": "strategy", "type": "address"}, {"internalType": "address", "name": "currency", "type": "address"}, {"internalType": "uint256", "name": "nonce", "type": "uint256"}, {"internalType": "uint256", "name": "startTime", "type": "uint256"}, {"internalType": "uint256", "name": "endTime", "type": "uint256"}, {"internalType": "uint256", "name": "minPercentageToAsk", "type": "uint256"}, {"internalType": "bytes", "name": "params", "type": "bytes"}, {"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "internalType": "struct OrderTypes.MakerOrder", "name": "makerAsk", "type": "tuple"}], "name": "matchAskWithTakerBid", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'matchAskWithTakerBid') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
-    and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
-    and selector = "0x38e29209"
-    and selector_hash = abs(hash("0x38e29209")) % 10
+    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0x38e29209" and selector_hash = abs(hash("0x38e29209")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

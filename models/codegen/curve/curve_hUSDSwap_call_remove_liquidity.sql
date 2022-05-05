@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_remove_liquidity',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_remove_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_remove_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_husdswap_remove_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_remove_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_husdswap_remove_liquidity_calldecodeudf(unhex_input, unhex_output, '{"name": "remove_liquidity", "outputs": [{"type": "uint256[2]", "name": ""}], "inputs": [{"type": "uint256", "name": "_amount"}, {"type": "uint256[2]", "name": "min_amounts"}], "stateMutability": "nonpayable", "type": "function", "gas": 163289}', 'remove_liquidity') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604")
-    and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10
-    and selector = "0x5b36389c"
-    and selector_hash = abs(hash("0x5b36389c")) % 10
+    where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604") and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10 and selector = "0x5b36389c" and selector_hash = abs(hash("0x5b36389c")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

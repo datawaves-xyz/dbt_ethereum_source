@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_name',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_name_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_name_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function superrare_superrare_name_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_name_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         superrare_superrare_name_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "name", "outputs": [{"name": "_name", "type": "string"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'name') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d")
-    and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10
-    and selector = "0x06fdde03"
-    and selector_hash = abs(hash("0x06fdde03")) % 10
+    where to_address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d") and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10 and selector = "0x06fdde03" and selector_hash = abs(hash("0x06fdde03")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

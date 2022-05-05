@@ -1,0 +1,93 @@
+version: 2
+models:
+  - name: common_ERC721_evt_Approval
+    columns:
+      - name: owner
+      - name: approved
+      - name: tokenId
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC721_evt_Transfer
+    columns:
+      - name: from
+      - name: to
+      - name: tokenId
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC20_evt_Approval
+    columns:
+      - name: owner
+      - name: spender
+      - name: value
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC20_evt_Transfer
+    columns:
+      - name: from
+      - name: to
+      - name: value
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC1155_evt_TransferSingle
+    columns:
+      - name: operator
+      - name: from
+      - name: to
+      - name: id
+      - name: value
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC1155_evt_TransferBatch
+    columns:
+      - name: operator
+      - name: from
+      - name: to
+      - name: ids
+      - name: values
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC1155_evt_ApprovalForAll
+    columns:
+      - name: account
+      - name: operator
+      - name: approved
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC1155_evt_URI
+    columns:
+      - name: value
+      - name: id
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt

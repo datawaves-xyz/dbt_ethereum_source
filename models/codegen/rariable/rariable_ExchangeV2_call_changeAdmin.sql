@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev2_call_changeadmin',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev2_changeadmin_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_changeAdmin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function rariable_exchangev2_changeadmin_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_changeAdmin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         rariable_exchangev2_changeadmin_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "newAdmin", "type": "address"}], "name": "changeAdmin", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'changeAdmin') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x9757F2d2b135150BBeb65308D4a91804107cd8D6")
-    and address_hash = abs(hash(lower("0x9757F2d2b135150BBeb65308D4a91804107cd8D6"))) % 10
-    and selector = "0x8f283970"
-    and selector_hash = abs(hash("0x8f283970")) % 10
+    where to_address = lower("0x9757F2d2b135150BBeb65308D4a91804107cd8D6") and address_hash = abs(hash(lower("0x9757F2d2b135150BBeb65308D4a91804107cd8D6"))) % 10 and selector = "0x8f283970" and selector_hash = abs(hash("0x8f283970")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

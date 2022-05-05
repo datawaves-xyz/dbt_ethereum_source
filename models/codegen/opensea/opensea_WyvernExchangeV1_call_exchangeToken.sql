@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_exchangetoken',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_exchangetoken_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_exchangeToken_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_exchangetoken_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_exchangeToken_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         opensea_wyvernexchangev1_exchangetoken_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "exchangeToken", "outputs": [{"name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"}', 'exchangeToken') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b")
-    and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10
-    and selector = "0xa25eb5d9"
-    and selector_hash = abs(hash("0xa25eb5d9")) % 10
+    where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b") and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10 and selector = "0xa25eb5d9" and selector_hash = abs(hash("0xa25eb5d9")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

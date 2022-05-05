@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_evt_newparameters',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_newparameters_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_NewParameters_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_busdswap_newparameters_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_NewParameters_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         curve_busdswap_newparameters_eventdecodeudf(unhex_data, topics_arr, '{"name": "NewParameters", "inputs": [{"type": "uint256", "name": "A", "indexed": false}, {"type": "uint256", "name": "fee", "indexed": false}, {"type": "uint256", "name": "admin_fee", "indexed": false}], "anonymous": false, "type": "event"}', 'NewParameters') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27")
-    and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10
-    and selector = "0x752a27d1853eb7af3ee4ff764f2c4a51619386af721573dd3809e929c39db99e"
-    and selector_hash = abs(hash("0x752a27d1853eb7af3ee4ff764f2c4a51619386af721573dd3809e929c39db99e")) % 10
+    where address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27") and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10 and selector = "0x752a27d1853eb7af3ee4ff764f2c4a51619386af721573dd3809e929c39db99e" and selector_hash = abs(hash("0x752a27d1853eb7af3ee4ff764f2c4a51619386af721573dd3809e929c39db99e")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

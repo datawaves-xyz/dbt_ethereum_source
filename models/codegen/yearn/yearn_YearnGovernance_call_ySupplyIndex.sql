@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_ysupplyindex',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_ysupplyindex_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_ySupplyIndex_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_ysupplyindex_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_ySupplyIndex_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         yearn_yearngovernance_ysupplyindex_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"internalType": "address", "name": "", "type": "address"}], "name": "ySupplyIndex", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}', 'ySupplyIndex') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E")
-    and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10
-    and selector = "0x40f82755"
-    and selector_hash = abs(hash("0x40f82755")) % 10
+    where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E") and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10 and selector = "0x40f82755" and selector_hash = abs(hash("0x40f82755")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

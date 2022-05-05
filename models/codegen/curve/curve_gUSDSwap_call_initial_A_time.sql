@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='gusdswap_call_initial_a_time',
         pre_hook={
-            'sql': 'create or replace function curve_gusdswap_initial_a_time_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_initial_A_time_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_gusdswap_initial_a_time_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_initial_A_time_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_gusdswap_initial_a_time_calldecodeudf(unhex_input, unhex_output, '{"name": "initial_A_time", "outputs": [{"type": "uint256", "name": ""}], "inputs": [], "stateMutability": "view", "type": "function", "gas": 2471}', 'initial_A_time') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x4f062658EaAF2C1ccf8C8e36D6824CDf41167956")
-    and address_hash = abs(hash(lower("0x4f062658EaAF2C1ccf8C8e36D6824CDf41167956"))) % 10
-    and selector = "0x2081066c"
-    and selector_hash = abs(hash("0x2081066c")) % 10
+    where to_address = lower("0x4f062658EaAF2C1ccf8C8e36D6824CDf41167956") and address_hash = abs(hash(lower("0x4f062658EaAF2C1ccf8C8e36D6824CDf41167956"))) % 10 and selector = "0x2081066c" and selector_hash = abs(hash("0x2081066c")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

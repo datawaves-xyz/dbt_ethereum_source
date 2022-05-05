@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_cancelorder_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_cancelorder__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_cancelOrder__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_cancelorder__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_cancelOrder__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         opensea_wyvernexchangev1_cancelorder__calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "addrs", "type": "address[7]"}, {"name": "uints", "type": "uint256[9]"}, {"name": "feeMethod", "type": "uint8"}, {"name": "side", "type": "uint8"}, {"name": "saleKind", "type": "uint8"}, {"name": "howToCall", "type": "uint8"}, {"name": "calldata", "type": "bytes"}, {"name": "replacementPattern", "type": "bytes"}, {"name": "staticExtradata", "type": "bytes"}, {"name": "v", "type": "uint8"}, {"name": "r", "type": "bytes32"}, {"name": "s", "type": "bytes32"}], "name": "cancelOrder_", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'cancelOrder_') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b")
-    and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10
-    and selector = "0xa8a41c70"
-    and selector_hash = abs(hash("0xa8a41c70")) % 10
+    where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b") and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10 and selector = "0xa8a41c70" and selector_hash = abs(hash("0xa8a41c70")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

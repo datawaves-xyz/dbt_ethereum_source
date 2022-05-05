@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_updateroyaltyfeemanager',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_updateroyaltyfeemanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_updateRoyaltyFeeManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_updateroyaltyfeemanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_updateRoyaltyFeeManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         looksrare_looksrareexchange_updateroyaltyfeemanager_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "_royaltyFeeManager", "type": "address"}], "name": "updateRoyaltyFeeManager", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'updateRoyaltyFeeManager') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
-    and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
-    and selector = "0xc5498769"
-    and selector_hash = abs(hash("0xc5498769")) % 10
+    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0xc5498769" and selector_hash = abs(hash("0xc5498769")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

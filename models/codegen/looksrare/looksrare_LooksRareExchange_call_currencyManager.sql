@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_currencymanager',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_currencymanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_currencyManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_currencymanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_currencyManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         looksrare_looksrareexchange_currencymanager_calldecodeudf(unhex_input, unhex_output, '{"inputs": [], "name": "currencyManager", "outputs": [{"internalType": "contract ICurrencyManager", "name": "", "type": "address"}], "stateMutability": "view", "type": "function"}', 'currencyManager') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a")
-    and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10
-    and selector = "0x0f747d74"
-    and selector_hash = abs(hash("0x0f747d74")) % 10
+    where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0x0f747d74" and selector_hash = abs(hash("0x0f747d74")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

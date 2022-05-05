@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_guardedarrayreplace',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_guardedarrayreplace_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_guardedArrayReplace_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_guardedarrayreplace_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_guardedArrayReplace_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         opensea_wyvernexchangev2_guardedarrayreplace_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "array", "type": "bytes"}, {"name": "desired", "type": "bytes"}, {"name": "mask", "type": "bytes"}], "name": "guardedArrayReplace", "outputs": [{"name": "", "type": "bytes"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'guardedArrayReplace') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5")
-    and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10
-    and selector = "0x239e83df"
-    and selector_hash = abs(hash("0x239e83df")) % 10
+    where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5") and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10 and selector = "0x239e83df" and selector_hash = abs(hash("0x239e83df")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_call_getcompleted',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_getcompleted_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_getCompleted_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_getcompleted_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_getCompleted_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         rariable_exchangestatev1_getcompleted_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"components": [{"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "uint256", "name": "salt", "type": "uint256"}, {"components": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "enum ExchangeDomainV1.AssetType", "name": "assetType", "type": "uint8"}], "internalType": "struct ExchangeDomainV1.Asset", "name": "sellAsset", "type": "tuple"}, {"components": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "enum ExchangeDomainV1.AssetType", "name": "assetType", "type": "uint8"}], "internalType": "struct ExchangeDomainV1.Asset", "name": "buyAsset", "type": "tuple"}], "internalType": "struct ExchangeDomainV1.OrderKey", "name": "key", "type": "tuple"}], "name": "getCompleted", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}', 'getCompleted') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8")
-    and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10
-    and selector = "0xfb0000c0"
-    and selector_hash = abs(hash("0xfb0000c0")) % 10
+    where to_address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8") and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10 and selector = "0xfb0000c0" and selector_hash = abs(hash("0xfb0000c0")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

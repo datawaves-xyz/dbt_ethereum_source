@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_commit_new_fee',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_commit_new_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_commit_new_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function curve_husdswap_commit_new_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_commit_new_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         curve_husdswap_commit_new_fee_calldecodeudf(unhex_input, unhex_output, '{"name": "commit_new_fee", "outputs": [], "inputs": [{"type": "uint256", "name": "new_fee"}, {"type": "uint256", "name": "new_admin_fee"}], "stateMutability": "nonpayable", "type": "function", "gas": 110491}', 'commit_new_fee') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604")
-    and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10
-    and selector = "0x5b5a1467"
-    and selector_hash = abs(hash("0x5b5a1467")) % 10
+    where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604") and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10 and selector = "0x5b5a1467" and selector_hash = abs(hash("0x5b5a1467")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

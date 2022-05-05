@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_exchange',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_exchange_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_exchange_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function rariable_exchangev1_exchange_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_exchange_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         rariable_exchangev1_exchange_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"components": [{"components": [{"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "uint256", "name": "salt", "type": "uint256"}, {"components": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "enum ExchangeDomainV1.AssetType", "name": "assetType", "type": "uint8"}], "internalType": "struct ExchangeDomainV1.Asset", "name": "sellAsset", "type": "tuple"}, {"components": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "enum ExchangeDomainV1.AssetType", "name": "assetType", "type": "uint8"}], "internalType": "struct ExchangeDomainV1.Asset", "name": "buyAsset", "type": "tuple"}], "internalType": "struct ExchangeDomainV1.OrderKey", "name": "key", "type": "tuple"}, {"internalType": "uint256", "name": "selling", "type": "uint256"}, {"internalType": "uint256", "name": "buying", "type": "uint256"}, {"internalType": "uint256", "name": "sellerFee", "type": "uint256"}], "internalType": "struct ExchangeDomainV1.Order", "name": "order", "type": "tuple"}, {"components": [{"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "internalType": "struct ExchangeDomainV1.Sig", "name": "sig", "type": "tuple"}, {"internalType": "uint256", "name": "buyerFee", "type": "uint256"}, {"components": [{"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "internalType": "struct ExchangeDomainV1.Sig", "name": "buyerFeeSig", "type": "tuple"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}, {"internalType": "address", "name": "buyer", "type": "address"}], "name": "exchange", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function"}', 'exchange') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06")
-    and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10
-    and selector = "0x9cec6392"
-    and selector_hash = abs(hash("0x9cec6392")) % 10
+    where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06") and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10 and selector = "0x9cec6392" and selector_hash = abs(hash("0x9cec6392")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

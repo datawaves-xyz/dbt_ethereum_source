@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_isowner',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function rariable_exchangev1_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -20,10 +20,7 @@ with base as (
         dt,
         rariable_exchangev1_isowner_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "isOwner", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "payable": false, "stateMutability": "view", "type": "function"}', 'isOwner') as data
     from {{ ref('stg_traces') }}
-    where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06")
-    and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10
-    and selector = "0x8f32d59b"
-    and selector_hash = abs(hash("0x8f32d59b")) % 10
+    where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06") and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10 and selector = "0x8f32d59b" and selector_hash = abs(hash("0x8f32d59b")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'

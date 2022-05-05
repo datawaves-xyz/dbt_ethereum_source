@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_evt_operatorremoved',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_operatorremoved_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OperatorRemoved_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.6.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_operatorremoved_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OperatorRemoved_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
         }
     )
 }}
@@ -19,10 +19,7 @@ with base as (
         dt,
         rariable_exchangestatev1_operatorremoved_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "account", "type": "address"}], "name": "OperatorRemoved", "type": "event"}', 'OperatorRemoved') as data
     from {{ ref('stg_logs') }}
-    where address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8")
-    and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10
-    and selector = "0x80c0b871b97b595b16a7741c1b06fed0c6f6f558639f18ccbce50724325dc40d"
-    and selector_hash = abs(hash("0x80c0b871b97b595b16a7741c1b06fed0c6f6f558639f18ccbce50724325dc40d")) % 10
+    where address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8") and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10 and selector = "0x80c0b871b97b595b16a7741c1b06fed0c6f6f558639f18ccbce50724325dc40d" and selector_hash = abs(hash("0x80c0b871b97b595b16a7741c1b06fed0c6f6f558639f18ccbce50724325dc40d")) % 10
 
     {% if is_incremental() %}
       and dt = '{{ var("dt") }}'
