@@ -1,10 +1,10 @@
 {{
     config(
-        materialized='table',
+        materialized='incremental', incremental_strategy='insert_overwrite', partition_by=['dt'],
         file_format='parquet',
         alias='erc20_evt_transfer',
         pre_hook={
-            'sql': 'create or replace function common_erc20_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Common_ERC20_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
+            'sql': 'create or replace function common_erc20_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Common_ERC20_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
         }
     )
 }}
@@ -38,5 +38,5 @@ final as (
     from base
 )
 
-select /*+ REPARTITION(50) */ *
+select /*+ REPARTITION(dt) */ *
 from final

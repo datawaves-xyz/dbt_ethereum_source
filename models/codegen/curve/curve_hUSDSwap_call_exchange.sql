@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_exchange',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_exchange_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_exchange_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
+            'sql': 'create or replace function curve_husdswap_exchange_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_exchange_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
         }
     )
 }}

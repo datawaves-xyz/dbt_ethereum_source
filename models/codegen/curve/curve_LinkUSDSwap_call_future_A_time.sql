@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_call_future_a_time',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_future_a_time_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_future_A_time_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
+            'sql': 'create or replace function curve_linkusdswap_future_a_time_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_future_A_time_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
         }
     )
 }}

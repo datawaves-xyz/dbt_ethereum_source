@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='gusdswap_call_calc_token_amount',
         pre_hook={
-            'sql': 'create or replace function curve_gusdswap_calc_token_amount_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_calc_token_amount_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.7.jar";'
+            'sql': 'create or replace function curve_gusdswap_calc_token_amount_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_calc_token_amount_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
         }
     )
 }}
