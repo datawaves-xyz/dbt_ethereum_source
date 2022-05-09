@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_cancelallordersforsender',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_cancelallordersforsender_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_cancelAllOrdersForSender_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_cancelallordersforsender_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_cancelAllOrdersForSender_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}

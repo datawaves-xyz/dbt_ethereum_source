@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_evt_newadmin',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_newadmin_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_NewAdmin_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function curve_busdswap_newadmin_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_NewAdmin_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_evt_addrchanged',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_addrchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_AddrChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_addrchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_AddrChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}

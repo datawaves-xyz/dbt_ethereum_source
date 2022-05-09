@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_totalsupply',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_totalsupply_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_totalSupply_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function superrare_superrare_totalsupply_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_totalSupply_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}

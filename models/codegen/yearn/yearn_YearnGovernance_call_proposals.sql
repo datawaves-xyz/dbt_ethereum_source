@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_proposals',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_proposals_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_proposals_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_proposals_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_proposals_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}

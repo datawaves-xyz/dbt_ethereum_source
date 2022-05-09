@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_salepriceoftoken',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_salepriceoftoken_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_salePriceOfToken_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function superrare_superrare_salepriceoftoken_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_salePriceOfToken_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}

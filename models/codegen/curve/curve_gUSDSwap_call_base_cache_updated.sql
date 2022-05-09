@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='gusdswap_call_base_cache_updated',
         pre_hook={
-            'sql': 'create or replace function curve_gusdswap_base_cache_updated_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_base_cache_updated_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.8.jar";'
+            'sql': 'create or replace function curve_gusdswap_base_cache_updated_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_base_cache_updated_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
         }
     )
 }}
