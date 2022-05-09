@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: ERC20_evt_Approval
+  - name: ERC20_evt_Transfer
