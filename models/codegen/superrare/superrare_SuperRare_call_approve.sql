@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_approve',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_approve_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_approve_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
+            'sql': 'create or replace function superrare_superrare_approve_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_approve_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
         }
     )
 }}

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_admin_actions_deadline',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_admin_actions_deadline_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_admin_actions_deadline_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
+            'sql': 'create or replace function curve_husdswap_admin_actions_deadline_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_admin_actions_deadline_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
         }
     )
 }}

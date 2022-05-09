@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_call_name',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_name_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_name_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_name_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_name_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
         }
     )
 }}

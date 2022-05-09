@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_transferownership',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
         }
     )
 }}

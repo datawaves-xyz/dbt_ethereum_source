@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_call_future_owner',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_future_owner_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_future_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.9.jar";'
+            'sql': 'create or replace function curve_sethswap_future_owner_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_future_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
         }
     )
 }}
