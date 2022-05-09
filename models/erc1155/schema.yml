@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: ERC1155_evt_ApprovalForAll
+  - name: ERC1155_evt_TransferBatch
+  - name: ERC1155_evt_TransferSingle
+  - name: ERC1155_evt_URI
