@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_registry',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_registry_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_registry_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_registry_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_registry_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
         }
     )
 }}

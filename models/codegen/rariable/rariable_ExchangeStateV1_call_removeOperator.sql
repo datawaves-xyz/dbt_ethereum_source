@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_call_removeoperator',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_removeoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_removeOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_removeoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_removeOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
         }
     )
 }}

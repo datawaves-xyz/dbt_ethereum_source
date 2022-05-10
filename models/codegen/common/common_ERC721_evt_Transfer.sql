@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='erc721_evt_transfer',
         pre_hook={
-            'sql': 'create or replace function common_erc721_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Common_ERC721_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
+            'sql': 'create or replace function common_erc721_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Common_ERC721_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
         }
     )
 }}

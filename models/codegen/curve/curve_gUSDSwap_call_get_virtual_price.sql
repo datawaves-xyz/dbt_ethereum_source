@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='gusdswap_call_get_virtual_price',
         pre_hook={
-            'sql': 'create or replace function curve_gusdswap_get_virtual_price_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_get_virtual_price_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
+            'sql': 'create or replace function curve_gusdswap_get_virtual_price_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_get_virtual_price_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
         }
     )
 }}

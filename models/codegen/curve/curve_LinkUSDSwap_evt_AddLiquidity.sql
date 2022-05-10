@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_evt_addliquidity',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_addliquidity_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_AddLiquidity_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.10.jar";'
+            'sql': 'create or replace function curve_linkusdswap_addliquidity_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_AddLiquidity_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
         }
     )
 }}
