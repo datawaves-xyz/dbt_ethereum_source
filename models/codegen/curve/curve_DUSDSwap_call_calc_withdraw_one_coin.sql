@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_calc_withdraw_one_coin',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_calc_withdraw_one_coin_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_calc_withdraw_one_coin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_dusdswap_calc_withdraw_one_coin_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_calc_withdraw_one_coin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_dusdswap_calc_withdraw_one_coin_calldecodeudf(unhex_input, unhex_output, '{"name": "calc_withdraw_one_coin", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "uint256", "name": "_token_amount"}, {"type": "int128", "name": "i"}], "stateMutability": "view", "type": "function", "gas": 4389}', 'calc_withdraw_one_coin') as data
+        curve_dusdswap_calc_withdraw_one_coin_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "calc_withdraw_one_coin", "stateMutability": "view", "inputs": [{"name": "_token_amount", "type": "uint256"}, {"name": "i", "type": "int128"}], "outputs": [{"name": "", "type": "uint256"}]}', 'calc_withdraw_one_coin') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c") and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10 and selector = "0xcc2b27d7" and selector_hash = abs(hash("0xcc2b27d7")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._token_amount as _token_amount, data.input.i as i, data.output.output_0 as output_0
     from base
 )
 

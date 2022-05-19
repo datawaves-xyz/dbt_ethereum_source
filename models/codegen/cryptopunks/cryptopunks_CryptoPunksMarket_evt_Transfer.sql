@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_evt_transfer',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_transfer_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_Transfer_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.from as from, data.input.to as to, data.input.value as value
     from base
 )
 

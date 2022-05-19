@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_fee',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_dusdswap_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_dusdswap_fee_calldecodeudf(unhex_input, unhex_output, '{"name": "fee", "outputs": [{"type": "uint256", "name": ""}], "inputs": [], "stateMutability": "view", "type": "function", "gas": 2201}', 'fee') as data
+        curve_dusdswap_fee_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "fee", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "uint256"}]}', 'fee') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c") and address_hash = abs(hash(lower("0x8038C01A0390a8c547446a0b2c18fc9aEFEcc10c"))) % 10 and selector = "0xddca3f43" and selector_hash = abs(hash("0xddca3f43")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

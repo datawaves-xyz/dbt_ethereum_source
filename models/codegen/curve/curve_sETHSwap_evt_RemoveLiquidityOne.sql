@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_evt_removeliquidityone',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_removeliquidityone_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_RemoveLiquidityOne_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_sethswap_removeliquidityone_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_RemoveLiquidityOne_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -17,7 +17,7 @@ with base as (
         transaction_hash as evt_tx_hash,
         address as contract_address,
         dt,
-        curve_sethswap_removeliquidityone_eventdecodeudf(unhex_data, topics_arr, '{"name": "RemoveLiquidityOne", "inputs": [{"type": "address", "name": "provider", "indexed": true}, {"type": "uint256", "name": "token_amount", "indexed": false}, {"type": "uint256", "name": "coin_amount", "indexed": false}], "anonymous": false, "type": "event"}', 'RemoveLiquidityOne') as data
+        curve_sethswap_removeliquidityone_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "provider", "type": "address"}, {"indexed": false, "name": "token_amount", "type": "uint256"}, {"indexed": false, "name": "coin_amount", "type": "uint256"}], "name": "RemoveLiquidityOne", "type": "event"}', 'RemoveLiquidityOne') as data
     from {{ ref('stg_logs') }}
     where address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567") and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10 and selector = "0x9e96dd3b997a2a257eec4df9bb6eaf626e206df5f543bd963682d143300be310" and selector_hash = abs(hash("0x9e96dd3b997a2a257eec4df9bb6eaf626e206df5f543bd963682d143300be310")) % 10
 
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.provider as provider, data.input.token_amount as token_amount, data.input.coin_amount as coin_amount
     from base
 )
 

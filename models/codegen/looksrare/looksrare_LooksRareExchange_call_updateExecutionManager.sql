@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_updateexecutionmanager',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_updateexecutionmanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_updateExecutionManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_updateexecutionmanager_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_updateExecutionManager_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        looksrare_looksrareexchange_updateexecutionmanager_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "_executionManager", "type": "address"}], "name": "updateExecutionManager", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'updateExecutionManager') as data
+        looksrare_looksrareexchange_updateexecutionmanager_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "updateExecutionManager", "stateMutability": "nonpayable", "inputs": [{"name": "_executionManager", "type": "address"}], "outputs": []}', 'updateExecutionManager') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0xd4ff41dc" and selector_hash = abs(hash("0xd4ff41dc")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._executionmanager as _executionManager
     from base
 )
 

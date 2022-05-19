@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_tokensof',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_tokensof_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_tokensOf_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function superrare_superrare_tokensof_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_tokensOf_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        superrare_superrare_tokensof_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "_owner", "type": "address"}], "name": "tokensOf", "outputs": [{"name": "", "type": "uint256[]"}], "payable": false, "stateMutability": "view", "type": "function"}', 'tokensOf') as data
+        superrare_superrare_tokensof_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "tokensOf", "constant": true, "payable": false, "stateMutability": "view", "inputs": [{"name": "_owner", "type": "address"}], "outputs": [{"name": "", "type": "uint256[]"}]}', 'tokensOf') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d") and address_hash = abs(hash(lower("0x41A322b28D0fF354040e2CbC676F0320d8c8850d"))) % 10 and selector = "0x5a3f2672" and selector_hash = abs(hash("0x5a3f2672")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._owner as _owner, data.output.output_0 as output_0
     from base
 )
 

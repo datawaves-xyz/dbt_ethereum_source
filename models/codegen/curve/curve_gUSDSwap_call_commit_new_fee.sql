@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='gusdswap_call_commit_new_fee',
         pre_hook={
-            'sql': 'create or replace function curve_gusdswap_commit_new_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_commit_new_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_gusdswap_commit_new_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_gUSDSwap_commit_new_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_gusdswap_commit_new_fee_calldecodeudf(unhex_input, unhex_output, '{"name": "commit_new_fee", "outputs": [], "inputs": [{"type": "uint256", "name": "new_fee"}, {"type": "uint256", "name": "new_admin_fee"}], "stateMutability": "nonpayable", "type": "function", "gas": 110491}', 'commit_new_fee') as data
+        curve_gusdswap_commit_new_fee_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "commit_new_fee", "stateMutability": "nonpayable", "inputs": [{"name": "new_fee", "type": "uint256"}, {"name": "new_admin_fee", "type": "uint256"}], "outputs": []}', 'commit_new_fee') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x4f062658EaAF2C1ccf8C8e36D6824CDf41167956") and address_hash = abs(hash(lower("0x4f062658EaAF2C1ccf8C8e36D6824CDf41167956"))) % 10 and selector = "0x5b5a1467" and selector_hash = abs(hash("0x5b5a1467")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.new_fee as new_fee, data.input.new_admin_fee as new_admin_fee
     from base
 )
 

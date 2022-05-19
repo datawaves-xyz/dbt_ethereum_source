@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller_call_renew',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller_renew_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_renew_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller_renew_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_renew_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ethregistrarcontroller_renew_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "name", "type": "string"}, {"name": "duration", "type": "uint256"}], "name": "renew", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function"}', 'renew') as data
+        ens_ethregistrarcontroller_renew_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "renew", "constant": false, "payable": true, "stateMutability": "payable", "inputs": [{"name": "name", "type": "string"}, {"name": "duration", "type": "uint256"}], "outputs": []}', 'renew') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455") and address_hash = abs(hash(lower("0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455"))) % 10 and selector = "0xacf1a841" and selector_hash = abs(hash("0xacf1a841")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.name as name, data.input.duration as duration
     from base
 )
 

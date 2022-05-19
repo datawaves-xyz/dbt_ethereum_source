@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_seize',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_seize_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_seize_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_seize_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_seize_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        yearn_yearngovernance_seize_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "contract IERC20", "name": "_token", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "seize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'seize') as data
+        yearn_yearngovernance_seize_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "seize", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "_token", "type": "address"}, {"name": "amount", "type": "uint256"}], "outputs": []}', 'seize') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E") and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10 and selector = "0xeb9253c0" and selector_hash = abs(hash("0xeb9253c0")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._token as _token, data.input.amount as amount
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_call_proxies',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_proxies_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_proxies_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_proxies_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_proxies_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_shortnameauctioncontroller_proxies_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "proxies", "outputs": [{"internalType": "contract ProxyRegistry", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"}', 'proxies') as data
+        ens_shortnameauctioncontroller_proxies_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "proxies", "constant": true, "payable": false, "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]}', 'proxies') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x699C7F511C9e2182e89f29b3Bfb68bD327919D17") and address_hash = abs(hash(lower("0x699C7F511C9e2182e89f29b3Bfb68bD327919D17"))) % 10 and selector = "0xbcc38d59" and selector_hash = abs(hash("0xbcc38d59")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameclaims_call_getclaimcost',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameclaims_getclaimcost_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_getClaimCost_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_shortnameclaims_getclaimcost_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_getClaimCost_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_shortnameclaims_getclaimcost_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "claimed", "type": "string"}], "name": "getClaimCost", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}', 'getClaimCost') as data
+        ens_shortnameclaims_getclaimcost_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "getClaimCost", "constant": true, "payable": false, "stateMutability": "view", "inputs": [{"name": "claimed", "type": "string"}], "outputs": [{"name": "", "type": "uint256"}]}', 'getClaimCost') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xf7c83bd0c50e7a72b55a39fe0dabf5e3a330d749") and address_hash = abs(hash(lower("0xf7c83bd0c50e7a72b55a39fe0dabf5e3a330d749"))) % 10 and selector = "0x65e3f8fa" and selector_hash = abs(hash("0x65e3f8fa")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.claimed as claimed, data.output.output_0 as output_0
     from base
 )
 

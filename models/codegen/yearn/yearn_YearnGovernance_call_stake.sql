@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_stake',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_stake_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_stake_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_stake_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_stake_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        yearn_yearngovernance_stake_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "stake", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'stake') as data
+        yearn_yearngovernance_stake_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "stake", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "amount", "type": "uint256"}], "outputs": []}', 'stake') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E") and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10 and selector = "0xa694fc3a" and selector_hash = abs(hash("0xa694fc3a")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.amount as amount
     from base
 )
 

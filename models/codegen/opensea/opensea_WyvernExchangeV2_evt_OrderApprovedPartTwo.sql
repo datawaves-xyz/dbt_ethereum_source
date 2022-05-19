@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_orderapprovedparttwo',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_orderapprovedparttwo_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrderApprovedPartTwo_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_orderapprovedparttwo_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrderApprovedPartTwo_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.hash as hash, data.input.howtocall as howToCall, data.input.calldata as calldata, data.input.replacementpattern as replacementPattern, data.input.statictarget as staticTarget, data.input.staticextradata as staticExtradata, data.input.paymenttoken as paymentToken, data.input.baseprice as basePrice, data.input.extra as extra, data.input.listingtime as listingTime, data.input.expirationtime as expirationTime, data.input.salt as salt, data.input.orderbookinclusiondesired as orderbookInclusionDesired
     from base
 )
 

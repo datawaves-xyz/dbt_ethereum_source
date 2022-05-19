@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_future_admin_fee',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_future_admin_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_future_admin_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_busdswap_future_admin_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_future_admin_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_busdswap_future_admin_fee_calldecodeudf(unhex_input, unhex_output, '{"name": "future_admin_fee", "outputs": [{"type": "uint256", "name": "out"}], "inputs": [], "constant": true, "payable": false, "type": "function", "gas": 2291}', 'future_admin_fee') as data
+        curve_busdswap_future_admin_fee_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "future_admin_fee", "constant": true, "payable": false, "inputs": [], "outputs": [{"name": "out", "type": "uint256"}]}', 'future_admin_fee') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27") and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10 and selector = "0xe3824462" and selector_hash = abs(hash("0xe3824462")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_out as output_out
     from base
 )
 

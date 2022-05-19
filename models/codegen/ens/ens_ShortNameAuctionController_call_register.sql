@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_call_register',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_register_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_register_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_register_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_register_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_shortnameauctioncontroller_register_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "string", "name": "name", "type": "string"}, {"internalType": "address", "name": "owner", "type": "address"}], "name": "register", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'register') as data
+        ens_shortnameauctioncontroller_register_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "register", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "name", "type": "string"}, {"name": "owner", "type": "address"}], "outputs": []}', 'register') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x699C7F511C9e2182e89f29b3Bfb68bD327919D17") and address_hash = abs(hash(lower("0x699C7F511C9e2182e89f29b3Bfb68bD327919D17"))) % 10 and selector = "0x1e59c529" and selector_hash = abs(hash("0x1e59c529")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.name as name, data.input.owner as owner
     from base
 )
 

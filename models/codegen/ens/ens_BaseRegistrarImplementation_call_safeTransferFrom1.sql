@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_call_safetransferfrom1',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_safetransferfrom1_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_safeTransferFrom1_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_safetransferfrom1_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_safeTransferFrom1_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_baseregistrarimplementation_safetransferfrom1_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "address", "name": "from", "type": "address"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "tokenId", "type": "uint256"}, {"internalType": "bytes", "name": "_data", "type": "bytes"}], "name": "safeTransferFrom", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'safeTransferFrom1') as data
+        ens_baseregistrarimplementation_safetransferfrom1_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "safeTransferFrom", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "from", "type": "address"}, {"name": "to", "type": "address"}, {"name": "tokenId", "type": "uint256"}, {"name": "_data", "type": "bytes"}], "outputs": []}', 'safeTransferFrom1') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85") and address_hash = abs(hash(lower("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85"))) % 10 and selector = "0xb88d4fde" and selector_hash = abs(hash("0xb88d4fde")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.from as from, data.input.to as to, data.input.tokenid as tokenId, data.input._data as _data
     from base
 )
 

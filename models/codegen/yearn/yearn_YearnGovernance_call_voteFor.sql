@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_votefor',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_votefor_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_voteFor_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_votefor_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_voteFor_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        yearn_yearngovernance_votefor_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "uint256", "name": "id", "type": "uint256"}], "name": "voteFor", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'voteFor') as data
+        yearn_yearngovernance_votefor_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "voteFor", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "id", "type": "uint256"}], "outputs": []}', 'voteFor') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E") and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10 and selector = "0x86a50535" and selector_hash = abs(hash("0x86a50535")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.id as id
     from base
 )
 

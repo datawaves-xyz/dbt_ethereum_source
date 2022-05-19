@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_admin_balances',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_admin_balances_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_admin_balances_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_husdswap_admin_balances_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_admin_balances_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_husdswap_admin_balances_calldecodeudf(unhex_input, unhex_output, '{"name": "admin_balances", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "uint256", "name": "i"}], "stateMutability": "view", "type": "function", "gas": 3511}', 'admin_balances') as data
+        curve_husdswap_admin_balances_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "admin_balances", "stateMutability": "view", "inputs": [{"name": "i", "type": "uint256"}], "outputs": [{"name": "", "type": "uint256"}]}', 'admin_balances') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604") and address_hash = abs(hash(lower("0x3eF6A01A0f81D6046290f3e2A8c5b843e738E604"))) % 10 and selector = "0xe2e7d264" and selector_hash = abs(hash("0xe2e7d264")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.i as i, data.output.output_0 as output_0
     from base
 )
 

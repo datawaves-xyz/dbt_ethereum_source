@@ -1,8 +1,29 @@
 version: 2
 models:
-  - name: superrare_SuperRare_evt_Bid
+  - name: superrare_SuperRare_evt_WhitelistCreator
+    columns:
+      - name: _creator
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_evt_Transfer
+    columns:
+      - name: _from
+      - name: _to
+      - name: _tokenId
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_evt_AcceptBid
     columns:
       - name: _bidder
+      - name: _seller
       - name: _amount
       - name: _tokenId
       - name: evt_block_number
@@ -22,18 +43,6 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_evt_Sold
-    columns:
-      - name: _buyer
-      - name: _seller
-      - name: _amount
-      - name: _tokenId
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
   - name: superrare_SuperRare_evt_SalePriceSet
     columns:
       - name: _tokenId
@@ -44,21 +53,11 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_evt_CancelBid
+  - name: superrare_SuperRare_evt_Sold
     columns:
-      - name: _bidder
+      - name: _buyer
+      - name: _seller
       - name: _amount
-      - name: _tokenId
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_evt_Transfer
-    columns:
-      - name: _from
-      - name: _to
       - name: _tokenId
       - name: evt_block_number
       - name: evt_block_time
@@ -76,10 +75,9 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_evt_AcceptBid
+  - name: superrare_SuperRare_evt_Bid
     columns:
       - name: _bidder
-      - name: _seller
       - name: _amount
       - name: _tokenId
       - name: evt_block_number
@@ -88,16 +86,82 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_evt_WhitelistCreator
+  - name: superrare_SuperRare_evt_CancelBid
     columns:
-      - name: _creator
+      - name: _bidder
+      - name: _amount
+      - name: _tokenId
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_totalSupply
+  - name: superrare_SuperRare_call_tokensOf
+    columns:
+      - name: _owner
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_isWhitelisted
+    columns:
+      - name: _creator
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_transferOwnership
+    columns:
+      - name: newOwner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_transfer
+    columns:
+      - name: _to
+      - name: _tokenId
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_acceptBid
+    columns:
+      - name: _tokenId
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_tokenURI
+    columns:
+      - name: _tokenId
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_maintainerPercentage
     columns:
       - name: output_0
       - name: call_success
@@ -117,30 +181,9 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_setCreatorPercentage
-    columns:
-      - name: _percentage
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_ownerOf
+  - name: superrare_SuperRare_call_takeOwnership
     columns:
       - name: _tokenId
-      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -151,6 +194,61 @@ models:
   - name: superrare_SuperRare_call_name
     columns:
       - name: output__name
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_salePriceOfToken
+    columns:
+      - name: _tokenId
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_balanceOf
+    columns:
+      - name: _owner
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_originalTokenOfUri
+    columns:
+      - name: _uri
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_setCreatorPercentage
+    columns:
+      - name: _percentage
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_addNewTokenWithEditions
+    columns:
+      - name: _uri
+      - name: _editions
+      - name: _salePrice
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -180,74 +278,8 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_transferOwnership
+  - name: superrare_SuperRare_call_owner
     columns:
-      - name: newOwner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_addNewTokenWithEditions
-    columns:
-      - name: _uri
-      - name: _editions
-      - name: _salePrice
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_creatorOfToken
-    columns:
-      - name: _tokenId
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_originalTokenOfUri
-    columns:
-      - name: _uri
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_addNewToken
-    columns:
-      - name: _uri
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_tokensOf
-    columns:
-      - name: _owner
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_tokenURI
-    columns:
-      - name: _tokenId
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -266,10 +298,9 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_salePriceOfToken
+  - name: superrare_SuperRare_call_symbol
     columns:
-      - name: _tokenId
-      - name: output_0
+      - name: output__symbol
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -277,42 +308,20 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_isWhitelisted
+  - name: superrare_SuperRare_call_whitelistCreator
     columns:
       - name: _creator
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_approvedFor
+    columns:
+      - name: _tokenId
       - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_acceptBid
-    columns:
-      - name: _tokenId
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_transfer
-    columns:
-      - name: _to
-      - name: _tokenId
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_approve
-    columns:
-      - name: _to
-      - name: _tokenId
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -341,6 +350,17 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
+  - name: superrare_SuperRare_call_creatorOfToken
+    columns:
+      - name: _tokenId
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
   - name: superrare_SuperRare_call_setMaintainerPercentage
     columns:
       - name: _percentage
@@ -351,8 +371,9 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_takeOwnership
+  - name: superrare_SuperRare_call_approve
     columns:
+      - name: _to
       - name: _tokenId
       - name: call_success
       - name: call_block_number
@@ -361,7 +382,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_maintainerPercentage
+  - name: superrare_SuperRare_call_totalSupply
     columns:
       - name: output_0
       - name: call_success
@@ -371,41 +392,20 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: superrare_SuperRare_call_whitelistCreator
-    columns:
-      - name: _creator
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_symbol
-    columns:
-      - name: output__symbol
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_balanceOf
-    columns:
-      - name: _owner
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: superrare_SuperRare_call_approvedFor
+  - name: superrare_SuperRare_call_ownerOf
     columns:
       - name: _tokenId
       - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: superrare_SuperRare_call_addNewToken
+    columns:
+      - name: _uri
       - name: call_success
       - name: call_block_number
       - name: call_block_time

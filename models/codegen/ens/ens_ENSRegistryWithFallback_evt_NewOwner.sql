@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistrywithfallback_evt_newowner',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistrywithfallback_newowner_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_NewOwner_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ensregistrywithfallback_newowner_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_NewOwner_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -17,7 +17,7 @@ with base as (
         transaction_hash as evt_tx_hash,
         address as contract_address,
         dt,
-        ens_ensregistrywithfallback_newowner_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "bytes32", "name": "node", "type": "bytes32"}, {"indexed": true, "internalType": "bytes32", "name": "label", "type": "bytes32"}, {"indexed": false, "internalType": "address", "name": "owner", "type": "address"}], "name": "NewOwner", "type": "event"}', 'NewOwner') as data
+        ens_ensregistrywithfallback_newowner_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "node", "type": "bytes32", "internalType": "bytes32"}, {"indexed": true, "name": "label", "type": "bytes32", "internalType": "bytes32"}, {"indexed": false, "name": "owner", "type": "address", "internalType": "address"}], "name": "NewOwner", "type": "event"}', 'NewOwner') as data
     from {{ ref('stg_logs') }}
     where address = lower("0x314159265dd8dbb310642f98f50c066173c1259b") and address_hash = abs(hash(lower("0x314159265dd8dbb310642f98f50c066173c1259b"))) % 10 and selector = "0xce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82" and selector_hash = abs(hash("0xce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82")) % 10
 
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.node as node, data.input.label as label, data.input.owner as owner
     from base
 )
 

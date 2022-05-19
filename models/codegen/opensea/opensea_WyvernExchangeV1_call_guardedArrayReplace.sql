@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_guardedarrayreplace',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_guardedarrayreplace_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_guardedArrayReplace_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_guardedarrayreplace_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_guardedArrayReplace_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        opensea_wyvernexchangev1_guardedarrayreplace_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "array", "type": "bytes"}, {"name": "desired", "type": "bytes"}, {"name": "mask", "type": "bytes"}], "name": "guardedArrayReplace", "outputs": [{"name": "", "type": "bytes"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'guardedArrayReplace') as data
+        opensea_wyvernexchangev1_guardedarrayreplace_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "guardedArrayReplace", "constant": true, "payable": false, "stateMutability": "pure", "inputs": [{"name": "array", "type": "bytes"}, {"name": "desired", "type": "bytes"}, {"name": "mask", "type": "bytes"}], "outputs": [{"name": "", "type": "bytes"}]}', 'guardedArrayReplace') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b") and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10 and selector = "0x239e83df" and selector_hash = abs(hash("0x239e83df")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.array as array, data.input.desired as desired, data.input.mask as mask, data.output.output_0 as output_0
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_approvedorders',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_approvedorders_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_approvedOrders_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_approvedorders_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_approvedOrders_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        opensea_wyvernexchangev2_approvedorders_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "hash", "type": "bytes32"}], "name": "approvedOrders", "outputs": [{"name": "approved", "type": "bool"}], "payable": false, "stateMutability": "view", "type": "function"}', 'approvedOrders') as data
+        opensea_wyvernexchangev2_approvedorders_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "approvedOrders", "constant": true, "payable": false, "stateMutability": "view", "inputs": [{"name": "hash", "type": "bytes32"}], "outputs": [{"name": "approved", "type": "bool"}]}', 'approvedOrders') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5") and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10 and selector = "0xe57d4adb" and selector_hash = abs(hash("0xe57d4adb")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.hash as hash, data.output.output_approved as output_approved
     from base
 )
 

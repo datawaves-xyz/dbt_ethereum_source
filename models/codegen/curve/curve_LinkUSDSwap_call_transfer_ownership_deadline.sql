@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_call_transfer_ownership_deadline',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_transfer_ownership_deadline_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_transfer_ownership_deadline_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_linkusdswap_transfer_ownership_deadline_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_transfer_ownership_deadline_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_linkusdswap_transfer_ownership_deadline_calldecodeudf(unhex_input, unhex_output, '{"name": "transfer_ownership_deadline", "outputs": [{"type": "uint256", "name": ""}], "inputs": [], "stateMutability": "view", "type": "function", "gas": 2561}', 'transfer_ownership_deadline') as data
+        curve_linkusdswap_transfer_ownership_deadline_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "transfer_ownership_deadline", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "uint256"}]}', 'transfer_ownership_deadline') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171") and address_hash = abs(hash(lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171"))) % 10 and selector = "0xe0a0b586" and selector_hash = abs(hash("0xe0a0b586")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_approval',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_approval_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Approval_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function superrare_superrare_approval_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Approval_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input._owner as _owner, data.input._approved as _approved, data.input._tokenid as _tokenId
     from base
 )
 

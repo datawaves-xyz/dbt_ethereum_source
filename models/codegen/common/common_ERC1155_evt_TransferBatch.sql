@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='erc1155_evt_transferbatch',
         pre_hook={
-            'sql': 'create or replace function common_erc1155_transferbatch_eventdecodeudf as "io.iftech.sparkudf.hive.Common_ERC1155_TransferBatch_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function common_erc1155_transferbatch_eventdecodeudf as "io.iftech.sparkudf.hive.Common_ERC1155_TransferBatch_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -17,7 +17,7 @@ with base as (
         transaction_hash as evt_tx_hash,
         address as contract_address,
         dt,
-        common_erc1155_transferbatch_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "operator", "type": "address"}, {"indexed": true, "internalType": "address", "name": "from", "type": "address"}, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}, {"indexed": false, "internalType": "uint256[]", "name": "ids", "type": "uint256[]"}, {"indexed": false, "internalType": "uint256[]", "name": "values", "type": "uint256[]"}], "name": "TransferBatch", "type": "event"}', 'TransferBatch') as data
+        common_erc1155_transferbatch_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "operator", "type": "address", "internalType": "address"}, {"indexed": true, "name": "from", "type": "address", "internalType": "address"}, {"indexed": true, "name": "to", "type": "address", "internalType": "address"}, {"indexed": false, "name": "ids", "type": "uint256[]", "internalType": "uint256[]"}, {"indexed": false, "name": "values", "type": "uint256[]", "internalType": "uint256[]"}], "name": "TransferBatch", "type": "event"}', 'TransferBatch') as data
     from {{ ref('stg_logs') }}
     where selector = "0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb" and selector_hash = abs(hash("0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb")) % 10
 
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.operator as operator, data.input.from as from, data.input.to as to, data.input.ids as ids, data.input.values as values
     from base
 )
 

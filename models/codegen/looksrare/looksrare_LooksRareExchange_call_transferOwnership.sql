@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_transferownership',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        looksrare_looksrareexchange_transferownership_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'transferOwnership') as data
+        looksrare_looksrareexchange_transferownership_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "transferOwnership", "stateMutability": "nonpayable", "inputs": [{"name": "newOwner", "type": "address"}], "outputs": []}', 'transferOwnership') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0xf2fde38b" and selector_hash = abs(hash("0xf2fde38b")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.newowner as newOwner
     from base
 )
 

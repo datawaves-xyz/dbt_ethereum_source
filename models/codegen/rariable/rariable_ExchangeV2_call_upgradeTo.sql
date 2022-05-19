@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev2_call_upgradeto',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev2_upgradeto_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_upgradeTo_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function rariable_exchangev2_upgradeto_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_upgradeTo_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        rariable_exchangev2_upgradeto_calldecodeudf(unhex_input, unhex_output, '{"inputs": [{"internalType": "address", "name": "newImplementation", "type": "address"}], "name": "upgradeTo", "outputs": [], "stateMutability": "nonpayable", "type": "function"}', 'upgradeTo') as data
+        rariable_exchangev2_upgradeto_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "upgradeTo", "stateMutability": "nonpayable", "inputs": [{"name": "newImplementation", "type": "address"}], "outputs": []}', 'upgradeTo') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x9757F2d2b135150BBeb65308D4a91804107cd8D6") and address_hash = abs(hash(lower("0x9757F2d2b135150BBeb65308D4a91804107cd8D6"))) % 10 and selector = "0x3659cfe6" and selector_hash = abs(hash("0x3659cfe6")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.newimplementation as newImplementation
     from base
 )
 

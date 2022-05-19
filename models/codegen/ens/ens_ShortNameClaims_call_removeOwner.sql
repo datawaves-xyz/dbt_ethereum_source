@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameclaims_call_removeowner',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameclaims_removeowner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_removeOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_shortnameclaims_removeowner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_removeOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_shortnameclaims_removeowner_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "owner", "type": "address"}], "name": "removeOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'removeOwner') as data
+        ens_shortnameclaims_removeowner_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "removeOwner", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "owner", "type": "address"}], "outputs": []}', 'removeOwner') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xf7c83bd0c50e7a72b55a39fe0dabf5e3a330d749") and address_hash = abs(hash(lower("0xf7c83bd0c50e7a72b55a39fe0dabf5e3a330d749"))) % 10 and selector = "0x173825d9" and selector_hash = abs(hash("0x173825d9")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.owner as owner
     from base
 )
 

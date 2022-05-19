@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller_call_isowner',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller_isowner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_isOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ethregistrarcontroller_isowner_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "isOwner", "outputs": [{"name": "", "type": "bool"}], "payable": false, "stateMutability": "view", "type": "function"}', 'isOwner') as data
+        ens_ethregistrarcontroller_isowner_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "isOwner", "constant": true, "payable": false, "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "bool"}]}', 'isOwner') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455") and address_hash = abs(hash(lower("0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455"))) % 10 and selector = "0x8f32d59b" and selector_hash = abs(hash("0x8f32d59b")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

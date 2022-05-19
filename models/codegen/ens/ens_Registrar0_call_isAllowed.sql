@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_call_isallowed',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_isallowed_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_isAllowed_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_registrar0_isallowed_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_isAllowed_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_registrar0_isallowed_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "_hash", "type": "bytes32"}, {"name": "_timestamp", "type": "uint256"}], "name": "isAllowed", "outputs": [{"name": "allowed", "type": "bool"}], "payable": false, "type": "function"}', 'isAllowed') as data
+        ens_registrar0_isallowed_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "isAllowed", "constant": true, "payable": false, "inputs": [{"name": "_hash", "type": "bytes32"}, {"name": "_timestamp", "type": "uint256"}], "outputs": [{"name": "allowed", "type": "bool"}]}', 'isAllowed') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef") and address_hash = abs(hash(lower("0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef"))) % 10 and selector = "0x93503337" and selector_hash = abs(hash("0x93503337")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._hash as _hash, data.input._timestamp as _timestamp, data.output.output_allowed as output_allowed
     from base
 )
 

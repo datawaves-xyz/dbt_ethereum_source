@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller_call_commitments',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller_commitments_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_commitments_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller_commitments_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_commitments_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ethregistrarcontroller_commitments_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "", "type": "bytes32"}], "name": "commitments", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}', 'commitments') as data
+        ens_ethregistrarcontroller_commitments_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "commitments", "constant": true, "payable": false, "stateMutability": "view", "inputs": [{"name": "", "type": "bytes32"}], "outputs": [{"name": "", "type": "uint256"}]}', 'commitments') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455") and address_hash = abs(hash(lower("0xF0AD5cAd05e10572EfcEB849f6Ff0c68f9700455"))) % 10 and selector = "0x839df945" and selector_hash = abs(hash("0x839df945")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._0 as _0, data.output.output_0 as output_0
     from base
 )
 

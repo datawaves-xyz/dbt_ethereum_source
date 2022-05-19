@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_call_openseaversion',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_openseaversion_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_openSeaVersion_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_openseaversion_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_openSeaVersion_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        opensea_openseaensresolver_openseaversion_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "openSeaVersion", "outputs": [{"name": "", "type": "string"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'openSeaVersion') as data
+        opensea_openseaensresolver_openseaversion_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "openSeaVersion", "constant": true, "payable": false, "stateMutability": "pure", "inputs": [], "outputs": [{"name": "", "type": "string"}]}', 'openSeaVersion') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956") and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10 and selector = "0x4060b25e" and selector_hash = abs(hash("0x4060b25e")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

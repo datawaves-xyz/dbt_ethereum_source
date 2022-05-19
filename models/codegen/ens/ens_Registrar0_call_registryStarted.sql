@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_call_registrystarted',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_registrystarted_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_registryStarted_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_registrar0_registrystarted_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_registryStarted_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_registrar0_registrystarted_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "registryStarted", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "type": "function"}', 'registryStarted') as data
+        ens_registrar0_registrystarted_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "registryStarted", "constant": true, "payable": false, "inputs": [], "outputs": [{"name": "", "type": "uint256"}]}', 'registryStarted') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef") and address_hash = abs(hash(lower("0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef"))) % 10 and selector = "0x9c67f06f" and selector_hash = abs(hash("0x9c67f06f")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

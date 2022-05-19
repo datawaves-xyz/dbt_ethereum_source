@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_evt_newparameters',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_newparameters_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_NewParameters_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_busdswap_newparameters_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_NewParameters_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -17,7 +17,7 @@ with base as (
         transaction_hash as evt_tx_hash,
         address as contract_address,
         dt,
-        curve_busdswap_newparameters_eventdecodeudf(unhex_data, topics_arr, '{"name": "NewParameters", "inputs": [{"type": "uint256", "name": "A", "indexed": false}, {"type": "uint256", "name": "fee", "indexed": false}, {"type": "uint256", "name": "admin_fee", "indexed": false}], "anonymous": false, "type": "event"}', 'NewParameters') as data
+        curve_busdswap_newparameters_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": false, "name": "A", "type": "uint256"}, {"indexed": false, "name": "fee", "type": "uint256"}, {"indexed": false, "name": "admin_fee", "type": "uint256"}], "name": "NewParameters", "type": "event"}', 'NewParameters') as data
     from {{ ref('stg_logs') }}
     where address = lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27") and address_hash = abs(hash(lower("0x79a8C46DeA5aDa233ABaFFD40F3A0A2B1e5A4F27"))) % 10 and selector = "0x752a27d1853eb7af3ee4ff764f2c4a51619386af721573dd3809e929c39db99e" and selector_hash = abs(hash("0x752a27d1853eb7af3ee4ff764f2c4a51619386af721573dd3809e929c39db99e")) % 10
 
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.a as A, data.input.fee as fee, data.input.admin_fee as admin_fee
     from base
 )
 

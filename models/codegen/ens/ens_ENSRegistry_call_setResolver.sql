@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistry_call_setresolver',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistry_setresolver_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistry_setResolver_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ensregistry_setresolver_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistry_setResolver_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ensregistry_setresolver_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "node", "type": "bytes32"}, {"name": "resolver", "type": "address"}], "name": "setResolver", "outputs": [], "payable": false, "type": "function"}', 'setResolver') as data
+        ens_ensregistry_setresolver_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setResolver", "constant": false, "payable": false, "inputs": [{"name": "node", "type": "bytes32"}, {"name": "resolver", "type": "address"}], "outputs": []}', 'setResolver') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x314159265dd8dbb310642f98f50c066173c1259b") and address_hash = abs(hash(lower("0x314159265dd8dbb310642f98f50c066173c1259b"))) % 10 and selector = "0x1896f70a" and selector_hash = abs(hash("0x1896f70a")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.node as node, data.input.resolver as resolver
     from base
 )
 

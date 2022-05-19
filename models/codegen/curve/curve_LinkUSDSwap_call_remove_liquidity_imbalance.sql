@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_call_remove_liquidity_imbalance',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_remove_liquidity_imbalance_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_remove_liquidity_imbalance_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_linkusdswap_remove_liquidity_imbalance_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_remove_liquidity_imbalance_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_linkusdswap_remove_liquidity_imbalance_calldecodeudf(unhex_input, unhex_output, '{"name": "remove_liquidity_imbalance", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "uint256[2]", "name": "amounts"}, {"type": "uint256", "name": "max_burn_amount"}], "stateMutability": "nonpayable", "type": "function", "gas": 6138317}', 'remove_liquidity_imbalance') as data
+        curve_linkusdswap_remove_liquidity_imbalance_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "remove_liquidity_imbalance", "stateMutability": "nonpayable", "inputs": [{"name": "amounts", "type": "uint256[2]"}, {"name": "max_burn_amount", "type": "uint256"}], "outputs": [{"name": "", "type": "uint256"}]}', 'remove_liquidity_imbalance') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171") and address_hash = abs(hash(lower("0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171"))) % 10 and selector = "0xe3103273" and selector_hash = abs(hash("0xe3103273")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.amounts as amounts, data.input.max_burn_amount as max_burn_amount, data.output.output_0 as output_0
     from base
 )
 

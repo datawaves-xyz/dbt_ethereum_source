@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_call_removeoperator',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_removeoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_removeOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_removeoperator_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_removeOperator_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        rariable_exchangestatev1_removeoperator_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "address", "name": "account", "type": "address"}], "name": "removeOperator", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'removeOperator') as data
+        rariable_exchangestatev1_removeoperator_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "removeOperator", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "account", "type": "address"}], "outputs": []}', 'removeOperator') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8") and address_hash = abs(hash(lower("0xEd1f5F8724Cc185d4e48a71A7Fac64fA5216E4A8"))) % 10 and selector = "0xac8a584a" and selector_hash = abs(hash("0xac8a584a")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.account as account
     from base
 )
 

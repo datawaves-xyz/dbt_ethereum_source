@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_evt_hashinvalidated',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_hashinvalidated_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_HashInvalidated_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_registrar0_hashinvalidated_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_HashInvalidated_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.hash as hash, data.input.name as name, data.input.value as value, data.input.registrationdate as registrationDate
     from base
 )
 

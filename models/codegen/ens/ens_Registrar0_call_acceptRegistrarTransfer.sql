@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_call_acceptregistrartransfer',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_acceptregistrartransfer_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_acceptRegistrarTransfer_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_registrar0_acceptregistrartransfer_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_acceptRegistrarTransfer_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_registrar0_acceptregistrartransfer_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "hash", "type": "bytes32"}, {"name": "deed", "type": "address"}, {"name": "registrationDate", "type": "uint256"}], "name": "acceptRegistrarTransfer", "outputs": [], "payable": false, "type": "function"}', 'acceptRegistrarTransfer') as data
+        ens_registrar0_acceptregistrartransfer_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "acceptRegistrarTransfer", "constant": false, "payable": false, "inputs": [{"name": "hash", "type": "bytes32"}, {"name": "deed", "type": "address"}, {"name": "registrationDate", "type": "uint256"}], "outputs": []}', 'acceptRegistrarTransfer') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef") and address_hash = abs(hash(lower("0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef"))) % 10 and selector = "0xea9e107a" and selector_hash = abs(hash("0xea9e107a")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.hash as hash, data.input.deed as deed, data.input.registrationdate as registrationDate
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_setbuyerfeesigner',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_setbuyerfeesigner_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_setBuyerFeeSigner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function rariable_exchangev1_setbuyerfeesigner_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_setBuyerFeeSigner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        rariable_exchangev1_setbuyerfeesigner_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "address", "name": "newBuyerFeeSigner", "type": "address"}], "name": "setBuyerFeeSigner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'setBuyerFeeSigner') as data
+        rariable_exchangev1_setbuyerfeesigner_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setBuyerFeeSigner", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "newBuyerFeeSigner", "type": "address"}], "outputs": []}', 'setBuyerFeeSigner') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06") and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10 and selector = "0x55d5d326" and selector_hash = abs(hash("0x55d5d326")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.newbuyerfeesigner as newBuyerFeeSigner
     from base
 )
 

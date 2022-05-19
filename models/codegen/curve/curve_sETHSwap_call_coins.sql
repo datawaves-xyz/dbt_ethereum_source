@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_call_coins',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_coins_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_coins_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_sethswap_coins_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_coins_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_sethswap_coins_calldecodeudf(unhex_input, unhex_output, '{"name": "coins", "outputs": [{"type": "address", "name": ""}], "inputs": [{"type": "uint256", "name": "arg0"}], "stateMutability": "view", "type": "function", "gas": 2130}', 'coins') as data
+        curve_sethswap_coins_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "coins", "stateMutability": "view", "inputs": [{"name": "arg0", "type": "uint256"}], "outputs": [{"name": "", "type": "address"}]}', 'coins') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567") and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10 and selector = "0xc6610657" and selector_hash = abs(hash("0xc6610657")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.arg0 as arg0, data.output.output_0 as output_0
     from base
 )
 

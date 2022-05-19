@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistry_call_setsubnodeowner',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistry_setsubnodeowner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistry_setSubnodeOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ensregistry_setsubnodeowner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistry_setSubnodeOwner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ensregistry_setsubnodeowner_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "node", "type": "bytes32"}, {"name": "label", "type": "bytes32"}, {"name": "owner", "type": "address"}], "name": "setSubnodeOwner", "outputs": [], "payable": false, "type": "function"}', 'setSubnodeOwner') as data
+        ens_ensregistry_setsubnodeowner_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setSubnodeOwner", "constant": false, "payable": false, "inputs": [{"name": "node", "type": "bytes32"}, {"name": "label", "type": "bytes32"}, {"name": "owner", "type": "address"}], "outputs": []}', 'setSubnodeOwner') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x314159265dd8dbb310642f98f50c066173c1259b") and address_hash = abs(hash(lower("0x314159265dd8dbb310642f98f50c066173c1259b"))) % 10 and selector = "0x06ab5923" and selector_hash = abs(hash("0x06ab5923")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.node as node, data.input.label as label, data.input.owner as owner
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameclaims_call_setclaimstatuses',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameclaims_setclaimstatuses_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_setClaimStatuses_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_shortnameclaims_setclaimstatuses_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_setClaimStatuses_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_shortnameclaims_setclaimstatuses_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "approved", "type": "bytes32[]"}, {"name": "declined", "type": "bytes32[]"}], "name": "setClaimStatuses", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'setClaimStatuses') as data
+        ens_shortnameclaims_setclaimstatuses_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setClaimStatuses", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "approved", "type": "bytes32[]"}, {"name": "declined", "type": "bytes32[]"}], "outputs": []}', 'setClaimStatuses') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xf7c83bd0c50e7a72b55a39fe0dabf5e3a330d749") and address_hash = abs(hash(lower("0xf7c83bd0c50e7a72b55a39fe0dabf5e3a330d749"))) % 10 and selector = "0xc9fa0663" and selector_hash = abs(hash("0xc9fa0663")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.approved as approved, data.input.declined as declined
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistrywithfallback_call_setrecord',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistrywithfallback_setrecord_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_setRecord_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ensregistrywithfallback_setrecord_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_setRecord_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ensregistrywithfallback_setrecord_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "bytes32", "name": "node", "type": "bytes32"}, {"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "address", "name": "resolver", "type": "address"}, {"internalType": "uint64", "name": "ttl", "type": "uint64"}], "name": "setRecord", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'setRecord') as data
+        ens_ensregistrywithfallback_setrecord_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setRecord", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "node", "type": "bytes32"}, {"name": "owner", "type": "address"}, {"name": "resolver", "type": "address"}, {"name": "ttl", "type": "uint64"}], "outputs": []}', 'setRecord') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x314159265dd8dbb310642f98f50c066173c1259b") and address_hash = abs(hash(lower("0x314159265dd8dbb310642f98f50c066173c1259b"))) % 10 and selector = "0xcf408823" and selector_hash = abs(hash("0xcf408823")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.node as node, data.input.owner as owner, data.input.resolver as resolver, data.input.ttl as ttl
     from base
 )
 

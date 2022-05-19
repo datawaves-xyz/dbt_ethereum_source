@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_testcopy',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_testcopy_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_testCopy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_testcopy_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_testCopy_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        opensea_wyvernexchangev1_testcopy_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"name": "arrToCopy", "type": "bytes"}], "name": "testCopy", "outputs": [{"name": "", "type": "bytes"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'testCopy') as data
+        opensea_wyvernexchangev1_testcopy_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "testCopy", "constant": true, "payable": false, "stateMutability": "pure", "inputs": [{"name": "arrToCopy", "type": "bytes"}], "outputs": [{"name": "", "type": "bytes"}]}', 'testCopy') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b") and address_hash = abs(hash(lower("0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b"))) % 10 and selector = "0x3e1e292a" and selector_hash = abs(hash("0x3e1e292a")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.arrtocopy as arrToCopy, data.output.output_0 as output_0
     from base
 )
 

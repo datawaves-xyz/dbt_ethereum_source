@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_call_addtokenid',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_addtokenid_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_addTokenId_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_addtokenid_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_addTokenId_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        opensea_openseaensresolver_addtokenid_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"name": "tokenId", "type": "uint256"}], "name": "addTokenId", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'addTokenId') as data
+        opensea_openseaensresolver_addtokenid_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "addTokenId", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "tokenId", "type": "uint256"}], "outputs": []}', 'addTokenId') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956") and address_hash = abs(hash(lower("0x9c4e9cce4780062942a7fe34fa2fa7316c872956"))) % 10 and selector = "0xfd0d101f" and selector_hash = abs(hash("0xfd0d101f")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.tokenid as tokenId
     from base
 )
 

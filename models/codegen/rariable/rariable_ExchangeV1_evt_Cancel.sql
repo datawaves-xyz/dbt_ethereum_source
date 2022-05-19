@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_evt_cancel',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_cancel_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_Cancel_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function rariable_exchangev1_cancel_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_Cancel_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -17,7 +17,7 @@ with base as (
         transaction_hash as evt_tx_hash,
         address as contract_address,
         dt,
-        rariable_exchangev1_cancel_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "sellToken", "type": "address"}, {"indexed": true, "internalType": "uint256", "name": "sellTokenId", "type": "uint256"}, {"indexed": false, "internalType": "address", "name": "owner", "type": "address"}, {"indexed": false, "internalType": "address", "name": "buyToken", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "buyTokenId", "type": "uint256"}, {"indexed": false, "internalType": "uint256", "name": "salt", "type": "uint256"}], "name": "Cancel", "type": "event"}', 'Cancel') as data
+        rariable_exchangev1_cancel_eventdecodeudf(unhex_data, topics_arr, '{"anonymous": false, "inputs": [{"indexed": true, "name": "sellToken", "type": "address", "internalType": "address"}, {"indexed": true, "name": "sellTokenId", "type": "uint256", "internalType": "uint256"}, {"indexed": false, "name": "owner", "type": "address", "internalType": "address"}, {"indexed": false, "name": "buyToken", "type": "address", "internalType": "address"}, {"indexed": false, "name": "buyTokenId", "type": "uint256", "internalType": "uint256"}, {"indexed": false, "name": "salt", "type": "uint256", "internalType": "uint256"}], "name": "Cancel", "type": "event"}', 'Cancel') as data
     from {{ ref('stg_logs') }}
     where address = lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06") and address_hash = abs(hash(lower("0xcd4EC7b66fbc029C116BA9Ffb3e59351c20B5B06"))) % 10 and selector = "0xbfe0e802e586c99960de1a111c80f598b281996d65080d74dbe29986f55b274a" and selector_hash = abs(hash("0xbfe0e802e586c99960de1a111c80f598b281996d65080d74dbe29986f55b274a")) % 10
 
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.selltoken as sellToken, data.input.selltokenid as sellTokenId, data.input.owner as owner, data.input.buytoken as buyToken, data.input.buytokenid as buyTokenId, data.input.salt as salt
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller3_call_makecommitment',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller3_makecommitment_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_makeCommitment_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller3_makecommitment_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_makeCommitment_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ethregistrarcontroller3_makecommitment_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"internalType": "string", "name": "name", "type": "string"}, {"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "bytes32", "name": "secret", "type": "bytes32"}], "name": "makeCommitment", "outputs": [{"internalType": "bytes32", "name": "", "type": "bytes32"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'makeCommitment') as data
+        ens_ethregistrarcontroller3_makecommitment_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "makeCommitment", "constant": true, "payable": false, "stateMutability": "pure", "inputs": [{"name": "name", "type": "string"}, {"name": "owner", "type": "address"}, {"name": "secret", "type": "bytes32"}], "outputs": [{"name": "", "type": "bytes32"}]}', 'makeCommitment') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5") and address_hash = abs(hash(lower("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5"))) % 10 and selector = "0xf49826be" and selector_hash = abs(hash("0xf49826be")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.name as name, data.input.owner as owner, data.input.secret as secret, data.output.output_0 as output_0
     from base
 )
 

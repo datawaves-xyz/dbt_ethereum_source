@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller3_call_supportsinterface',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller3_supportsinterface_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_supportsInterface_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller3_supportsinterface_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_supportsInterface_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_ethregistrarcontroller3_supportsinterface_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [{"internalType": "bytes4", "name": "interfaceID", "type": "bytes4"}], "name": "supportsInterface", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "payable": false, "stateMutability": "pure", "type": "function"}', 'supportsInterface') as data
+        ens_ethregistrarcontroller3_supportsinterface_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "supportsInterface", "constant": true, "payable": false, "stateMutability": "pure", "inputs": [{"name": "interfaceID", "type": "bytes4"}], "outputs": [{"name": "", "type": "bool"}]}', 'supportsInterface') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5") and address_hash = abs(hash(lower("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5"))) % 10 and selector = "0x01ffc9a7" and selector_hash = abs(hash("0x01ffc9a7")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.interfaceid as interfaceID, data.output.output_0 as output_0
     from base
 )
 

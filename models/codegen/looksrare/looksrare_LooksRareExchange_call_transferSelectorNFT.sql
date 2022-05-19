@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_transferselectornft',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_transferselectornft_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferSelectorNFT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_transferselectornft_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_transferSelectorNFT_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        looksrare_looksrareexchange_transferselectornft_calldecodeudf(unhex_input, unhex_output, '{"inputs": [], "name": "transferSelectorNFT", "outputs": [{"internalType": "contract ITransferSelectorNFT", "name": "", "type": "address"}], "stateMutability": "view", "type": "function"}', 'transferSelectorNFT') as data
+        looksrare_looksrareexchange_transferselectornft_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "transferSelectorNFT", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]}', 'transferSelectorNFT') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a") and address_hash = abs(hash(lower("0x59728544B08AB483533076417FbBB2fD0B17CE3a"))) % 10 and selector = "0x5e14f68e" and selector_hash = abs(hash("0x5e14f68e")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

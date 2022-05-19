@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller_evt_namerenewed',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller_namerenewed_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_NameRenewed_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller_namerenewed_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_NameRenewed_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.name as name, data.input.label as label, data.input.cost as cost, data.input.expires as expires
     from base
 )
 

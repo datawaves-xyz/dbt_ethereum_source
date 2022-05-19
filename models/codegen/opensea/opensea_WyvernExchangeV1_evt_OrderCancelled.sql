@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_evt_ordercancelled',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_ordercancelled_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_OrderCancelled_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_ordercancelled_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_OrderCancelled_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.hash as hash
     from base
 )
 

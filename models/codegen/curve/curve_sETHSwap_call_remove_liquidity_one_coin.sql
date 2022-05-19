@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_call_remove_liquidity_one_coin',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_remove_liquidity_one_coin_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_remove_liquidity_one_coin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function curve_sethswap_remove_liquidity_one_coin_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_remove_liquidity_one_coin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        curve_sethswap_remove_liquidity_one_coin_calldecodeudf(unhex_input, unhex_output, '{"name": "remove_liquidity_one_coin", "outputs": [{"type": "uint256", "name": ""}], "inputs": [{"type": "uint256", "name": "_token_amount"}, {"type": "int128", "name": "i"}, {"type": "uint256", "name": "_min_amount"}], "stateMutability": "nonpayable", "type": "function", "gas": 3899991}', 'remove_liquidity_one_coin') as data
+        curve_sethswap_remove_liquidity_one_coin_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "remove_liquidity_one_coin", "stateMutability": "nonpayable", "inputs": [{"name": "_token_amount", "type": "uint256"}, {"name": "i", "type": "int128"}, {"name": "_min_amount", "type": "uint256"}], "outputs": [{"name": "", "type": "uint256"}]}', 'remove_liquidity_one_coin') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0xc5424b857f758e906013f3555dad202e4bdb4567") and address_hash = abs(hash(lower("0xc5424b857f758e906013f3555dad202e4bdb4567"))) % 10 and selector = "0x1a4d01d2" and selector_hash = abs(hash("0x1a4d01d2")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._token_amount as _token_amount, data.input.i as i, data.input._min_amount as _min_amount, data.output.output_0 as output_0
     from base
 )
 

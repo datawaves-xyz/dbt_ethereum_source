@@ -1,7 +1,7 @@
 config-version: 2
 name: ethereum_source
 profile: ethereum_source
-version: 0.1.11
+version: 0.1.12
 require-dbt-version:
   - '>=1.0.0'
   - <2.0.0
@@ -15,36 +15,36 @@ models:
               - level_standardize
               - proj_global
         codegen:
-            looksrare:
-                +schema: looksrare
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_looksrare
-            common:
-                +schema: common
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_common
             yearn:
                 +schema: yearn
                 +tags:
                   - chain_ethereum
                   - level_parse
                   - proj_yearn
-            superrare:
-                +schema: superrare
+            looksrare:
+                +schema: looksrare
                 +tags:
                   - chain_ethereum
                   - level_parse
-                  - proj_superrare
+                  - proj_looksrare
+            ens:
+                +schema: ens
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_ens
             opensea:
                 +schema: opensea
                 +tags:
                   - chain_ethereum
                   - level_parse
                   - proj_opensea
+            rariable:
+                +schema: rariable
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_rariable
             curve:
                 +schema: curve
                 +tags:
@@ -57,18 +57,18 @@ models:
                   - chain_ethereum
                   - level_parse
                   - proj_foundation
-            ens:
-                +schema: ens
+            common:
+                +schema: common
                 +tags:
                   - chain_ethereum
                   - level_parse
-                  - proj_ens
-            rariable:
-                +schema: rariable
+                  - proj_common
+            superrare:
+                +schema: superrare
                 +tags:
                   - chain_ethereum
                   - level_parse
-                  - proj_rariable
+                  - proj_superrare
             cryptopunks:
                 +schema: cryptopunks
                 +tags:

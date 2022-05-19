@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_ordersmatched',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_ordersmatched_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrdersMatched_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_ordersmatched_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrdersMatched_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.buyhash as buyHash, data.input.sellhash as sellHash, data.input.maker as maker, data.input.taker as taker, data.input.price as price, data.input.metadata as metadata
     from base
 )
 

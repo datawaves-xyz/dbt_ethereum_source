@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_call_protocolfeerecipient',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_protocolfeerecipient_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_protocolFeeRecipient_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_protocolfeerecipient_calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_protocolFeeRecipient_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        opensea_wyvernexchangev2_protocolfeerecipient_calldecodeudf(unhex_input, unhex_output, '{"constant": true, "inputs": [], "name": "protocolFeeRecipient", "outputs": [{"name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"}', 'protocolFeeRecipient') as data
+        opensea_wyvernexchangev2_protocolfeerecipient_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "protocolFeeRecipient", "constant": true, "payable": false, "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]}', 'protocolFeeRecipient') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x7f268357A8c2552623316e2562D90e642bB538E5") and address_hash = abs(hash(lower("0x7f268357A8c2552623316e2562D90e642bB538E5"))) % 10 and selector = "0x64df049e" and selector_hash = abs(hash("0x64df049e")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.output.output_0 as output_0
     from base
 )
 

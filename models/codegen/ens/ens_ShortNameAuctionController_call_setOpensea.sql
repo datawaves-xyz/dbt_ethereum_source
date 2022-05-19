@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_call_setopensea',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_setopensea_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_setOpensea_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_setopensea_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_setOpensea_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        ens_shortnameauctioncontroller_setopensea_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "address", "name": "_opensea", "type": "address"}], "name": "setOpensea", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'setOpensea') as data
+        ens_shortnameauctioncontroller_setopensea_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setOpensea", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "_opensea", "type": "address"}], "outputs": []}', 'setOpensea') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x699C7F511C9e2182e89f29b3Bfb68bD327919D17") and address_hash = abs(hash(lower("0x699C7F511C9e2182e89f29b3Bfb68bD327919D17"))) % 10 and selector = "0xb776c8a6" and selector_hash = abs(hash("0xb776c8a6")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._opensea as _opensea
     from base
 )
 

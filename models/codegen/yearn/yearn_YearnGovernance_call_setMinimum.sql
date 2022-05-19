@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_call_setminimum',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_setminimum_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_setMinimum_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.11.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_setminimum_calldecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_setMinimum_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
         }
     )
 }}
@@ -18,7 +18,7 @@ with base as (
         transaction_hash as call_tx_hash,
         to_address as contract_address,
         dt,
-        yearn_yearngovernance_setminimum_calldecodeudf(unhex_input, unhex_output, '{"constant": false, "inputs": [{"internalType": "uint256", "name": "_minimum", "type": "uint256"}], "name": "setMinimum", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}', 'setMinimum') as data
+        yearn_yearngovernance_setminimum_calldecodeudf(unhex_input, unhex_output, '{"type": "function", "name": "setMinimum", "constant": false, "payable": false, "stateMutability": "nonpayable", "inputs": [{"name": "_minimum", "type": "uint256"}], "outputs": []}', 'setMinimum') as data
     from {{ ref('stg_traces') }}
     where to_address = lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E") and address_hash = abs(hash(lower("0x3A22dF48d84957F907e67F4313E3D43179040d6E"))) % 10 and selector = "0x3209e9e6" and selector_hash = abs(hash("0x3209e9e6")) % 10
 
@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._minimum as _minimum
     from base
 )
 
