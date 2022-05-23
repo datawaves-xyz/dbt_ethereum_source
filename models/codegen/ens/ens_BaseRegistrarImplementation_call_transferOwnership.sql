@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_call_transferownership',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_orderapprovedpartone',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_orderapprovedpartone_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrderApprovedPartOne_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_orderapprovedpartone_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OrderApprovedPartOne_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

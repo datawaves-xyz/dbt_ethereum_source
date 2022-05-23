@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='reverseregistrar2_call_node',
         pre_hook={
-            'sql': 'create or replace function ens_reverseregistrar2_node_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ReverseRegistrar2_node_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_reverseregistrar2_node_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ReverseRegistrar2_node_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

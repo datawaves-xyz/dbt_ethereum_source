@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistry_call_setttl',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistry_setttl_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistry_setTTL_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_ensregistry_setttl_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistry_setTTL_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

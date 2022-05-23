@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_call_finalizeauction',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_finalizeauction_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_finalizeAuction_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_registrar0_finalizeauction_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_finalizeAuction_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_evt_commitnewadmin',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_commitnewadmin_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_CommitNewAdmin_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function curve_linkusdswap_commitnewadmin_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_CommitNewAdmin_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

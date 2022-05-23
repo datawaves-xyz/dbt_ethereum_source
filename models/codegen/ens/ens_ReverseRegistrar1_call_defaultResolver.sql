@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='reverseregistrar1_call_defaultresolver',
         pre_hook={
-            'sql': 'create or replace function ens_reverseregistrar1_defaultresolver_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ReverseRegistrar1_defaultResolver_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_reverseregistrar1_defaultresolver_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ReverseRegistrar1_defaultResolver_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

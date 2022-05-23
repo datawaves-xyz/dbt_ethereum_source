@@ -57,6 +57,12 @@ models:
                   - chain_ethereum
                   - level_parse
                   - proj_common
+            metamask:
+                +schema: metamask
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_metamask
             yearn:
                 +schema: yearn
                 +tags:

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_remove_liquidity',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_remove_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_remove_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function curve_dusdswap_remove_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_remove_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

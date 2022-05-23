@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_atomicmatch_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_atomicmatch__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_atomicMatch__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_atomicmatch__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_atomicMatch__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

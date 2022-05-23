@@ -1,5 +1,14 @@
 version: 2
 models:
+  - name: foundation_market_evt_Upgraded
+    columns:
+      - name: implementation
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
   - name: foundation_market_evt_AdminChanged
     columns:
       - name: previousAdmin
@@ -10,28 +19,9 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: foundation_market_evt_Upgraded
+  - name: foundation_market_call_upgradeTo
     columns:
-      - name: implementation
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: foundation_market_call_changeAdmin
-    columns:
-      - name: newAdmin
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: foundation_market_call_implementation
-    columns:
-      - name: output_0
+      - name: newImplementation
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -49,9 +39,19 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: foundation_market_call_upgradeTo
+  - name: foundation_market_call_implementation
     columns:
-      - name: newImplementation
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: foundation_market_call_changeAdmin
+    columns:
+      - name: newAdmin
       - name: call_success
       - name: call_block_number
       - name: call_block_time

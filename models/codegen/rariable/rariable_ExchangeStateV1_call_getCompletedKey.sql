@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_call_getcompletedkey',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_getcompletedkey_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_getCompletedKey_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_getcompletedkey_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_getCompletedKey_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}
