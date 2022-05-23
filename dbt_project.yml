@@ -1,7 +1,7 @@
 config-version: 2
 name: ethereum_source
 profile: ethereum_source
-version: 0.1.12
+version: 0.1.13
 require-dbt-version:
   - '>=1.0.0'
   - <2.0.0
