@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_calculatecurrentprice_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_calculatecurrentprice__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_calculateCurrentPrice__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_calculatecurrentprice__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_calculateCurrentPrice__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.addrs as addrs, data.input.uints as uints, data.input.feemethod as feeMethod, data.input.side as side, data.input.salekind as saleKind, data.input.howtocall as howToCall, data.input.calldata as calldata, data.input.replacementpattern as replacementPattern, data.input.staticextradata as staticExtradata, data.output.output_0 as output_0
+        data.input.*,
+        data.output.*
     from base
 )
 

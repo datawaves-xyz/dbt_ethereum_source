@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev2_evt_beaconupgraded',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev2_beaconupgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_BeaconUpgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function rariable_exchangev2_beaconupgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_BeaconUpgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.beacon as beacon
+        data.input.*
     from base
 )
 

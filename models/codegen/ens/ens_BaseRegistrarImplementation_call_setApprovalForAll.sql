@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_call_setapprovalforall',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_setapprovalforall_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_setApprovalForAll_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_setapprovalforall_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_setApprovalForAll_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.to as to, data.input.approved as approved
+        data.input.*,
+        data.output.*
     from base
 )
 

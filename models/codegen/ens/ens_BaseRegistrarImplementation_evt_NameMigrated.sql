@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_evt_namemigrated',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_namemigrated_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_NameMigrated_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_namemigrated_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_NameMigrated_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.id as id, data.input.owner as owner, data.input.expires as expires
+        data.input.*
     from base
 )
 

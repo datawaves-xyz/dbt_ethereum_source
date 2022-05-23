@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='husdswap_call_add_liquidity',
         pre_hook={
-            'sql': 'create or replace function curve_husdswap_add_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_add_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_husdswap_add_liquidity_calldecodeudf as "io.iftech.sparkudf.hive.Curve_hUSDSwap_add_liquidity_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.amounts as amounts, data.input.min_mint_amount as min_mint_amount, data.output.output_0 as output_0
+        data.input.*,
+        data.output.*
     from base
 )
 

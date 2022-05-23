@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_evt_removeliquidityone',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_removeliquidityone_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_RemoveLiquidityOne_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_sethswap_removeliquidityone_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_RemoveLiquidityOne_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.provider as provider, data.input.token_amount as token_amount, data.input.coin_amount as coin_amount
+        data.input.*
     from base
 )
 

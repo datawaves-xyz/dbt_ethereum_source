@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev2_evt_adminchanged',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev2_adminchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_AdminChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function rariable_exchangev2_adminchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV2_AdminChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.previousadmin as previousAdmin, data.input.newadmin as newAdmin
+        data.input.*
     from base
 )
 

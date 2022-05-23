@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_evt_tokenexchange',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_tokenexchange_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_TokenExchange_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_dusdswap_tokenexchange_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_TokenExchange_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.buyer as buyer, data.input.sold_id as sold_id, data.input.tokens_sold as tokens_sold, data.input.bought_id as bought_id, data.input.tokens_bought as tokens_bought
+        data.input.*
     from base
 )
 

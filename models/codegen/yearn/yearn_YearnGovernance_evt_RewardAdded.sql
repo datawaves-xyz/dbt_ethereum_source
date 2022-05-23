@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_evt_rewardadded',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_rewardadded_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_RewardAdded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_rewardadded_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_RewardAdded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.reward as reward
+        data.input.*
     from base
 )
 

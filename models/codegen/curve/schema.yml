@@ -1,1729 +1,5 @@
 version: 2
 models:
-  - name: curve_DUSDSwap_evt_AddLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_RemoveLiquidityImbalance
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_RampA
-    columns:
-      - name: old_A
-      - name: new_A
-      - name: initial_time
-      - name: future_time
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_TokenExchangeUnderlying
-    columns:
-      - name: buyer
-      - name: sold_id
-      - name: tokens_sold
-      - name: bought_id
-      - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_NewAdmin
-    columns:
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_RemoveLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_CommitNewFee
-    columns:
-      - name: deadline
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_StopRampA
-    columns:
-      - name: A
-      - name: t
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_RemoveLiquidityOne
-    columns:
-      - name: provider
-      - name: token_amount
-      - name: coin_amount
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_NewFee
-    columns:
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_TokenExchange
-    columns:
-      - name: buyer
-      - name: sold_id
-      - name: tokens_sold
-      - name: bought_id
-      - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_evt_CommitNewAdmin
-    columns:
-      - name: deadline
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_A_precise
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_base_coins
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_base_cache_updated
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_revert_new_parameters
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_future_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_commit_transfer_ownership
-    columns:
-      - name: _owner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_remove_liquidity_imbalance
-    columns:
-      - name: amounts
-      - name: max_burn_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_future_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_initial_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_base_pool
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_admin_balances
-    columns:
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_get_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_ramp_A
-    columns:
-      - name: _future_A
-      - name: _future_time
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_remove_liquidity
-    columns:
-      - name: _amount
-      - name: min_amounts
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_initial_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_get_dy_underlying
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_future_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_revert_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_donate_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_unkill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_balances
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_future_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_apply_new_fee
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_base_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_stop_ramp_A
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_commit_new_fee
-    columns:
-      - name: new_fee
-      - name: new_admin_fee
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_apply_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_exchange
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_transfer_ownership_deadline
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_future_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_admin_actions_deadline
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_calc_withdraw_one_coin
-    columns:
-      - name: _token_amount
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_add_liquidity
-    columns:
-      - name: amounts
-      - name: min_mint_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_withdraw_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_kill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_remove_liquidity_one_coin
-    columns:
-      - name: _token_amount
-      - name: i
-      - name: _min_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_get_dy
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_calc_token_amount
-    columns:
-      - name: amounts
-      - name: is_deposit
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_coins
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_DUSDSwap_call_exchange_underlying
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_AddLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_RemoveLiquidityImbalance
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_RampA
-    columns:
-      - name: old_A
-      - name: new_A
-      - name: initial_time
-      - name: future_time
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_TokenExchangeUnderlying
-    columns:
-      - name: buyer
-      - name: sold_id
-      - name: tokens_sold
-      - name: bought_id
-      - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_NewAdmin
-    columns:
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_RemoveLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_CommitNewFee
-    columns:
-      - name: deadline
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_StopRampA
-    columns:
-      - name: A
-      - name: t
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_RemoveLiquidityOne
-    columns:
-      - name: provider
-      - name: token_amount
-      - name: coin_amount
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_NewFee
-    columns:
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_TokenExchange
-    columns:
-      - name: buyer
-      - name: sold_id
-      - name: tokens_sold
-      - name: bought_id
-      - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_evt_CommitNewAdmin
-    columns:
-      - name: deadline
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_A_precise
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_base_coins
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_base_cache_updated
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_revert_new_parameters
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_future_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_commit_transfer_ownership
-    columns:
-      - name: _owner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_remove_liquidity_imbalance
-    columns:
-      - name: amounts
-      - name: max_burn_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_future_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_initial_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_base_pool
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_admin_balances
-    columns:
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_get_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_ramp_A
-    columns:
-      - name: _future_A
-      - name: _future_time
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_remove_liquidity
-    columns:
-      - name: _amount
-      - name: min_amounts
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_initial_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_get_dy_underlying
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_future_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_revert_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_donate_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_unkill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_balances
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_future_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_apply_new_fee
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_base_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_stop_ramp_A
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_commit_new_fee
-    columns:
-      - name: new_fee
-      - name: new_admin_fee
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_apply_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_exchange
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_transfer_ownership_deadline
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_future_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_admin_actions_deadline
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_calc_withdraw_one_coin
-    columns:
-      - name: _token_amount
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_add_liquidity
-    columns:
-      - name: amounts
-      - name: min_mint_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_withdraw_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_kill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_remove_liquidity_one_coin
-    columns:
-      - name: _token_amount
-      - name: i
-      - name: _min_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_get_dy
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_calc_token_amount
-    columns:
-      - name: amounts
-      - name: is_deposit
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_coins
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_hUSDSwap_call_exchange_underlying
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_AddLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_TokenExchange
-    columns:
-      - name: buyer
-      - name: sold_id
-      - name: tokens_sold
-      - name: bought_id
-      - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_RampA
-    columns:
-      - name: old_A
-      - name: new_A
-      - name: initial_time
-      - name: future_time
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_NewAdmin
-    columns:
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_RemoveLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_CommitNewFee
-    columns:
-      - name: deadline
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_StopRampA
-    columns:
-      - name: A
-      - name: t
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_RemoveLiquidityOne
-    columns:
-      - name: provider
-      - name: token_amount
-      - name: coin_amount
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_NewFee
-    columns:
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_RemoveLiquidityImbalance
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_evt_CommitNewAdmin
-    columns:
-      - name: deadline
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_A_precise
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_future_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_revert_new_parameters
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_commit_transfer_ownership
-    columns:
-      - name: _owner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_remove_liquidity_imbalance
-    columns:
-      - name: amounts
-      - name: max_burn_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_future_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_initial_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_admin_balances
-    columns:
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_get_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_ramp_A
-    columns:
-      - name: _future_A
-      - name: _future_time
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_remove_liquidity
-    columns:
-      - name: _amount
-      - name: min_amounts
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_initial_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_future_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_revert_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_donate_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_unkill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_balances
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_future_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_calc_token_amount
-    columns:
-      - name: amounts
-      - name: is_deposit
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_apply_new_fee
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_stop_ramp_A
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_commit_new_fee
-    columns:
-      - name: new_fee
-      - name: new_admin_fee
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_exchange
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_transfer_ownership_deadline
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_future_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_admin_actions_deadline
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_calc_withdraw_one_coin
-    columns:
-      - name: _token_amount
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_add_liquidity
-    columns:
-      - name: amounts
-      - name: min_mint_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_withdraw_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_kill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_remove_liquidity_one_coin
-    columns:
-      - name: _token_amount
-      - name: i
-      - name: _min_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_get_dy
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_apply_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_sETHSwap_call_coins
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
   - name: curve_BUSDSwap_evt_AddLiquidity
     columns:
       - name: provider
@@ -1731,6 +7,17 @@ models:
       - name: fees
       - name: invariant
       - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_evt_NewParameters
+    columns:
+      - name: A
+      - name: fee
+      - name: admin_fee
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -1750,6 +37,16 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
+  - name: curve_BUSDSwap_evt_CommitNewAdmin
+    columns:
+      - name: deadline
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
   - name: curve_BUSDSwap_evt_TokenExchangeUnderlying
     columns:
       - name: buyer
@@ -1757,29 +54,6 @@ models:
       - name: tokens_sold
       - name: bought_id
       - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_evt_NewParameters
-    columns:
-      - name: A
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_evt_CommitNewParameters
-    columns:
-      - name: deadline
-      - name: A
-      - name: fee
-      - name: admin_fee
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -1807,6 +81,18 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
+  - name: curve_BUSDSwap_evt_CommitNewParameters
+    columns:
+      - name: deadline
+      - name: A
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
   - name: curve_BUSDSwap_evt_RemoveLiquidityImbalance
     columns:
       - name: provider
@@ -1820,17 +106,20 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_evt_CommitNewAdmin
+  - name: curve_BUSDSwap_call_exchange_underlying
     columns:
-      - name: deadline
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_future_A
+  - name: curve_BUSDSwap_call_owner
     columns:
       - name: output_out
       - name: call_success
@@ -1840,8 +129,43 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_revert_new_parameters
+  - name: curve_BUSDSwap_call_apply_new_parameters
     columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_balances
+    columns:
+      - name: arg0
+      - name: output_out
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_commit_new_parameters
+    columns:
+      - name: amplification
+      - name: new_fee
+      - name: new_admin_fee
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_calc_token_amount
+    columns:
+      - name: amounts
+      - name: deposit
+      - name: output_out
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -1852,57 +176,6 @@ models:
   - name: curve_BUSDSwap_call_commit_transfer_ownership
     columns:
       - name: _owner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_remove_liquidity_imbalance
-    columns:
-      - name: amounts
-      - name: max_burn_amount
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_future_owner
-    columns:
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_get_virtual_price
-    columns:
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_remove_liquidity
-    columns:
-      - name: _amount
-      - name: min_amounts
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_apply_new_parameters
-    columns:
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -1923,7 +196,50 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_future_fee
+  - name: curve_BUSDSwap_call_exchange
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_get_virtual_price
+    columns:
+      - name: output_out
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_future_A
+    columns:
+      - name: output_out
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_fee
+    columns:
+      - name: output_out
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_future_owner
     columns:
       - name: output_out
       - name: call_success
@@ -1955,7 +271,27 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_A
+  - name: curve_BUSDSwap_call_underlying_coins
+    columns:
+      - name: arg0
+      - name: output_out
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_revert_new_parameters
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_transfer_ownership_deadline
     columns:
       - name: output_out
       - name: call_success
@@ -1965,8 +301,10 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_unkill_me
+  - name: curve_BUSDSwap_call_coins
     columns:
+      - name: arg0
+      - name: output_out
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -1974,9 +312,8 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_balances
+  - name: curve_BUSDSwap_call_future_fee
     columns:
-      - name: arg0
       - name: output_out
       - name: call_success
       - name: call_block_number
@@ -1995,11 +332,69 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_calc_token_amount
+  - name: curve_BUSDSwap_call_remove_liquidity
+    columns:
+      - name: _amount
+      - name: min_amounts
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_kill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_add_liquidity
     columns:
       - name: amounts
-      - name: deposit
+      - name: min_mint_amount
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_unkill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_admin_actions_deadline
+    columns:
       - name: output_out
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_apply_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_BUSDSwap_call_remove_liquidity_imbalance
+    columns:
+      - name: amounts
+      - name: max_burn_amount
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2020,72 +415,8 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_apply_transfer_ownership
+  - name: curve_BUSDSwap_call_withdraw_admin_fees
     columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_underlying_coins
-    columns:
-      - name: arg0
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_owner
-    columns:
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_exchange
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_transfer_ownership_deadline
-    columns:
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_fee
-    columns:
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_admin_actions_deadline
-    columns:
-      - name: output_out
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2103,28 +434,9 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_add_liquidity
+  - name: curve_BUSDSwap_call_A
     columns:
-      - name: amounts
-      - name: min_mint_amount
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_withdraw_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_kill_me
-    columns:
+      - name: output_out
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2145,43 +457,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_BUSDSwap_call_commit_new_parameters
-    columns:
-      - name: amplification
-      - name: new_fee
-      - name: new_admin_fee
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_coins
-    columns:
-      - name: arg0
-      - name: output_out
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_BUSDSwap_call_exchange_underlying
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: min_dy
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_evt_AddLiquidity
+  - name: curve_DUSDSwap_evt_AddLiquidity
     columns:
       - name: provider
       - name: token_amounts
@@ -2194,32 +470,26 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_RemoveLiquidityImbalance
+  - name: curve_DUSDSwap_evt_StopRampA
     columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
+      - name: A
+      - name: t
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_RampA
+  - name: curve_DUSDSwap_evt_NewAdmin
     columns:
-      - name: old_A
-      - name: new_A
-      - name: initial_time
-      - name: future_time
+      - name: admin
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_TokenExchangeUnderlying
+  - name: curve_DUSDSwap_evt_TokenExchange
     columns:
       - name: buyer
       - name: sold_id
@@ -2232,28 +502,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_NewAdmin
-    columns:
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_evt_RemoveLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_evt_CommitNewFee
+  - name: curve_DUSDSwap_evt_CommitNewFee
     columns:
       - name: deadline
       - name: fee
@@ -2264,17 +513,27 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_StopRampA
+  - name: curve_DUSDSwap_evt_CommitNewAdmin
     columns:
-      - name: A
-      - name: t
+      - name: deadline
+      - name: admin
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_RemoveLiquidityOne
+  - name: curve_DUSDSwap_evt_NewFee
+    columns:
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_evt_RemoveLiquidityOne
     columns:
       - name: provider
       - name: token_amount
@@ -2286,17 +545,44 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_NewFee
+  - name: curve_DUSDSwap_evt_RampA
     columns:
-      - name: fee
-      - name: admin_fee
+      - name: old_A
+      - name: new_A
+      - name: initial_time
+      - name: future_time
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_TokenExchange
+  - name: curve_DUSDSwap_evt_RemoveLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_evt_RemoveLiquidityImbalance
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_evt_TokenExchangeUnderlying
     columns:
       - name: buyer
       - name: sold_id
@@ -2309,27 +595,7 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_evt_CommitNewAdmin
-    columns:
-      - name: deadline
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_A_precise
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_base_coins
+  - name: curve_DUSDSwap_call_base_coins
     columns:
       - name: arg0
       - name: output_0
@@ -2340,7 +606,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_base_cache_updated
+  - name: curve_DUSDSwap_call_base_virtual_price
     columns:
       - name: output_0
       - name: call_success
@@ -2350,271 +616,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_revert_new_parameters
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_future_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_commit_transfer_ownership
-    columns:
-      - name: _owner
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_remove_liquidity_imbalance
-    columns:
-      - name: amounts
-      - name: max_burn_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_future_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_initial_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_base_pool
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_admin_balances
-    columns:
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_get_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_ramp_A
-    columns:
-      - name: _future_A
-      - name: _future_time
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_remove_liquidity
-    columns:
-      - name: _amount
-      - name: min_amounts
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_initial_A_time
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_get_dy_underlying
-    columns:
-      - name: i
-      - name: j
-      - name: dx
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_future_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_revert_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_donate_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_unkill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_balances
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_future_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_apply_new_fee
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_base_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_stop_ramp_A
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_commit_new_fee
-    columns:
-      - name: new_fee
-      - name: new_admin_fee
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_apply_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_exchange
+  - name: curve_DUSDSwap_call_exchange_underlying
     columns:
       - name: i
       - name: j
@@ -2628,7 +630,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_transfer_ownership_deadline
+  - name: curve_DUSDSwap_call_owner
     columns:
       - name: output_0
       - name: call_success
@@ -2638,7 +640,30 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_future_A_time
+  - name: curve_DUSDSwap_call_balances
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_calc_token_amount
+    columns:
+      - name: amounts
+      - name: is_deposit
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_base_pool
     columns:
       - name: output_0
       - name: call_success
@@ -2648,9 +673,10 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_fee
+  - name: curve_DUSDSwap_call_ramp_A
     columns:
-      - name: output_0
+      - name: _future_A
+      - name: _future_time
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2658,9 +684,8 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_admin_actions_deadline
+  - name: curve_DUSDSwap_call_apply_new_fee
     columns:
-      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2668,17 +693,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_calc_withdraw_one_coin
+  - name: curve_DUSDSwap_call_calc_withdraw_one_coin
     columns:
       - name: _token_amount
       - name: i
@@ -2690,7 +705,245 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_add_liquidity
+  - name: curve_DUSDSwap_call_commit_transfer_ownership
+    columns:
+      - name: _owner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_base_cache_updated
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_initial_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_get_dy_underlying
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_stop_ramp_A
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_exchange
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_get_virtual_price
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_future_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_future_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_initial_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_revert_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_commit_new_fee
+    columns:
+      - name: new_fee
+      - name: new_admin_fee
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_revert_new_parameters
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_future_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_transfer_ownership_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_coins
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_future_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_admin_balances
+    columns:
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_future_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_remove_liquidity
+    columns:
+      - name: _amount
+      - name: min_amounts
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_kill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_A_precise
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_add_liquidity
     columns:
       - name: amounts
       - name: min_mint_amount
@@ -2702,7 +955,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_withdraw_admin_fees
+  - name: curve_DUSDSwap_call_unkill_me
     columns:
       - name: call_success
       - name: call_block_number
@@ -2711,16 +964,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_kill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_gUSDSwap_call_remove_liquidity_one_coin
+  - name: curve_DUSDSwap_call_remove_liquidity_one_coin
     columns:
       - name: _token_amount
       - name: i
@@ -2733,11 +977,17 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_get_dy
+  - name: curve_DUSDSwap_call_donate_admin_fees
     columns:
-      - name: i
-      - name: j
-      - name: dx
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_admin_actions_deadline
+    columns:
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -2746,10 +996,19 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_calc_token_amount
+  - name: curve_DUSDSwap_call_apply_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_remove_liquidity_imbalance
     columns:
       - name: amounts
-      - name: is_deposit
+      - name: max_burn_amount
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -2758,9 +1017,17 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_coins
+  - name: curve_DUSDSwap_call_withdraw_admin_fees
     columns:
-      - name: arg0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_admin_fee
+    columns:
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -2769,12 +1036,21 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_gUSDSwap_call_exchange_underlying
+  - name: curve_DUSDSwap_call_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_DUSDSwap_call_get_dy
     columns:
       - name: i
       - name: j
       - name: dx
-      - name: min_dy
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -2796,76 +1072,6 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_evt_RemoveLiquidityImbalance
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: invariant
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_evt_RampA
-    columns:
-      - name: old_A
-      - name: new_A
-      - name: initial_time
-      - name: future_time
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_evt_TokenExchangeUnderlying
-    columns:
-      - name: buyer
-      - name: sold_id
-      - name: tokens_sold
-      - name: bought_id
-      - name: tokens_bought
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_evt_NewAdmin
-    columns:
-      - name: admin
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_evt_RemoveLiquidity
-    columns:
-      - name: provider
-      - name: token_amounts
-      - name: fees
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_evt_CommitNewFee
-    columns:
-      - name: deadline
-      - name: fee
-      - name: admin_fee
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
   - name: curve_LinkUSDSwap_evt_StopRampA
     columns:
       - name: A
@@ -2876,22 +1082,9 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_evt_RemoveLiquidityOne
+  - name: curve_LinkUSDSwap_evt_NewAdmin
     columns:
-      - name: provider
-      - name: token_amount
-      - name: coin_amount
-      - name: token_supply
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_evt_NewFee
-    columns:
-      - name: fee
-      - name: admin_fee
+      - name: admin
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -2911,6 +1104,17 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
+  - name: curve_LinkUSDSwap_evt_CommitNewFee
+    columns:
+      - name: deadline
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
   - name: curve_LinkUSDSwap_evt_CommitNewAdmin
     columns:
       - name: deadline
@@ -2921,14 +1125,76 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_A_precise
+  - name: curve_LinkUSDSwap_evt_NewFee
     columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_evt_RemoveLiquidityOne
+    columns:
+      - name: provider
+      - name: token_amount
+      - name: coin_amount
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_evt_RampA
+    columns:
+      - name: old_A
+      - name: new_A
+      - name: initial_time
+      - name: future_time
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_evt_RemoveLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_evt_RemoveLiquidityImbalance
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_evt_TokenExchangeUnderlying
+    columns:
+      - name: buyer
+      - name: sold_id
+      - name: tokens_sold
+      - name: bought_id
+      - name: tokens_bought
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
       - name: contract_address
       - name: dt
   - name: curve_LinkUSDSwap_call_base_coins
@@ -2942,7 +1208,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_base_cache_updated
+  - name: curve_LinkUSDSwap_call_base_virtual_price
     columns:
       - name: output_0
       - name: call_success
@@ -2952,8 +1218,13 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_revert_new_parameters
+  - name: curve_LinkUSDSwap_call_exchange_underlying
     columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2961,7 +1232,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_future_A
+  - name: curve_LinkUSDSwap_call_owner
     columns:
       - name: output_0
       - name: call_success
@@ -2971,9 +1242,10 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_commit_transfer_ownership
+  - name: curve_LinkUSDSwap_call_balances
     columns:
-      - name: _owner
+      - name: arg0
+      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -2981,30 +1253,10 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_remove_liquidity_imbalance
+  - name: curve_LinkUSDSwap_call_calc_token_amount
     columns:
       - name: amounts
-      - name: max_burn_amount
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_future_owner
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_initial_A
-    columns:
+      - name: is_deposit
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -3014,27 +1266,6 @@ models:
       - name: contract_address
       - name: dt
   - name: curve_LinkUSDSwap_call_base_pool
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_admin_balances
-    columns:
-      - name: i
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_get_virtual_price
     columns:
       - name: output_0
       - name: call_success
@@ -3055,10 +1286,19 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_remove_liquidity
+  - name: curve_LinkUSDSwap_call_apply_new_fee
     columns:
-      - name: _amount
-      - name: min_amounts
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_calc_withdraw_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -3067,7 +1307,27 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_initial_A_time
+  - name: curve_LinkUSDSwap_call_commit_transfer_ownership
+    columns:
+      - name: _owner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_base_cache_updated
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_initial_A
     columns:
       - name: output_0
       - name: call_success
@@ -3090,125 +1350,8 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_future_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_revert_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_A
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_donate_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_unkill_me
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_balances
-    columns:
-      - name: arg0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_future_admin_fee
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_apply_new_fee
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_base_virtual_price
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
   - name: curve_LinkUSDSwap_call_stop_ramp_A
     columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_commit_new_fee
-    columns:
-      - name: new_fee
-      - name: new_admin_fee
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_apply_transfer_ownership
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_owner
-    columns:
-      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -3230,7 +1373,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_transfer_ownership_deadline
+  - name: curve_LinkUSDSwap_call_get_virtual_price
     columns:
       - name: output_0
       - name: call_success
@@ -3240,7 +1383,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_future_A_time
+  - name: curve_LinkUSDSwap_call_future_A
     columns:
       - name: output_0
       - name: call_success
@@ -3260,7 +1403,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_admin_actions_deadline
+  - name: curve_LinkUSDSwap_call_future_owner
     columns:
       - name: output_0
       - name: call_success
@@ -3270,7 +1413,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_admin_fee
+  - name: curve_LinkUSDSwap_call_initial_A_time
     columns:
       - name: output_0
       - name: call_success
@@ -3280,10 +1423,120 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_calc_withdraw_one_coin
+  - name: curve_LinkUSDSwap_call_revert_transfer_ownership
     columns:
-      - name: _token_amount
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_commit_new_fee
+    columns:
+      - name: new_fee
+      - name: new_admin_fee
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_revert_new_parameters
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_future_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_transfer_ownership_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_coins
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_future_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_admin_balances
+    columns:
       - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_future_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_remove_liquidity
+    columns:
+      - name: _amount
+      - name: min_amounts
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_kill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_A_precise
+    columns:
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -3304,16 +1557,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_withdraw_admin_fees
-    columns:
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: curve_LinkUSDSwap_call_kill_me
+  - name: curve_LinkUSDSwap_call_unkill_me
     columns:
       - name: call_success
       - name: call_block_number
@@ -3335,6 +1579,75 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
+  - name: curve_LinkUSDSwap_call_donate_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_admin_actions_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_apply_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_remove_liquidity_imbalance
+    columns:
+      - name: amounts
+      - name: max_burn_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_withdraw_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_LinkUSDSwap_call_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
   - name: curve_LinkUSDSwap_call_get_dy
     columns:
       - name: i
@@ -3348,7 +1661,152 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_calc_token_amount
+  - name: curve_sETHSwap_evt_AddLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_StopRampA
+    columns:
+      - name: A
+      - name: t
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_NewAdmin
+    columns:
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_TokenExchange
+    columns:
+      - name: buyer
+      - name: sold_id
+      - name: tokens_sold
+      - name: bought_id
+      - name: tokens_bought
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_CommitNewFee
+    columns:
+      - name: deadline
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_CommitNewAdmin
+    columns:
+      - name: deadline
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_NewFee
+    columns:
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_RemoveLiquidityOne
+    columns:
+      - name: provider
+      - name: token_amount
+      - name: coin_amount
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_RampA
+    columns:
+      - name: old_A
+      - name: new_A
+      - name: initial_time
+      - name: future_time
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_RemoveLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_evt_RemoveLiquidityImbalance
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_balances
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_calc_token_amount
     columns:
       - name: amounts
       - name: is_deposit
@@ -3360,7 +1818,181 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_coins
+  - name: curve_sETHSwap_call_ramp_A
+    columns:
+      - name: _future_A
+      - name: _future_time
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_apply_new_fee
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_calc_withdraw_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_commit_transfer_ownership
+    columns:
+      - name: _owner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_initial_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_stop_ramp_A
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_exchange
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_get_virtual_price
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_future_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_future_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_initial_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_revert_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_commit_new_fee
+    columns:
+      - name: new_fee
+      - name: new_admin_fee
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_revert_new_parameters
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_future_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_transfer_ownership_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_coins
     columns:
       - name: arg0
       - name: output_0
@@ -3371,12 +2003,1380 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: curve_LinkUSDSwap_call_exchange_underlying
+  - name: curve_sETHSwap_call_future_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_admin_balances
+    columns:
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_future_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_remove_liquidity
+    columns:
+      - name: _amount
+      - name: min_amounts
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_kill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_A_precise
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_add_liquidity
+    columns:
+      - name: amounts
+      - name: min_mint_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_unkill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_remove_liquidity_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
+      - name: _min_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_donate_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_admin_actions_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_apply_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_remove_liquidity_imbalance
+    columns:
+      - name: amounts
+      - name: max_burn_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_withdraw_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_sETHSwap_call_get_dy
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_AddLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_StopRampA
+    columns:
+      - name: A
+      - name: t
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_NewAdmin
+    columns:
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_TokenExchange
+    columns:
+      - name: buyer
+      - name: sold_id
+      - name: tokens_sold
+      - name: bought_id
+      - name: tokens_bought
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_CommitNewFee
+    columns:
+      - name: deadline
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_CommitNewAdmin
+    columns:
+      - name: deadline
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_NewFee
+    columns:
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_RemoveLiquidityOne
+    columns:
+      - name: provider
+      - name: token_amount
+      - name: coin_amount
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_RampA
+    columns:
+      - name: old_A
+      - name: new_A
+      - name: initial_time
+      - name: future_time
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_RemoveLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_RemoveLiquidityImbalance
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_evt_TokenExchangeUnderlying
+    columns:
+      - name: buyer
+      - name: sold_id
+      - name: tokens_sold
+      - name: bought_id
+      - name: tokens_bought
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_base_coins
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_base_virtual_price
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_exchange_underlying
     columns:
       - name: i
       - name: j
       - name: dx
       - name: min_dy
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_balances
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_calc_token_amount
+    columns:
+      - name: amounts
+      - name: is_deposit
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_base_pool
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_ramp_A
+    columns:
+      - name: _future_A
+      - name: _future_time
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_apply_new_fee
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_calc_withdraw_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_commit_transfer_ownership
+    columns:
+      - name: _owner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_base_cache_updated
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_initial_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_get_dy_underlying
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_stop_ramp_A
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_exchange
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_get_virtual_price
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_future_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_future_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_initial_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_revert_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_commit_new_fee
+    columns:
+      - name: new_fee
+      - name: new_admin_fee
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_revert_new_parameters
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_future_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_transfer_ownership_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_coins
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_future_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_admin_balances
+    columns:
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_future_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_remove_liquidity
+    columns:
+      - name: _amount
+      - name: min_amounts
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_kill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_A_precise
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_add_liquidity
+    columns:
+      - name: amounts
+      - name: min_mint_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_unkill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_remove_liquidity_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
+      - name: _min_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_donate_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_admin_actions_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_apply_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_remove_liquidity_imbalance
+    columns:
+      - name: amounts
+      - name: max_burn_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_withdraw_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_hUSDSwap_call_get_dy
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_AddLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_StopRampA
+    columns:
+      - name: A
+      - name: t
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_NewAdmin
+    columns:
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_TokenExchange
+    columns:
+      - name: buyer
+      - name: sold_id
+      - name: tokens_sold
+      - name: bought_id
+      - name: tokens_bought
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_CommitNewFee
+    columns:
+      - name: deadline
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_CommitNewAdmin
+    columns:
+      - name: deadline
+      - name: admin
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_NewFee
+    columns:
+      - name: fee
+      - name: admin_fee
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_RemoveLiquidityOne
+    columns:
+      - name: provider
+      - name: token_amount
+      - name: coin_amount
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_RampA
+    columns:
+      - name: old_A
+      - name: new_A
+      - name: initial_time
+      - name: future_time
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_RemoveLiquidity
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_RemoveLiquidityImbalance
+    columns:
+      - name: provider
+      - name: token_amounts
+      - name: fees
+      - name: invariant
+      - name: token_supply
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_evt_TokenExchangeUnderlying
+    columns:
+      - name: buyer
+      - name: sold_id
+      - name: tokens_sold
+      - name: bought_id
+      - name: tokens_bought
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_base_coins
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_base_virtual_price
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_exchange_underlying
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_balances
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_calc_token_amount
+    columns:
+      - name: amounts
+      - name: is_deposit
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_base_pool
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_ramp_A
+    columns:
+      - name: _future_A
+      - name: _future_time
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_apply_new_fee
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_calc_withdraw_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_commit_transfer_ownership
+    columns:
+      - name: _owner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_base_cache_updated
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_initial_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_get_dy_underlying
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_stop_ramp_A
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_exchange
+    columns:
+      - name: i
+      - name: j
+      - name: dx
+      - name: min_dy
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_get_virtual_price
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_future_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_future_owner
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_initial_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_revert_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_commit_new_fee
+    columns:
+      - name: new_fee
+      - name: new_admin_fee
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_revert_new_parameters
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_future_A_time
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_transfer_ownership_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_coins
+    columns:
+      - name: arg0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_future_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_admin_balances
+    columns:
+      - name: i
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_future_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_remove_liquidity
+    columns:
+      - name: _amount
+      - name: min_amounts
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_kill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_A_precise
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_add_liquidity
+    columns:
+      - name: amounts
+      - name: min_mint_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_unkill_me
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_remove_liquidity_one_coin
+    columns:
+      - name: _token_amount
+      - name: i
+      - name: _min_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_donate_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_admin_actions_deadline
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_apply_transfer_ownership
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_remove_liquidity_imbalance
+    columns:
+      - name: amounts
+      - name: max_burn_amount
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_withdraw_admin_fees
+    columns:
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_admin_fee
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_A
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: curve_gUSDSwap_call_get_dy
+    columns:
+      - name: i
+      - name: j
+      - name: dx
       - name: output_0
       - name: call_success
       - name: call_block_number

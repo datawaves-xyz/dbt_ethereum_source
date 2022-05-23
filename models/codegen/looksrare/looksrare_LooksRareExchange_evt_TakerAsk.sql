@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_evt_takerask',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_takerask_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_TakerAsk_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_takerask_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_TakerAsk_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.orderhash as orderHash, data.input.ordernonce as orderNonce, data.input.taker as taker, data.input.maker as maker, data.input.strategy as strategy, data.input.currency as currency, data.input.collection as collection, data.input.tokenid as tokenId, data.input.amount as amount, data.input.price as price
+        data.input.*
     from base
 )
 

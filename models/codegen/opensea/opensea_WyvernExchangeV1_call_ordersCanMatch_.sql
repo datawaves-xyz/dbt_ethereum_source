@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev1_call_orderscanmatch_',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev1_orderscanmatch__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_ordersCanMatch__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev1_orderscanmatch__calldecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV1_ordersCanMatch__CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.addrs as addrs, data.input.uints as uints, data.input.feemethodssideskindshowtocalls as feeMethodsSidesKindsHowToCalls, data.input.calldatabuy as calldataBuy, data.input.calldatasell as calldataSell, data.input.replacementpatternbuy as replacementPatternBuy, data.input.replacementpatternsell as replacementPatternSell, data.input.staticextradatabuy as staticExtradataBuy, data.input.staticextradatasell as staticExtradataSell, data.output.output_0 as output_0
+        data.input.*,
+        data.output.*
     from base
 )
 

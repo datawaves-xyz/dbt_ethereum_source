@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameclaims_evt_claimsubmitted',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameclaims_claimsubmitted_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_ClaimSubmitted_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_shortnameclaims_claimsubmitted_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_ClaimSubmitted_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.claimed as claimed, data.input.dnsname as dnsname, data.input.paid as paid, data.input.claimant as claimant, data.input.email as email
+        data.input.*
     from base
 )
 

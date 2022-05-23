@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_underlying_coins',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_underlying_coins_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_underlying_coins_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_busdswap_underlying_coins_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_underlying_coins_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.arg0 as arg0, data.output.output_out as output_out
+        data.input.*,
+        data.output.*
     from base
 )
 

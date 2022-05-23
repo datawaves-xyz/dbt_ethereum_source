@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='openseaensresolver_evt_authorisationchanged',
         pre_hook={
-            'sql': 'create or replace function opensea_openseaensresolver_authorisationchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_AuthorisationChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function opensea_openseaensresolver_authorisationchanged_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_OpenSeaENSResolver_AuthorisationChanged_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.node as node, data.input.owner as owner, data.input.target as target, data.input.isauthorised as isAuthorised
+        data.input.*
     from base
 )
 

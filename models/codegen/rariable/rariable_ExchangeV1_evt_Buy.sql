@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_evt_buy',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_buy_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_Buy_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function rariable_exchangev1_buy_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_Buy_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.selltoken as sellToken, data.input.selltokenid as sellTokenId, data.input.sellvalue as sellValue, data.input.owner as owner, data.input.buytoken as buyToken, data.input.buytokenid as buyTokenId, data.input.buyvalue as buyValue, data.input.buyer as buyer, data.input.amount as amount, data.input.salt as salt
+        data.input.*
     from base
 )
 

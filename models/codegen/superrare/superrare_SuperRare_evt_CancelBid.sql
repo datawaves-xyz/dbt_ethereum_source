@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_cancelbid',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_cancelbid_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_CancelBid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function superrare_superrare_cancelbid_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_CancelBid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input._bidder as _bidder, data.input._amount as _amount, data.input._tokenid as _tokenId
+        data.input.*
     from base
 )
 

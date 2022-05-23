@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_call_transferfrom',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_transferfrom_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_transferFrom_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_transferfrom_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_transferFrom_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.from as from, data.input.to as to, data.input.tokenid as tokenId
+        data.input.*,
+        data.output.*
     from base
 )
 

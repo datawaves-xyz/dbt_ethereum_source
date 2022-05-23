@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_evt_ownershiptransferred',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.previousowner as previousOwner, data.input.newowner as newOwner
+        data.input.*
     from base
 )
 

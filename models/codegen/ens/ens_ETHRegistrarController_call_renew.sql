@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller_call_renew',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller_renew_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_renew_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller_renew_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController_renew_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.name as name, data.input.duration as duration
+        data.input.*,
+        data.output.*
     from base
 )
 

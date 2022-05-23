@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_ownershiprenounced',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_ownershiprenounced_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OwnershipRenounced_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_ownershiprenounced_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_OwnershipRenounced_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.previousowner as previousOwner
+        data.input.*
     from base
 )
 

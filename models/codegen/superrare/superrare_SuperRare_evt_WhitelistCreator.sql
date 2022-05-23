@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_whitelistcreator',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_whitelistcreator_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_WhitelistCreator_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function superrare_superrare_whitelistcreator_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_WhitelistCreator_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input._creator as _creator
+        data.input.*
     from base
 )
 

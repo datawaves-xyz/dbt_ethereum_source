@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller3_call_owner',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller3_owner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller3_owner_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_owner_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.output.output_0 as output_0
+        data.input.*,
+        data.output.*
     from base
 )
 

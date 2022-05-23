@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_call_shabid',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_shabid_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_shaBid_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_registrar0_shabid_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_shaBid_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.hash as hash, data.input.owner as owner, data.input.value as value, data.input.salt as salt, data.output.output_sealedbid as output_sealedBid
+        data.input.*,
+        data.output.*
     from base
 )
 

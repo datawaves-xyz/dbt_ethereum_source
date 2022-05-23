@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_call_reclaim',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_reclaim_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_reclaim_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_reclaim_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_reclaim_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.id as id, data.input.owner as owner
+        data.input.*,
+        data.output.*
     from base
 )
 

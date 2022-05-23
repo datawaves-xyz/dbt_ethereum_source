@@ -1,27 +1,5 @@
 version: 2
 models:
-  - name: common_ERC721_evt_Transfer
-    columns:
-      - name: from
-      - name: to
-      - name: tokenId
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: common_ERC721_evt_Approval
-    columns:
-      - name: owner
-      - name: approved
-      - name: tokenId
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
   - name: common_ERC1155_evt_TransferSingle
     columns:
       - name: operator
@@ -48,21 +26,21 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: common_ERC1155_evt_URI
+  - name: common_ERC1155_evt_ApprovalForAll
     columns:
-      - name: value
-      - name: id
+      - name: account
+      - name: operator
+      - name: approved
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: common_ERC1155_evt_ApprovalForAll
+  - name: common_ERC1155_evt_URI
     columns:
-      - name: account
-      - name: operator
-      - name: approved
+      - name: value
+      - name: id
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -85,6 +63,28 @@ models:
       - name: owner
       - name: spender
       - name: value
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC721_evt_Transfer
+    columns:
+      - name: from
+      - name: to
+      - name: tokenId
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC721_evt_Approval
+    columns:
+      - name: owner
+      - name: approved
+      - name: tokenId
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index

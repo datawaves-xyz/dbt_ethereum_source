@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_call_nextpunkindextoassign',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_nextpunkindextoassign_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_nextPunkIndexToAssign_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_nextpunkindextoassign_calldecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_nextPunkIndexToAssign_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.output.output_0 as output_0
+        data.input.*,
+        data.output.*
     from base
 )
 

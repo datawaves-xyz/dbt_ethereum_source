@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='dusdswap_call_commit_transfer_ownership',
         pre_hook={
-            'sql': 'create or replace function curve_dusdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_dusdswap_commit_transfer_ownership_calldecodeudf as "io.iftech.sparkudf.hive.Curve_DUSDSwap_commit_transfer_ownership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input._owner as _owner
+        data.input.*,
+        data.output.*
     from base
 )
 

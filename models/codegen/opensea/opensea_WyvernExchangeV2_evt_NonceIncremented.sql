@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='wyvernexchangev2_evt_nonceincremented',
         pre_hook={
-            'sql': 'create or replace function opensea_wyvernexchangev2_nonceincremented_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_NonceIncremented_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function opensea_wyvernexchangev2_nonceincremented_eventdecodeudf as "io.iftech.sparkudf.hive.Opensea_WyvernExchangeV2_NonceIncremented_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.maker as maker, data.input.newnonce as newNonce
+        data.input.*
     from base
 )
 

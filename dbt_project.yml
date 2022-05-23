@@ -15,24 +15,6 @@ models:
               - level_standardize
               - proj_global
         codegen:
-            yearn:
-                +schema: yearn
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_yearn
-            looksrare:
-                +schema: looksrare
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_looksrare
-            ens:
-                +schema: ens
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_ens
             opensea:
                 +schema: opensea
                 +tags:
@@ -45,24 +27,42 @@ models:
                   - chain_ethereum
                   - level_parse
                   - proj_rariable
-            curve:
-                +schema: curve
+            ens:
+                +schema: ens
                 +tags:
                   - chain_ethereum
                   - level_parse
-                  - proj_curve
+                  - proj_ens
             foundation:
                 +schema: foundation
                 +tags:
                   - chain_ethereum
                   - level_parse
                   - proj_foundation
+            curve:
+                +schema: curve
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_curve
+            looksrare:
+                +schema: looksrare
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_looksrare
             common:
                 +schema: common
                 +tags:
                   - chain_ethereum
                   - level_parse
                   - proj_common
+            yearn:
+                +schema: yearn
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_yearn
             superrare:
                 +schema: superrare
                 +tags:

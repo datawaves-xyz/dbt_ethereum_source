@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='market_evt_upgraded',
         pre_hook={
-            'sql': 'create or replace function foundation_market_upgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Foundation_market_Upgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function foundation_market_upgraded_eventdecodeudf as "io.iftech.sparkudf.hive.Foundation_market_Upgraded_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.implementation as implementation
+        data.input.*
     from base
 )
 

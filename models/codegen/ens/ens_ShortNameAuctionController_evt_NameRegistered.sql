@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_evt_nameregistered',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_nameregistered_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_NameRegistered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_nameregistered_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_NameRegistered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.name as name, data.input.owner as owner
+        data.input.*
     from base
 )
 

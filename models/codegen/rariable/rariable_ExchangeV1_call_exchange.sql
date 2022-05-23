@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_exchange',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_exchange_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_exchange_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function rariable_exchangev1_exchange_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_exchange_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.order as order, data.input.sig as sig, data.input.buyerfee as buyerFee, data.input.buyerfeesig as buyerFeeSig, data.input.amount as amount, data.input.buyer as buyer
+        data.input.*,
+        data.output.*
     from base
 )
 

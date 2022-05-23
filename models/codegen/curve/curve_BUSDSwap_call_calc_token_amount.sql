@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_calc_token_amount',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_calc_token_amount_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_calc_token_amount_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_busdswap_calc_token_amount_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_calc_token_amount_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.amounts as amounts, data.input.deposit as deposit, data.output.output_out as output_out
+        data.input.*,
+        data.output.*
     from base
 )
 

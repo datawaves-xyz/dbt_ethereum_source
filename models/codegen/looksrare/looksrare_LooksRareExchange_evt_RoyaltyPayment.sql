@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_evt_royaltypayment',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_royaltypayment_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_RoyaltyPayment_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_royaltypayment_eventdecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_RoyaltyPayment_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.collection as collection, data.input.tokenid as tokenId, data.input.royaltyrecipient as royaltyRecipient, data.input.currency as currency, data.input.amount as amount
+        data.input.*
     from base
 )
 

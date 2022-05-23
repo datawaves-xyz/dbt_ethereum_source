@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller2_evt_newpriceoracle',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller2_newpriceoracle_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController2_NewPriceOracle_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller2_newpriceoracle_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController2_NewPriceOracle_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.oracle as oracle
+        data.input.*
     from base
 )
 

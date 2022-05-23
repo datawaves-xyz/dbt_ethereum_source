@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_call_ramp_a',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_ramp_a_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_ramp_A_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_sethswap_ramp_a_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_ramp_A_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input._future_a as _future_A, data.input._future_time as _future_time
+        data.input.*,
+        data.output.*
     from base
 )
 

@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='market_call_changeadmin',
         pre_hook={
-            'sql': 'create or replace function foundation_market_changeadmin_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_changeAdmin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function foundation_market_changeadmin_calldecodeudf as "io.iftech.sparkudf.hive.Foundation_market_changeAdmin_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.newadmin as newAdmin
+        data.input.*,
+        data.output.*
     from base
 )
 

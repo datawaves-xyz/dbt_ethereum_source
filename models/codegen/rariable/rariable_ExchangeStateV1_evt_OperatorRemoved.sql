@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangestatev1_evt_operatorremoved',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangestatev1_operatorremoved_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OperatorRemoved_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function rariable_exchangestatev1_operatorremoved_eventdecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeStateV1_OperatorRemoved_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.account as account
+        data.input.*
     from base
 )
 

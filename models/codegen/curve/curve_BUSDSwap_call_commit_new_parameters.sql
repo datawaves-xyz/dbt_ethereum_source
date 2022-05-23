@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_commit_new_parameters',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_commit_new_parameters_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_commit_new_parameters_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_busdswap_commit_new_parameters_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_commit_new_parameters_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.amplification as amplification, data.input.new_fee as new_fee, data.input.new_admin_fee as new_admin_fee
+        data.input.*,
+        data.output.*
     from base
 )
 

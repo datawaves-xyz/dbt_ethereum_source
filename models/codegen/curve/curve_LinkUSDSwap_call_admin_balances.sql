@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='linkusdswap_call_admin_balances',
         pre_hook={
-            'sql': 'create or replace function curve_linkusdswap_admin_balances_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_admin_balances_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_linkusdswap_admin_balances_calldecodeudf as "io.iftech.sparkudf.hive.Curve_LinkUSDSwap_admin_balances_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.i as i, data.output.output_0 as output_0
+        data.input.*,
+        data.output.*
     from base
 )
 

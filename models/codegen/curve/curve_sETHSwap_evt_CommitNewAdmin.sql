@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_evt_commitnewadmin',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_commitnewadmin_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_CommitNewAdmin_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function curve_sethswap_commitnewadmin_eventdecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_CommitNewAdmin_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.deadline as deadline, data.input.admin as admin
+        data.input.*
     from base
 )
 

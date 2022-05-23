@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_call_transferownership',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_transferownership_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_transferOwnership_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.newowner as newOwner
+        data.input.*,
+        data.output.*
     from base
 )
 

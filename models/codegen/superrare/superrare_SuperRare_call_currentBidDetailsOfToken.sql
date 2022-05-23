@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_call_currentbiddetailsoftoken',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_currentbiddetailsoftoken_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_currentBidDetailsOfToken_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.12.jar";'
+            'sql': 'create or replace function superrare_superrare_currentbiddetailsoftoken_calldecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_currentBidDetailsOfToken_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
         }
     )
 }}
@@ -36,7 +36,8 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input._tokenid as _tokenId, data.output.output_0 as output_0, data.output.output_1 as output_1
+        data.input.*,
+        data.output.*
     from base
 )
 
