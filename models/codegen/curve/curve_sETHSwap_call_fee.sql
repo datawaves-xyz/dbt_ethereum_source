@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='sethswap_call_fee',
         pre_hook={
-            'sql': 'create or replace function curve_sethswap_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function curve_sethswap_fee_calldecodeudf as "io.iftech.sparkudf.hive.Curve_sETHSwap_fee_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

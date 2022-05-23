@@ -1,8 +1,8 @@
 version: 2
 models:
-  - name: looksrare_LooksRareExchange_evt_NewExecutionManager
+  - name: looksrare_LooksRareExchange_evt_NewCurrencyManager
     columns:
-      - name: executionManager
+      - name: currencyManager
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -28,9 +28,18 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_evt_NewCurrencyManager
+  - name: looksrare_LooksRareExchange_evt_NewTransferSelectorNFT
     columns:
-      - name: currencyManager
+      - name: transferSelectorNFT
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_evt_NewExecutionManager
+    columns:
+      - name: executionManager
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -49,6 +58,29 @@ models:
       - name: tokenId
       - name: amount
       - name: price
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_evt_RoyaltyPayment
+    columns:
+      - name: collection
+      - name: tokenId
+      - name: royaltyRecipient
+      - name: currency
+      - name: amount
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_evt_CancelAllOrders
+    columns:
+      - name: user
+      - name: newMinNonce
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -82,38 +114,6 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_evt_CancelAllOrders
-    columns:
-      - name: user
-      - name: newMinNonce
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_evt_NewTransferSelectorNFT
-    columns:
-      - name: transferSelectorNFT
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_evt_RoyaltyPayment
-    columns:
-      - name: collection
-      - name: tokenId
-      - name: royaltyRecipient
-      - name: currency
-      - name: amount
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
   - name: looksrare_LooksRareExchange_evt_CancelMultipleOrders
     columns:
       - name: user
@@ -134,9 +134,9 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_owner
+  - name: looksrare_LooksRareExchange_call_updateRoyaltyFeeManager
     columns:
-      - name: output_0
+      - name: _royaltyFeeManager
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -144,9 +144,28 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_updateCurrencyManager
+  - name: looksrare_LooksRareExchange_call_renounceOwnership
     columns:
-      - name: _currencyManager
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_transferOwnership
+    columns:
+      - name: newOwner
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_executionManager
+    columns:
+      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -157,55 +176,6 @@ models:
   - name: looksrare_LooksRareExchange_call_cancelAllOrdersForSender
     columns:
       - name: minNonce
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_updateTransferSelectorNFT
-    columns:
-      - name: _transferSelectorNFT
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_updateProtocolFeeRecipient
-    columns:
-      - name: _protocolFeeRecipient
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_currencyManager
-    columns:
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_cancelMultipleMakerOrders
-    columns:
-      - name: orderNonces
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_renounceOwnership
-    columns:
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -224,7 +194,27 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_DOMAIN_SEPARATOR
+  - name: looksrare_LooksRareExchange_call_updateProtocolFeeRecipient
+    columns:
+      - name: _protocolFeeRecipient
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_updateTransferSelectorNFT
+    columns:
+      - name: _transferSelectorNFT
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_currencyManager
     columns:
       - name: output_0
       - name: call_success
@@ -234,10 +224,9 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_matchAskWithTakerBid
+  - name: looksrare_LooksRareExchange_call_owner
     columns:
-      - name: takerBid
-      - name: makerAsk
+      - name: output_0
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -245,7 +234,7 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_protocolFeeRecipient
+  - name: looksrare_LooksRareExchange_call_transferSelectorNFT
     columns:
       - name: output_0
       - name: call_success
@@ -259,37 +248,6 @@ models:
     columns:
       - name: user
       - name: orderNonce
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_updateRoyaltyFeeManager
-    columns:
-      - name: _royaltyFeeManager
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_userMinOrderNonce
-    columns:
-      - name: _0
-      - name: output_0
-      - name: call_success
-      - name: call_block_number
-      - name: call_block_time
-      - name: call_trace_address
-      - name: call_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: looksrare_LooksRareExchange_call_executionManager
-    columns:
       - name: output_0
       - name: call_success
       - name: call_block_number
@@ -318,9 +276,10 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_transferOwnership
+  - name: looksrare_LooksRareExchange_call_matchAskWithTakerBid
     columns:
-      - name: newOwner
+      - name: takerBid
+      - name: makerAsk
       - name: call_success
       - name: call_block_number
       - name: call_block_time
@@ -328,9 +287,50 @@ models:
       - name: call_tx_hash
       - name: contract_address
       - name: dt
-  - name: looksrare_LooksRareExchange_call_transferSelectorNFT
+  - name: looksrare_LooksRareExchange_call_updateCurrencyManager
+    columns:
+      - name: _currencyManager
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_protocolFeeRecipient
     columns:
       - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_DOMAIN_SEPARATOR
+    columns:
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_userMinOrderNonce
+    columns:
+      - name: _0
+      - name: output_0
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: looksrare_LooksRareExchange_call_cancelMultipleMakerOrders
+    columns:
+      - name: orderNonces
       - name: call_success
       - name: call_block_number
       - name: call_block_time

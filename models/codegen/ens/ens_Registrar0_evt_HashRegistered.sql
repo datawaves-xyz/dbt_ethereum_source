@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_evt_hashregistered',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_hashregistered_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_HashRegistered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_registrar0_hashregistered_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_HashRegistered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

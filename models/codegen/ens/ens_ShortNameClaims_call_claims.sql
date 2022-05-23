@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameclaims_call_claims',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameclaims_claims_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_claims_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function ens_shortnameclaims_claims_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameClaims_claims_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

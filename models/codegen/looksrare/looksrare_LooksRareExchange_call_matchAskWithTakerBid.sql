@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='looksrareexchange_call_matchaskwithtakerbid',
         pre_hook={
-            'sql': 'create or replace function looksrare_looksrareexchange_matchaskwithtakerbid_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_matchAskWithTakerBid_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.13.jar";'
+            'sql': 'create or replace function looksrare_looksrareexchange_matchaskwithtakerbid_calldecodeudf as "io.iftech.sparkudf.hive.Looksrare_LooksRareExchange_matchAskWithTakerBid_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
         }
     )
 }}

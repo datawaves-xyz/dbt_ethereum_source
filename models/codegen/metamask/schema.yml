@@ -1,0 +1,15 @@
+version: 2
+models:
+  - name: metamask_MetamaskSwap_call_swap
+    columns:
+      - name: router
+      - name: token
+      - name: amount
+      - name: calldata
+      - name: call_success
+      - name: call_block_number
+      - name: call_block_time
+      - name: call_trace_address
+      - name: call_tx_hash
+      - name: contract_address
+      - name: dt
