@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._0 as _0, data.output.output_id as output_id, data.output.output_proposer as output_proposer, data.output.output_totalforvotes as output_totalForVotes, data.output.output_totalagainstvotes as output_totalAgainstVotes, data.output.output_start as output_start, data.output.output_end as output_end
     from base
 )
 

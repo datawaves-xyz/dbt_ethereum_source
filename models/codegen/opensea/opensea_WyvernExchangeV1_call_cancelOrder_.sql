@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.addrs as addrs, data.input.uints as uints, data.input.feemethod as feeMethod, data.input.side as side, data.input.salekind as saleKind, data.input.howtocall as howToCall, data.input.calldata as calldata, data.input.replacementpattern as replacementPattern, data.input.staticextradata as staticExtradata, data.input.v as v, data.input.r as r, data.input.s as s
     from base
 )
 

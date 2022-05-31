@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.side as side, data.input.salekind as saleKind, data.input.baseprice as basePrice, data.input.extra as extra, data.input.listingtime as listingTime, data.input.expirationtime as expirationTime, data.output.output_0 as output_0
     from base
 )
 

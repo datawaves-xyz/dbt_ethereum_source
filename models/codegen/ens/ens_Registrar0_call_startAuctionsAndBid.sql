@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.hashes as hashes, data.input.sealedbid as sealedBid
     from base
 )
 

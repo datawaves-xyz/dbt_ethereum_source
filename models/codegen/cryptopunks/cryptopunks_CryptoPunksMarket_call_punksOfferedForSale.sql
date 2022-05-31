@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._0 as _0, data.output.output_isforsale as output_isForSale, data.output.output_punkindex as output_punkIndex, data.output.output_seller as output_seller, data.output.output_minvalue as output_minValue, data.output.output_onlysellto as output_onlySellTo
     from base
 )
 

@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.hash as hash, data.input.howtocall as howToCall, data.input.calldata as calldata, data.input.replacementpattern as replacementPattern, data.input.statictarget as staticTarget, data.input.staticextradata as staticExtradata, data.input.paymenttoken as paymentToken, data.input.baseprice as basePrice, data.input.extra as extra, data.input.listingtime as listingTime, data.input.expirationtime as expirationTime, data.input.salt as salt, data.input.orderbookinclusiondesired as orderbookInclusionDesired
     from base
 )
 

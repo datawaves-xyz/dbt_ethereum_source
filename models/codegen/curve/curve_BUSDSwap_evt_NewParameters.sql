@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.a as A, data.input.fee as fee, data.input.admin_fee as admin_fee
     from base
 )
 

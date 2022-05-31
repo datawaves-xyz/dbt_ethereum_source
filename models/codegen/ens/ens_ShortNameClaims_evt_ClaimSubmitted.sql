@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.claimed as claimed, data.input.dnsname as dnsname, data.input.paid as paid, data.input.claimant as claimant, data.input.email as email
     from base
 )
 

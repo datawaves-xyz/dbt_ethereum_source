@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._0 as _0, data.output.output_labelhash as output_labelHash, data.output.output_claimant as output_claimant, data.output.output_paid as output_paid, data.output.output_status as output_status
     from base
 )
 

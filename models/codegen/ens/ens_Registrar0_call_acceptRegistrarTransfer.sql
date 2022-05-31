@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.hash as hash, data.input.deed as deed, data.input.registrationdate as registrationDate
     from base
 )
 

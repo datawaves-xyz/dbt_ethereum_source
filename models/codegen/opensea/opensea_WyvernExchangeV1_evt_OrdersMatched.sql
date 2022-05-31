@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.buyhash as buyHash, data.input.sellhash as sellHash, data.input.maker as maker, data.input.taker as taker, data.input.price as price, data.input.metadata as metadata
     from base
 )
 

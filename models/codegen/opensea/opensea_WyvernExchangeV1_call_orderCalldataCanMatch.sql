@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.buycalldata as buyCalldata, data.input.buyreplacementpattern as buyReplacementPattern, data.input.sellcalldata as sellCalldata, data.input.sellreplacementpattern as sellReplacementPattern, data.output.output_0 as output_0
     from base
 )
 

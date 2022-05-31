@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.claimid as claimId, data.input.status as status
     from base
 )
 

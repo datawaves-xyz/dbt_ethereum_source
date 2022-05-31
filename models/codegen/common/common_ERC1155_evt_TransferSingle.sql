@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.operator as operator, data.input.from as from, data.input.to as to, data.input.id as id, data.input.value as value
     from base
 )
 

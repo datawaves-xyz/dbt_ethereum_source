@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.selltoken as sellToken, data.input.selltokenid as sellTokenId, data.input.owner as owner, data.input.buytoken as buyToken, data.input.buytokenid as buyTokenId, data.input.salt as salt
     from base
 )
 

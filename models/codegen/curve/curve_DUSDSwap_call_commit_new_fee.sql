@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.new_fee as new_fee, data.input.new_admin_fee as new_admin_fee
     from base
 )
 

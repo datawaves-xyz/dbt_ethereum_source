@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.owner as owner, data.input.resolver as resolver, data.output.output_node as output_node
     from base
 )
 

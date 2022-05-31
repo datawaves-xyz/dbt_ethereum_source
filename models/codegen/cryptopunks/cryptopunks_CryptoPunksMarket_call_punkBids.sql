@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._0 as _0, data.output.output_hasbid as output_hasBid, data.output.output_punkindex as output_punkIndex, data.output.output_bidder as output_bidder, data.output.output_value as output_value
     from base
 )
 

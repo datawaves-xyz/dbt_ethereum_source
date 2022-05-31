@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.node as node, data.input.contenttype as contentType, data.input.data as data
     from base
 )
 

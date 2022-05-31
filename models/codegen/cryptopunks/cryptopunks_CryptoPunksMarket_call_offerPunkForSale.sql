@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.punkindex as punkIndex, data.input.minsalepriceinwei as minSalePriceInWei
     from base
 )
 

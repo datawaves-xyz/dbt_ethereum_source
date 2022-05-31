@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.router as router, data.input.token as token, data.input.amount as amount, data.input.calldata as calldata
     from base
 )
 

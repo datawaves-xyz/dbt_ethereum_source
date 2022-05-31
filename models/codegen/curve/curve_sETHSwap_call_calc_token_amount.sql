@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.amounts as amounts, data.input.is_deposit as is_deposit, data.output.output_0 as output_0
     from base
 )
 

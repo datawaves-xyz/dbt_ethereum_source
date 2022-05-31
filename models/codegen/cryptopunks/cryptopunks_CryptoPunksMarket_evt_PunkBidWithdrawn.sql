@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.punkindex as punkIndex, data.input.value as value, data.input.fromaddress as fromAddress
     from base
 )
 

@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.node as node, data.input.indexedkey as indexedKey, data.input.key as key
     from base
 )
 

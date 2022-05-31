@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.previousadmin as previousAdmin, data.input.newadmin as newAdmin
     from base
 )
 

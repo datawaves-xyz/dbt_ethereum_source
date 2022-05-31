@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.collection as collection, data.input.tokenid as tokenId, data.input.royaltyrecipient as royaltyRecipient, data.input.currency as currency, data.input.amount as amount
     from base
 )
 

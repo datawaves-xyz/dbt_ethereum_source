@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.amounts as amounts, data.input.min_mint_amount as min_mint_amount
     from base
 )
 

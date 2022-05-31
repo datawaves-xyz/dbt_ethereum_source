@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._future_a as _future_A, data.input._future_time as _future_time
     from base
 )
 

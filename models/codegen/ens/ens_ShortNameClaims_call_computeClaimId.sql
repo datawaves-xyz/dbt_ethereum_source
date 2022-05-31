@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.claimed as claimed, data.input.dnsname as dnsname, data.input.claimant as claimant, data.input.email as email, data.output.output_0 as output_0
     from base
 )
 

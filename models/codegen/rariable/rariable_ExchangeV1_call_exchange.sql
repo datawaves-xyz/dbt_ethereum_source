@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.order as order, data.input.sig as sig, data.input.buyerfee as buyerFee, data.input.buyerfeesig as buyerFeeSig, data.input.amount as amount, data.input.buyer as buyer
     from base
 )
 

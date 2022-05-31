@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.old_a as old_A, data.input.new_a as new_A, data.input.initial_time as initial_time, data.input.future_time as future_time
     from base
 )
 

@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input._from as _from, data.input._to as _to, data.input._tokenid as _tokenId
     from base
 )
 

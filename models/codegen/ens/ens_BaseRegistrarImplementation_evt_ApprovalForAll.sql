@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.owner as owner, data.input.operator as operator, data.input.approved as approved
     from base
 )
 

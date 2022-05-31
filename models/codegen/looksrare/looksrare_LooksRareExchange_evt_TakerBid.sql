@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.orderhash as orderHash, data.input.ordernonce as orderNonce, data.input.taker as taker, data.input.maker as maker, data.input.strategy as strategy, data.input.currency as currency, data.input.collection as collection, data.input.tokenid as tokenId, data.input.amount as amount, data.input.price as price
     from base
 )
 

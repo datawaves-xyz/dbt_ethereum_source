@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.hash as hash, data.input.name as name, data.input.value as value, data.input.registrationdate as registrationDate
     from base
 )
 

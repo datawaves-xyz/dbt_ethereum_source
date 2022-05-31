@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.from as from, data.input.to as to, data.input.tokenid as tokenId, data.input._data as _data
     from base
 )
 

@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input.takerbid as takerBid, data.input.makerask as makerAsk
     from base
 )
 

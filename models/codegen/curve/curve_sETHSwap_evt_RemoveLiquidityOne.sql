@@ -34,7 +34,7 @@ final as (
         evt_tx_hash,
         contract_address,
         dt,
-        data.input.*
+        data.input.provider as provider, data.input.token_amount as token_amount, data.input.coin_amount as coin_amount
     from base
 )
 

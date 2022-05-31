@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._mincommitmentage as _minCommitmentAge, data.input._maxcommitmentage as _maxCommitmentAge
     from base
 )
 

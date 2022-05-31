@@ -36,8 +36,7 @@ final as (
         call_tx_hash,
         contract_address,
         dt,
-        data.input.*,
-        data.output.*
+        data.input._hash as _hash, data.input._value as _value, data.input._salt as _salt
     from base
 )
 
