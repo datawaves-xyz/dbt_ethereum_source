@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='busdswap_call_balances',
         pre_hook={
-            'sql': 'create or replace function curve_busdswap_balances_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_balances_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function curve_busdswap_balances_calldecodeudf as "io.iftech.sparkudf.hive.Curve_BUSDSwap_balances_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}

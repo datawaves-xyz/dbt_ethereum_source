@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='baseregistrarimplementation_call_balanceof',
         pre_hook={
-            'sql': 'create or replace function ens_baseregistrarimplementation_balanceof_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_balanceOf_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function ens_baseregistrarimplementation_balanceof_calldecodeudf as "io.iftech.sparkudf.hive.Ens_BaseRegistrarImplementation_balanceOf_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}

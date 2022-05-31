@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_call_opensea',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_opensea_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_opensea_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_opensea_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_opensea_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}

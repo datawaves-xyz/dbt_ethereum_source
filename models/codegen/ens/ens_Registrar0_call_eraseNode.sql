@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_call_erasenode',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_erasenode_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_eraseNode_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function ens_registrar0_erasenode_calldecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_eraseNode_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}

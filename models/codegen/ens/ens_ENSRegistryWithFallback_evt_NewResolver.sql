@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistrywithfallback_evt_newresolver',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistrywithfallback_newresolver_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_NewResolver_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function ens_ensregistrywithfallback_newresolver_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_NewResolver_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}

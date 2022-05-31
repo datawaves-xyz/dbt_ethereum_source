@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ethregistrarcontroller3_call_supportsinterface',
         pre_hook={
-            'sql': 'create or replace function ens_ethregistrarcontroller3_supportsinterface_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_supportsInterface_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function ens_ethregistrarcontroller3_supportsinterface_calldecodeudf as "io.iftech.sparkudf.hive.Ens_ETHRegistrarController3_supportsInterface_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}

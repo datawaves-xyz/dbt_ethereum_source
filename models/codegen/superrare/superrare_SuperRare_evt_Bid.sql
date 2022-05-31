@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='superrare_evt_bid',
         pre_hook={
-            'sql': 'create or replace function superrare_superrare_bid_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Bid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.14.jar";'
+            'sql': 'create or replace function superrare_superrare_bid_eventdecodeudf as "io.iftech.sparkudf.hive.Superrare_SuperRare_Bid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
         }
     )
 }}
