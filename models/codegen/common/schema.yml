@@ -1,12 +1,20 @@
 version: 2
 models:
-  - name: common_ERC1155_evt_TransferBatch
+  - name: common_ERC1155_evt_URI
     columns:
+      - name: value
+      - name: id
+      - name: evt_block_number
+      - name: evt_block_time
+      - name: evt_index
+      - name: evt_tx_hash
+      - name: contract_address
+      - name: dt
+  - name: common_ERC1155_evt_ApprovalForAll
+    columns:
+      - name: account
       - name: operator
-      - name: from
-      - name: to
-      - name: ids
-      - name: values
+      - name: approved
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index
@@ -26,21 +34,13 @@ models:
       - name: evt_tx_hash
       - name: contract_address
       - name: dt
-  - name: common_ERC1155_evt_ApprovalForAll
+  - name: common_ERC1155_evt_TransferBatch
     columns:
-      - name: account
       - name: operator
-      - name: approved
-      - name: evt_block_number
-      - name: evt_block_time
-      - name: evt_index
-      - name: evt_tx_hash
-      - name: contract_address
-      - name: dt
-  - name: common_ERC1155_evt_URI
-    columns:
-      - name: value
-      - name: id
+      - name: from
+      - name: to
+      - name: ids
+      - name: values
       - name: evt_block_number
       - name: evt_block_time
       - name: evt_index

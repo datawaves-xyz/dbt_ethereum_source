@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='registrar0_evt_newbid',
         pre_hook={
-            'sql': 'create or replace function ens_registrar0_newbid_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_NewBid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
+            'sql': 'create or replace function ens_registrar0_newbid_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_Registrar0_NewBid_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.16.jar";'
         }
     )
 }}

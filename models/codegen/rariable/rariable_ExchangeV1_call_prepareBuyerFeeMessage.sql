@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='exchangev1_call_preparebuyerfeemessage',
         pre_hook={
-            'sql': 'create or replace function rariable_exchangev1_preparebuyerfeemessage_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_prepareBuyerFeeMessage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
+            'sql': 'create or replace function rariable_exchangev1_preparebuyerfeemessage_calldecodeudf as "io.iftech.sparkudf.hive.Rariable_ExchangeV1_prepareBuyerFeeMessage_CallDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.16.jar";'
         }
     )
 }}

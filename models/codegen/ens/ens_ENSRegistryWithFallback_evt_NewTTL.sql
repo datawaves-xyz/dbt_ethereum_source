@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='ensregistrywithfallback_evt_newttl',
         pre_hook={
-            'sql': 'create or replace function ens_ensregistrywithfallback_newttl_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_NewTTL_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
+            'sql': 'create or replace function ens_ensregistrywithfallback_newttl_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ENSRegistryWithFallback_NewTTL_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.16.jar";'
         }
     )
 }}

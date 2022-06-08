@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='yearngovernance_evt_ownershiptransferred',
         pre_hook={
-            'sql': 'create or replace function yearn_yearngovernance_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
+            'sql': 'create or replace function yearn_yearngovernance_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Yearn_YearnGovernance_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.16.jar";'
         }
     )
 }}

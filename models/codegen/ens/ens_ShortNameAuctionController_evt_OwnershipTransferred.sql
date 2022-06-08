@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='shortnameauctioncontroller_evt_ownershiptransferred',
         pre_hook={
-            'sql': 'create or replace function ens_shortnameauctioncontroller_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
+            'sql': 'create or replace function ens_shortnameauctioncontroller_ownershiptransferred_eventdecodeudf as "io.iftech.sparkudf.hive.Ens_ShortNameAuctionController_OwnershipTransferred_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.16.jar";'
         }
     )
 }}

@@ -15,36 +15,24 @@ models:
               - level_standardize
               - proj_global
         codegen:
-            opensea:
-                +schema: opensea
+            metamask:
+                +schema: metamask
                 +tags:
                   - chain_ethereum
                   - level_parse
-                  - proj_opensea
-            rariable:
-                +schema: rariable
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_rariable
-            ens:
-                +schema: ens
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_ens
-            foundation:
-                +schema: foundation
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_foundation
+                  - proj_metamask
             curve:
                 +schema: curve
                 +tags:
                   - chain_ethereum
                   - level_parse
                   - proj_curve
+            rariable:
+                +schema: rariable
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_rariable
             looksrare:
                 +schema: looksrare
                 +tags:
@@ -57,24 +45,36 @@ models:
                   - chain_ethereum
                   - level_parse
                   - proj_common
-            metamask:
-                +schema: metamask
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_metamask
-            yearn:
-                +schema: yearn
-                +tags:
-                  - chain_ethereum
-                  - level_parse
-                  - proj_yearn
             superrare:
                 +schema: superrare
                 +tags:
                   - chain_ethereum
                   - level_parse
                   - proj_superrare
+            foundation:
+                +schema: foundation
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_foundation
+            yearn:
+                +schema: yearn
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_yearn
+            ens:
+                +schema: ens
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_ens
+            opensea:
+                +schema: opensea
+                +tags:
+                  - chain_ethereum
+                  - level_parse
+                  - proj_opensea
             cryptopunks:
                 +schema: cryptopunks
                 +tags:

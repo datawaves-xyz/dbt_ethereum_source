@@ -4,7 +4,7 @@
         file_format='parquet',
         alias='cryptopunksmarket_evt_punkbidentered',
         pre_hook={
-            'sql': 'create or replace function cryptopunks_cryptopunksmarket_punkbidentered_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_PunkBidEntered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.15.jar";'
+            'sql': 'create or replace function cryptopunks_cryptopunksmarket_punkbidentered_eventdecodeudf as "io.iftech.sparkudf.hive.Cryptopunks_CryptoPunksMarket_PunkBidEntered_EventDecodeUDF" using jar "s3a://blockchain-dbt/dist/jars/blockchain-dbt-udf-0.1.16.jar";'
         }
     )
 }}
